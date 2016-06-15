@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_gravity="center_horizontal"
+    android:orientation="vertical"
+    android:id="@+id/action_bar_back"
+    android:background="@color/colorWhite"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        android:layout_gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:gravity="center"
+                android:orientation="vertical"
+                android:id="@+id/layout_click_sidebar"
+                android:background="@drawable/hover_selector_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView android:id="@+id/menu_drawer_btn" android:paddingLeft="3.0dip"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_margin="10dip"
+                    android:src="@drawable/menu_icon"
+                    android:layout_alignParentLeft="true"
+                    android:paddingTop="2dp"/>
+            </LinearLayout>
+            <ImageView
+                android:id="@+id/imme_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:src="@drawable/actionbar_logo"
+                android:layout_centerInParent="true" />
+        </RelativeLayout>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorPrimary"></View>
+</LinearLayout>
