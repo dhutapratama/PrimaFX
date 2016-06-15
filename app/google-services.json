@@ -1,0 +1,51 @@
+{
+  "project_info": {
+    "project_number": "309522138437",
+    "project_id": "primafx-bbb97"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:309522138437:android:c4ab94878e44a4d4",
+        "android_client_info": {
+          "package_name": "com.primafx.client"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "309522138437-qrd3os8fmu3immhorfrvl6ujeq1fgqqi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.primafx.client",
+            "certificate_hash": "CFA5E9B6A5B47C3BE065ADAAE9B383EE93293A46"
+          }
+        },
+        {
+          "client_id": "309522138437-1bipl7b60t7hau7088t15el0vm9d8t5h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIWa-v8r7lOcxwMZXOH-8sEVgswb0vVkI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 2,
+          "analytics_property": {
+            "tracking_id": "UA-79022500-1"
+          }
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

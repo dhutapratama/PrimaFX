@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#EF233C</color>
+    <color name="colorPrimaryDark">#D90429</color>
+    <color name="colorAccent">#8D8D8D</color>
+    <color name="textColorPrimary">#2b2d42</color>
+    <color name="windowBackground">#FFFFFF</color>
+    <color name="navigationBarColor">#000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="colorTransparent">#00000000</color>
 
     // Custom Theme
     <color name="colorWhite">#FFFFFF</color>
+    <color name="colorBackground">#DEDEDE</color>
+    <color name="colorRed">#DD1C1A</color>
+    <color name="colorCrem">#FFF1D0</color>
+    <color name="colorYellow">#F0C808</color>
+    <color name="colorBlueDark">#086788</color>
+    <color name="colorBlue">#06AED5</color>
+    <color name="colorBlueSoft">#1B98E0</color>
+    <color name="colorGreen">#02C39A</color>
+    <color name="colorDarkGreen">#00A896</color>
+    <color name="colorDarkBlueGreen">#028090</color>
 </resources>
