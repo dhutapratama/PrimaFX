@@ -8,9 +8,9 @@ import android.widget.TextView;
 
 import com.primafx.client.R;
 
-public class Dialogs {
+public class ShowDialog {
 
-    public static Dialog show_error_dialog(Context context, String message) {
+    public static Dialog error(Context context, String message) {
         final Dialog dialog = new Dialog(context, R.style.IMMEDialog);
         dialog.setContentView(R.layout.dialog_error);
         dialog.setCancelable(true);
@@ -29,7 +29,7 @@ public class Dialogs {
         return dialog;
     }
 
-    public static Dialog show_success_dialog(Context context, String message) {
+    public static Dialog success(Context context, String message) {
         final Dialog dialog = new Dialog(context, R.style.IMMEDialog);
         dialog.setContentView(R.layout.dialog_success);
         dialog.setCancelable(true);
@@ -48,10 +48,22 @@ public class Dialogs {
         return dialog;
     }
 
-    public static Dialog show_progress(Context context) {
+    public static Dialog progress(Context context) {
         final Dialog dialog = new Dialog(context, R.style.IMMEProgress);
         dialog.setContentView(R.layout.dialog_progress_bar);
         dialog.setCancelable(false);
+        dialog.show();
+        return dialog;
+    }
+
+    public static Dialog rebate(Context context, String message) {
+        final Dialog dialog = new Dialog(context, R.style.IMMEDialog);
+        dialog.setContentView(R.layout.dialog_rebate_destination);
+        dialog.setCancelable(true);
+
+        TextView editMessage = (TextView)dialog.findViewById(R.id.textMessage);
+        editMessage.setText(message);
+
         dialog.show();
         return dialog;
     }

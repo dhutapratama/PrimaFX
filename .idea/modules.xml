@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/PrimaFx.iml" filepath="$PROJECT_DIR$/PrimaFx.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PrimaFX.iml" filepath="$PROJECT_DIR$/PrimaFX.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

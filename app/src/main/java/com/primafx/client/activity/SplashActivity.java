@@ -37,7 +37,7 @@ public class SplashActivity extends AppCompatActivity {
                 }
                 finally
                 {
-                    Intent intent = new Intent(SplashActivity.this, IntroActivity.class);
+                    Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
                     startActivity(intent);
                 }
             }
@@ -73,7 +73,7 @@ public class SplashActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ParseCheckConnection> call, Throwable t) {
-                Log.e("Network Failure", t.getCause().toString());
+                //Log.e("Network Failure", t.getCause().toString());
             }
         });
     }

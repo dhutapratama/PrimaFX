@@ -14,7 +14,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/berhasil"
+            android:text="KIRIM REBATE"
             android:textColor="@color/colorWhite"
             android:layout_margin="10dp" />
     </LinearLayout>
@@ -31,9 +31,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="@string/minus"
-            android:id="@+id/textMessage" />
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="$1.50"
+            android:id="@+id/textMessage"
+            android:layout_gravity="center_horizontal"
+            android:singleLine="true" />
 
         <RelativeLayout
             android:orientation="horizontal"
@@ -44,9 +46,9 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:text="@string/ok"
+                android:text="Ke Account"
                 android:textSize="12sp"
-                android:id="@+id/buttonDismiss"
+                android:id="@+id/buttonToAccount"
                 android:background="@drawable/btn_white_blue"
                 android:padding="5dp"
                 android:shadowColor="@null"
@@ -54,6 +56,20 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="Ke Rekening"
+                android:textSize="12sp"
+                android:id="@+id/buttonToBank"
+                android:background="@drawable/btn_white_blue"
+                android:padding="5dp"
+                android:shadowColor="@null"
+                android:textColor="@color/colorBlueSoft"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
         </RelativeLayout>
 
     </LinearLayout>

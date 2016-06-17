@@ -1,7 +1,11 @@
 package com.primafx.client.activity;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -10,16 +14,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ImageView;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.crash.FirebaseCrash;
 import com.primafx.client.R;
-import com.squareup.picasso.Picasso;
+import com.primafx.client.model.ShowDialog;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,8 +32,9 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
-    private FirebaseAnalytics mFirebaseAnalytics;
 
+    private FirebaseAnalytics mFirebaseAnalytics;
+    DrawerLayout drawer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,8 +64,45 @@ public class MainActivity extends AppCompatActivity
 
         LinearLayout rebate = (LinearLayout)findViewById(R.id.LLRebate);
         rebate.setOnClickListener(this);
+
+        setMenuCounter(R.id.nav_notification, 5);
+
+        TextView textAccName = (TextView)findViewById(R.id.textAccName);
+        textAccName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch_account();
+            }
+        });
     }
 
+    private void switch_account() {
+        Dialog d = new AlertDialog.Builder(this, AlertDialog.THEME_HOLO_LIGHT)
+                .setTitle("Pilih Account")
+                .setNegativeButton("Batal", null)
+                .setPositiveButton("Tambah Aacount", null)
+                .setItems(new String[]{"#0981231 (GPBUSD)", "#0981231 (GPBUSD)","#0981231 (GPBUSD)","#0981231 (GPBUSD)"}, new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dlg, int position)
+                    {
+                        if ( position == 0 )
+                        {
+                        }
+                        else if(position == 1){
+                        }
+                        else if(position == 2){
+                        }
+                    }
+                })
+                .create();
+        d.show();
+    }
+
+    private void setMenuCounter(@IdRes int itemId, int count) {
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        TextView view = (TextView) navigationView.getMenu().findItem(itemId).getActionView();
+        view.setText(count > 0 ? String.valueOf(count) : null);
+    }
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -98,17 +140,7 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        if (id == 0) {
 
         }
 
@@ -128,7 +160,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void setTransactionHistory() {
-        String[] data = new String[]{"sda", "123", "123", "fsd"};
+        String[] data = new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "7"};
 
         final List<HashMap<String, String>> aList = new ArrayList<>();
 
@@ -176,6 +208,35 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onClick(View v) {
+        if (v.getId() == R.id.LLDeposit) {
+            Intent intent = new Intent(this, DepositActivity.class);
+            startActivity(intent);
+        } else if (v.getId() == R.id.LLWithdrawal) {
+            Intent intent = new Intent(this, WithdrawalActivity.class);
+            startActivity(intent);
+        } else if (v.getId() == R.id.LLRebate) {
+            Dialog rebate = ShowDialog.rebate(this, "$12.00");
 
+            Button btnBank = (Button) rebate.findViewById(R.id.buttonToBank);
+            btnBank.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this, RebateBankActivity.class);
+                    startActivity(intent);
+                }
+            });
+
+            Button btnAccount = (Button) rebate.findViewById(R.id.buttonToAccount);
+            btnAccount.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this, RebateAccountActivity.class);
+                    startActivity(intent);
+                }
+            });
+
+        }
     }
+
+    private static final String TAG = MainActivity.class.getSimpleName();
 }
