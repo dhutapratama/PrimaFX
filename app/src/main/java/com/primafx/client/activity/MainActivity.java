@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -34,11 +35,38 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
     private FirebaseAnalytics mFirebaseAnalytics;
-    DrawerLayout drawer;
+    private String[] accounts;
+    private String[] transactionHistory;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Inisialisasi UI
+        uiInit();
+
+        // Variable Initialization
+        this.accounts = new String[] {"#0981231 (GPBUSD)", "#0981231 (GPBUSD)","#0981231 (GPBUSD)","#0981231 (GPBUSD)"};
+        this.transactionHistory = new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "7", "2", "3", "4", "5", "6", "7", "8", "9", "0", "7"};
+
+        // Method Call
+        setTransactionHistory();
+        setMenuCounter(R.id.nav_notification, 5);
+
+        /* Error Reporting */
+        // Firebase Analytics
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        analyticsPage();
+
+        // Manual error reporting manual, send to server
+        // FirebaseCrash.report(new Exception("Error Name"));
+    }
+
+    // UI Init
+    private void uiInit() {
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
         LinearLayout menuButton = (LinearLayout)findViewById(R.id.layout_click_sidebar);
         menuButton.setOnClickListener(new View.OnClickListener() {
@@ -49,13 +77,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-        analyticsPage();
-
-        FirebaseCrash.report(new Exception("Error Boongan"));
-
-        setTransactionHistory();
-
         LinearLayout deposit = (LinearLayout)findViewById(R.id.LLDeposit);
         deposit.setOnClickListener(this);
 
@@ -64,8 +85,6 @@ public class MainActivity extends AppCompatActivity
 
         LinearLayout rebate = (LinearLayout)findViewById(R.id.LLRebate);
         rebate.setOnClickListener(this);
-
-        setMenuCounter(R.id.nav_notification, 5);
 
         TextView textAccName = (TextView)findViewById(R.id.textAccName);
         textAccName.setOnClickListener(new View.OnClickListener() {
@@ -76,33 +95,30 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
+    // Account Switcher
     private void switch_account() {
         Dialog d = new AlertDialog.Builder(this, AlertDialog.THEME_HOLO_LIGHT)
                 .setTitle("Pilih Account")
                 .setNegativeButton("Batal", null)
-                .setPositiveButton("Tambah Aacount", null)
-                .setItems(new String[]{"#0981231 (GPBUSD)", "#0981231 (GPBUSD)","#0981231 (GPBUSD)","#0981231 (GPBUSD)"}, new DialogInterface.OnClickListener(){
+                .setPositiveButton("Tambah Account", null)
+                .setItems(this.accounts, new DialogInterface.OnClickListener(){
                     @Override
                     public void onClick(DialogInterface dlg, int position)
                     {
-                        if ( position == 0 )
-                        {
-                        }
-                        else if(position == 1){
-                        }
-                        else if(position == 2){
-                        }
+
                     }
                 })
                 .create();
         d.show();
     }
 
+    // Method Menu Counter
     private void setMenuCounter(@IdRes int itemId, int count) {
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         TextView view = (TextView) navigationView.getMenu().findItem(itemId).getActionView();
         view.setText(count > 0 ? String.valueOf(count) : null);
     }
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -120,28 +136,28 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == 0) {
-
+        if (id == R.id.nav_accounts) {
+            Intent intent = new Intent(this, AccountsActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_bank) {
+            Intent intent = new Intent(this, BankAccountActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_notification) {
+            Intent intent = new Intent(this, NotificationActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_call_me) {
+            Intent intent = new Intent(this, CallMeActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_feedback) {
+            Intent intent = new Intent(this, FeedbackActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_about) {
+            Intent intent = new Intent(this, AboutActivity.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -160,13 +176,11 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void setTransactionHistory() {
-        String[] data = new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "7"};
-
         final List<HashMap<String, String>> aList = new ArrayList<>();
 
-        for (int i = 0; i < data.length; i++) {
-            HashMap<String, String> hm = new HashMap<String, String>();
-            hm.put("data", data[i]);
+        for (int i = 0; i < this.transactionHistory.length; i++) {
+            HashMap<String, String> hm = new HashMap<>();
+            hm.put("data", this.transactionHistory[i]);
             aList.add(hm);
         }
 
@@ -187,11 +201,7 @@ public class MainActivity extends AppCompatActivity
                 return v;
             }
         };
-
-        // Getting a reference to listview of main.xml layout file
         ListView listView = (ListView) findViewById(R.id.listView);
-
-        // Setting the adapter to the listView
         listView.setAdapter(adapter);
 
         /*
@@ -237,6 +247,4 @@ public class MainActivity extends AppCompatActivity
 
         }
     }
-
-    private static final String TAG = MainActivity.class.getSimpleName();
 }

@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="10 Mei 2016 16:30"
-        android:id="@+id/textDate"
+        android:id="@+id/textLabelDate"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/colorBlueSoft"
-        android:layout_below="@+id/textDate"
+        android:layout_below="@+id/textLabelDate"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:id="@+id/view"

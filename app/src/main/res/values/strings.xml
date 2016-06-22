@@ -22,16 +22,35 @@
     <string name="minus">-</string>
     <string name="ok">OK</string>
     <string name="error">Error</string>
+    <string name="timePickerText">timePicker</string>
+    <string name="zeroDollar">0.00</string>
 
-    <string-array name="planets_array">
-        <item>Mercury</item>
-        <item>Venus</item>
-        <item>Earth</item>
-        <item>Mars</item>
-        <item>Jupiter</item>
-        <item>Saturn</item>
-        <item>Uranus</item>
-        <item>Neptune</item>
+    <string-array name="listBank">
+        <item>BCA</item>
+        <item>BNI</item>
+        <item>BRI</item>
+        <item>Mandiri</item>
     </string-array>
 
+    <string-array name="listRekening">
+        <item>1733 405060</item>
+        <item>5858 828 25</item>
+        <item>2066 0100 2329 509</item>
+        <item>144 0000 5858 82</item>
+    </string-array>
+
+    <string-array name="listBankAccName">
+        <item>Rendra Masdrajad Safaat</item>
+        <item>Ayo Sukses Abadi PT</item>
+        <item>Rendra Masdrajad Safaat</item>
+        <item>Ayo Sukses Abadi PT</item>
+    </string-array>
+
+    <string-array name="listCallSupport">
+        <item>FX Consultant</item>
+        <item>Finance</item>
+        <item>Rebate</item>
+        <item>Technical</item>
+        <item>Marketing</item>
+    </string-array>
 </resources>

@@ -23,7 +23,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_2"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -42,8 +42,10 @@
         <activity
             android:name=".activity.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.ContactUsActivity" />
-        <activity android:name=".activity.AboutActivity" />
+        <activity android:name=".activity.ContactUsActivity"
+            android:label="Kontak Kami" />
+        <activity android:name=".activity.AboutActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.MainActivity"
             android:label="@string/app_name"
@@ -63,16 +65,25 @@
             </intent-filter>
         </service>
         <!-- [END firebase_iid_service] -->
-        <activity android:name=".activity.RebateAccountActivity" />
-        <activity android:name=".activity.RebateBankActivity" />
+        <activity android:name=".activity.RebateAccountActivity"
+            android:label="Tarik Rebate ke Account" />
+        <activity android:name=".activity.RebateBankActivity"
+            android:label="Tarik Rebate Ke Bank" />
         <activity
             android:name=".activity.DepositActivity"
             android:label="Deposit" />
-        <activity android:name=".activity.WithdrawalActivity" />
-        <activity android:name=".activity.NotificationActivity" />
-        <activity android:name=".activity.AccountsActivity" />
-        <activity android:name=".activity.BankAccountActivity" />
-        <activity android:name=".activity.FeedbackActivity"></activity>
+        <activity android:name=".activity.WithdrawalActivity"
+            android:label="Withdrawal" />
+        <activity android:name=".activity.NotificationActivity"
+            android:label="Notifikasi" />
+        <activity android:name=".activity.AccountsActivity"
+            android:label="Trading Account" />
+        <activity android:name=".activity.BankAccountActivity"
+            android:label="Rekening Bank" />
+        <activity android:name=".activity.FeedbackActivity"
+            android:label="Berikan Masukan" />
+        <activity android:name=".activity.CallMeActivity"
+            android:label="Request Call Me" />
     </application>
 
 </manifest>
