@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.primafx.client.activity.CallMeActivity">
+    tools:context="com.primafx.client.activity.AddAccountActivity">
 
     <LinearLayout
         android:orientation="vertical"
@@ -15,19 +15,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pilih Support"
+            android:text="Nomor A/C Instaforex"
             android:id="@+id/textLabelAccNumber"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
-        <Spinner
-            android:layout_width="wrap_content"
+        <EditText
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/spinnerSupport"
-            android:layout_below="@+id/textLabelAccNumber"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/editText2"
+            android:hint="123456" />
 
     </LinearLayout>
 
@@ -49,34 +49,21 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tanggal"
+            android:text="Kode / Nama"
             android:id="@+id/textLabelDate"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
-        <TextView
+        <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="15 Juni 2016"
-            android:id="@+id/textDate"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/editAccName"
             android:layout_below="@+id/textLabelDate"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:textSize="12sp"
-            android:background="@drawable/btn_white_blue"
-            android:padding="5dp"
-            android:shadowColor="@null"
-            android:textColor="@color/colorBlueSoft"
-            android:id="@+id/btnPickDate"
-            android:text="Pilih Tanggal"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"/>
+            android:layout_alignParentStart="true"
+            android:hint="AKUN TRADING 1" />
 
     </RelativeLayout>
 
@@ -98,35 +85,22 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pilih Jam"
+            android:text="Phone Password"
             android:id="@+id/textLabelPhonePassword"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
-        <TextView
+        <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="21.00"
-            android:id="@+id/textTime"
+            android:id="@+id/editPhonePassword"
             android:layout_below="@+id/textLabelPhonePassword"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:id="@+id/btnPickHour"
-            android:textSize="12sp"
-            android:text="Pilih Jam"
+            android:layout_alignParentStart="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
+            android:hint="xxxxxx" />
 
-            android:background="@drawable/btn_white_blue"
-            android:padding="5dp"
-            android:shadowColor="@null"
-            android:textColor="@color/colorBlueSoft"/>
     </RelativeLayout>
 
     <View
@@ -136,39 +110,20 @@
         android:layout_below="@+id/rlTime"
         android:id="@+id/view3" />
 
-     <Button
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Request Call Me"
+        android:text="Simpan Akun"
         android:id="@+id/buttonSave"
-         android:background="@drawable/btn_red"
+        android:background="@drawable/btn_red"
         android:paddingLeft="12dp"
         android:paddingRight="12dp"
         android:shadowColor="@null"
         android:textColor="@color/colorWhite"
-         android:layout_below="@+id/view3"
-         android:layout_centerHorizontal="true"
-         android:layout_marginTop="32dp"
-         android:layout_marginBottom="12dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cara menggunakan Call Me?"
-        android:id="@+id/textHelp"
-        android:textColor="@color/colorBlueSoft"
-        android:layout_below="@+id/buttonSave"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hubungi Kami Langsung"
-        android:id="@+id/textContactUs"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/view3"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/colorBlueSoft"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="12dp" />
 
 
 </RelativeLayout>

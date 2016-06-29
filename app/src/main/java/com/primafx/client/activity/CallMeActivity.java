@@ -1,6 +1,7 @@
 package com.primafx.client.activity;
 
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -76,7 +77,16 @@ public class CallMeActivity extends AppCompatActivity implements AdapterView.OnI
                 dialog.show(ft, "TimePicker");
             }
         });
-        }
+
+        TextView textContactUs = (TextView)findViewById(R.id.textContactUs);
+        textContactUs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CallMeActivity.this, ContactUsActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {

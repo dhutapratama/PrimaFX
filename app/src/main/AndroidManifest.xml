@@ -3,6 +3,7 @@
     package="com.primafx.client">
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -42,9 +43,11 @@
         <activity
             android:name=".activity.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.ContactUsActivity"
+        <activity
+            android:name=".activity.ContactUsActivity"
             android:label="Kontak Kami" />
-        <activity android:name=".activity.AboutActivity"
+        <activity
+            android:name=".activity.AboutActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.MainActivity"
@@ -65,25 +68,35 @@
             </intent-filter>
         </service>
         <!-- [END firebase_iid_service] -->
-        <activity android:name=".activity.RebateAccountActivity"
+        <activity
+            android:name=".activity.RebateAccountActivity"
             android:label="Tarik Rebate ke Account" />
-        <activity android:name=".activity.RebateBankActivity"
+        <activity
+            android:name=".activity.RebateBankActivity"
             android:label="Tarik Rebate Ke Bank" />
         <activity
             android:name=".activity.DepositActivity"
             android:label="Deposit" />
-        <activity android:name=".activity.WithdrawalActivity"
+        <activity
+            android:name=".activity.WithdrawalActivity"
             android:label="Withdrawal" />
-        <activity android:name=".activity.NotificationActivity"
+        <activity
+            android:name=".activity.NotificationActivity"
             android:label="Notifikasi" />
-        <activity android:name=".activity.AccountsActivity"
+        <activity
+            android:name=".activity.AccountsActivity"
             android:label="Trading Account" />
-        <activity android:name=".activity.BankAccountActivity"
+        <activity
+            android:name=".activity.BankAccountActivity"
             android:label="Rekening Bank" />
-        <activity android:name=".activity.FeedbackActivity"
+        <activity
+            android:name=".activity.FeedbackActivity"
             android:label="Berikan Masukan" />
-        <activity android:name=".activity.CallMeActivity"
+        <activity
+            android:name=".activity.CallMeActivity"
             android:label="Request Call Me" />
+        <activity android:name=".activity.AddAccountActivity" />
+        <activity android:name=".activity.RegistrationActivity"></activity>
     </application>
 
 </manifest>

@@ -143,9 +143,6 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_accounts) {
             Intent intent = new Intent(this, AccountsActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_bank) {
-            Intent intent = new Intent(this, BankAccountActivity.class);
-            startActivity(intent);
         } else if (id == R.id.nav_notification) {
             Intent intent = new Intent(this, NotificationActivity.class);
             startActivity(intent);

@@ -6,13 +6,13 @@
     <item android:title="Account">
         <menu>
             <item
-                android:id="@+id/nav_accounts"
+                android:id="@+id/nav_profile"
                 android:icon="@drawable/ic_accounts"
-                android:title="My Trading Accounts" />
+                android:title="Profil Saya" />
             <item
-                android:id="@+id/nav_bank"
-                android:icon="@drawable/ic_bank"
-                android:title="Rekening Bank" />
+                android:id="@+id/nav_accounts"
+                android:icon="@drawable/ic_trending"
+                android:title="My Trading Accounts" />
             <item
                 android:id="@+id/nav_notification"
                 android:icon="@drawable/ic_notification"
