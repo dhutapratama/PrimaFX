@@ -37,6 +37,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.primafx.client.MainAppActivity;
 import com.primafx.client.R;
 
 import com.google.android.gms.auth.api.Auth;
@@ -102,7 +103,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             @Override
             public void onClick(View view) {
                 //attemptLogin();
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                Intent intent = new Intent(LoginActivity.this, MainAppActivity.class);
                 startActivity(intent);
             }
         });
