@@ -3,15 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainAppActivity">
+    tools:context=".activity.MainAppActivity">
 
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="@color/colorAccent"
         android:layout_alignBottom="@+id/slider"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"></View>
+        android:layout_alignParentStart="true"
+        android:background="@color/colorAccent" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -21,57 +21,56 @@
         android:layout_below="@+id/slider">
 
         <RelativeLayout
+            android:id="@+id/rl_KelolaAccount"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_above="@+id/sep_hor"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:background="#3974B1"
-            android:layout_above="@+id/sep_hor"
-            android:id="@+id/rl_KelolaAccount">
+            android:background="#3974B1">
 
             <ImageView
+                android:id="@+id/imageView6"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/imageView6"
-                android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
                 android:src="@drawable/icon_kelola_akun" />
         </RelativeLayout>
 
         <View
+            android:id="@+id/sep_hor"
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:background="@color/colorWhite"
             android:layout_centerVertical="true"
-            android:id="@+id/sep_hor"></View>
+            android:background="@color/colorWhite" />
+
         <View
-        android:layout_width="2dp"
-        android:layout_height="match_parent"
-        android:background="@color/colorWhite"
-            android:layout_centerHorizontal="true"
+            android:id="@+id/view4"
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
             android:layout_alignTop="@+id/sep_hor"
-            android:id="@+id/view4"></View>
+            android:layout_centerHorizontal="true"
+            android:background="@color/colorWhite" />
 
         <RelativeLayout
+            android:id="@+id/rl_Store"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/sep_hor"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
+            android:layout_below="@+id/sep_hor"
             android:layout_toLeftOf="@+id/view4"
             android:layout_toStartOf="@+id/view4"
-            android:id="@+id/relativeLayout11"
             android:background="#56AD89">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/imageView7"
-                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
                 android:layout_centerHorizontal="true"
-                android:src="@drawable/icon_store"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp" />
+                android:layout_centerVertical="true"
+                android:src="@drawable/icon_store" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -79,67 +78,67 @@
             android:layout_height="match_parent"
             android:layout_below="@+id/sep_hor"
             android:layout_toEndOf="@+id/view4"
-            android:background="#D0583B"
-            android:layout_toRightOf="@+id/view4">
+            android:layout_toRightOf="@+id/view4"
+            android:background="#D0583B">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/imageView8"
-                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
                 android:layout_centerHorizontal="true"
-                android:src="@drawable/icon_obrolan"
+                android:layout_centerVertical="true"
                 android:paddingLeft="20dp"
-                android:paddingRight="20dp" />
+                android:paddingRight="20dp"
+                android:src="@drawable/icon_obrolan" />
         </RelativeLayout>
 
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/relativeLayout10"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/relativeLayout10">
+        android:layout_alignParentTop="true">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Rp 12.000"
             android:id="@+id/textView4"
-            android:textStyle="bold"
-            android:layout_centerInParent="true" />
-
-        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Wallet"
+            android:layout_centerInParent="true"
+            android:text="Rp 12.000"
+            android:textStyle="bold" />
+
+        <TextView
             android:id="@+id/textView5"
-            android:layout_alignParentTop="false"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
+            android:layout_alignParentTop="false"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp" />
+            android:layout_marginLeft="10dp"
+            android:text="PrimaPAY"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
+            android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Manage"
-            android:id="@+id/textView6"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginRight="10dp" />
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:text="Manage" />
     </RelativeLayout>
 
     <com.daimajia.slider.library.SliderLayout
         android:id="@+id/slider"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_below="@+id/relativeLayout10"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/relativeLayout10" />
 
 </RelativeLayout>

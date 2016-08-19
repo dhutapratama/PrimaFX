@@ -97,8 +97,11 @@
             android:label="Request Call Me" />
         <activity android:name=".activity.AddAccountActivity" />
         <activity android:name=".activity.RegistrationActivity" />
-        <activity android:name=".MainAppActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".activity.MainAppActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.MainStoreActivity" />
+        <activity android:name=".activity.StoreSingleItemActivity"></activity>
     </application>
 
 </manifest>

@@ -24,6 +24,13 @@
     <string name="error">Error</string>
     <string name="timePickerText">timePicker</string>
     <string name="zeroDollar">0.00</string>
+    <string name="product_name">Product Name</string>
+    <string name="default_price">Rp 12.000</string>
+    <string name="default_title">Judul Jualan</string>
+    <string name="default_buy">Beli</string>
+    <string name="simple_description">Simpel deskripsi Simpel deskripsi Simpel deskripsi Simpel deskripsi Simpel deskripsi</string>
+    <string name="description">Deskripsi</string>
+    <string name="full_description">Full description Full description Full description Full description Full description Full description Full description Full description Full description Full description Full description Full description Full description Full description Full description Full description Full description Full description Full description Full description Full description Full description Full description</string>
 
     <string-array name="listBank">
         <item>BCA</item>

@@ -22,4 +22,5 @@
     <color name="colorDarkGreen">#00A896</color>
     <color name="colorDarkBlueGreen">#028090</color>
     <color name="colorBackgroundLogin">#77555555</color>
+    <color name="colorGreenTransparent">#AA00A896</color>
 </resources>
