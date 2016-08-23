@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
-import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -22,9 +21,8 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
-import com.google.firebase.crash.FirebaseCrash;
 import com.primafx.client.R;
-import com.primafx.client.model.ShowDialog;
+import com.primafx.client.dialog.ShowDialog;
 
 import java.util.ArrayList;
 import java.util.HashMap;

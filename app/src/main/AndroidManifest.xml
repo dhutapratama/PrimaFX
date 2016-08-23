@@ -96,12 +96,15 @@
             android:name=".activity.CallMeActivity"
             android:label="Request Call Me" />
         <activity android:name=".activity.AddAccountActivity" />
-        <activity android:name=".activity.RegistrationActivity" />
+        <activity
+            android:name=".activity.RegistrationActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.MainAppActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activity.MainStoreActivity" />
-        <activity android:name=".activity.StoreSingleItemActivity"></activity>
+        <activity android:name=".activity.StoreSingleItemActivity" />
+        <activity android:name=".activity.PhoneRegistrationActivity"></activity>
     </application>
 
 </manifest>

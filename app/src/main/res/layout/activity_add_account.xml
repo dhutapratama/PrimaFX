@@ -6,124 +6,124 @@
     tools:context="com.primafx.client.activity.AddAccountActivity">
 
     <LinearLayout
-        android:orientation="vertical"
+        android:id="@+id/llSupport"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/llSupport"
+        android:orientation="vertical"
         android:padding="16dp">
 
         <TextView
+            android:id="@+id/textLabelEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nomor A/C Instaforex"
-            android:id="@+id/textLabelAccNumber"
-            android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:text="Nomor A/C Instaforex" />
 
         <EditText
+            android:id="@+id/editText2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
             android:ems="10"
-            android:id="@+id/editText2"
-            android:hint="123456" />
+            android:hint="123456"
+            android:inputType="number" />
 
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/colorAccent"
-        android:layout_below="@+id/llSupport" />
+        android:layout_below="@+id/llSupport"
+        android:background="@color/colorAccent" />
 
     <RelativeLayout
+        android:id="@+id/relativeLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/llSupport"
-        android:id="@+id/relativeLayout2"
-        android:padding="16dp"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true">
+        android:layout_below="@+id/llSupport"
+        android:padding="16dp">
 
         <TextView
+            android:id="@+id/textLabelPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Kode / Nama"
-            android:id="@+id/textLabelDate"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:id="@+id/editAccName"
-            android:layout_below="@+id/textLabelDate"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:hint="AKUN TRADING 1" />
+            android:text="Kode / Nama" />
+
+        <EditText
+            android:id="@+id/editAccName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textLabelPassword"
+            android:ems="10"
+            android:hint="AKUN TRADING 1"
+            android:inputType="textPersonName" />
 
     </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/colorAccent"
-        android:layout_below="@+id/relativeLayout2" />
+        android:layout_below="@+id/relativeLayout2"
+        android:background="@color/colorAccent" />
 
     <RelativeLayout
+        android:id="@+id/rlTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/rlTime"
-        android:layout_below="@+id/relativeLayout2"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/relativeLayout2"
         android:padding="16dp">
 
         <TextView
+            android:id="@+id/textLabelPassword2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Phone Password"
-            android:id="@+id/textLabelPhonePassword"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/editPhonePassword"
-            android:layout_below="@+id/textLabelPhonePassword"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true"
+            android:text="Phone Password" />
+
+        <EditText
+            android:id="@+id/editPassword2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textLabelPassword2"
             android:hint="xxxxxx" />
 
     </RelativeLayout>
 
     <View
+        android:id="@+id/view3"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/colorAccent"
         android:layout_below="@+id/rlTime"
-        android:id="@+id/view3" />
+        android:background="@color/colorAccent" />
 
     <Button
+        android:id="@+id/buttonRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Simpan Akun"
-        android:id="@+id/buttonSave"
+        android:layout_below="@+id/view3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="12dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/btn_red"
         android:paddingLeft="12dp"
         android:paddingRight="12dp"
         android:shadowColor="@null"
-        android:textColor="@color/colorWhite"
-        android:layout_below="@+id/view3"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="12dp" />
+        android:text="Simpan Akun"
+        android:textColor="@color/colorWhite" />
 
 
 </RelativeLayout>

@@ -1,27 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.primafx.client.activity.RegistrationActivity">
+    tools:context="com.primafx.client.activity.PhoneRegistrationActivity">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <RelativeLayout
             android:id="@+id/rlHeader"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true">
+
             <com.primafx.client.model.ParalaxScrollView
                 android:id="@+id/background_sv"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="match_parent">
 
                 <FrameLayout
                     android:id="@+id/img_container"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content">
 
                     <ImageView
                         android:id="@+id/parallax_bg"
@@ -45,83 +48,12 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/rlHeader">
 
-            <LinearLayout
-                android:id="@+id/llSupport"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <TextView
-                    android:id="@+id/textLabelEmail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:text="Email" />
-
-                <EditText
-                    android:id="@+id/editEmail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="saya@email.com"
-                    android:inputType="textEmailAddress" />
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_below="@+id/llSupport"
-                android:background="@color/colorAccent" />
-
-            <RelativeLayout
-                android:id="@+id/relativeLayout2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_below="@+id/llSupport"
-                android:padding="16dp">
-
-                <TextView
-                    android:id="@+id/textLabelPassword"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:text="Password" />
-
-                <EditText
-                    android:id="@+id/editPassword"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/textLabelPassword"
-                    android:ems="10"
-                    android:hint="Password"
-                    android:inputType="textPassword" />
-
-            </RelativeLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_below="@+id/relativeLayout2"
-                android:background="@color/colorAccent" />
-
             <RelativeLayout
                 android:id="@+id/rlTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_below="@+id/relativeLayout2"
                 android:padding="16dp">
 
                 <TextView
@@ -130,19 +62,29 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
-                    android:text="Ulangi Password" />
+                    android:text="Nomor Handphone" />
 
                 <EditText
                     android:id="@+id/editPassword2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_alignParentLeft="true"
                     android:layout_alignParentRight="true"
-                    android:layout_alignParentStart="true"
                     android:layout_below="@+id/textLabelPassword2"
-                    android:hint="Ulangi Password"
-                    android:inputType="textPassword" />
+                    android:layout_toRightOf="@+id/editText3"
+                    android:hint="8123456789"
+                    android:inputType="phone" />
+
+                <EditText
+                    android:id="@+id/editText3"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignTop="@+id/editPassword2"
+                    android:ems="10"
+                    android:inputType="phone"
+                    android:text="+62" />
 
             </RelativeLayout>
 
@@ -170,4 +112,4 @@
 
         </RelativeLayout>
     </RelativeLayout>
-</ScrollView>
+</RelativeLayout>

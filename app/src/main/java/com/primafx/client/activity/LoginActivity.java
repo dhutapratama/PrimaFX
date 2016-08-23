@@ -3,6 +3,7 @@ package com.primafx.client.activity;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -31,6 +32,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
@@ -44,9 +46,21 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
+import com.primafx.client.dialog.ShowDialog;
+import com.primafx.client.retrofit.ParseEmailRegistration;
+import com.primafx.client.retrofit.ParseGoogleSignin;
+import com.primafx.client.retrofit.RequestLibrary;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -107,9 +121,19 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         findViewById(R.id.sign_in_button).setOnClickListener(this);
 
+        // For sample only: make sure there is a valid server client ID.
+        validateServerClientID();
+
+        // [START configure_signin]
+        // Request only the user's ID token, which can be used to identify the
+        // user securely to your backend. This will contain the user's basic
+        // profile (name, profile picture URL, etc) so you should not need to
+        // make an additional call to personalize your application.
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.server_client_id))
                 .requestEmail()
                 .build();
+        // [END configure_signin]
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
@@ -351,7 +375,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         if (result.isSuccess()) {
             // Signed in successfully, show authenticated UI.
             GoogleSignInAccount acct = result.getSignInAccount();
-            Log.i("ASD", acct.getDisplayName());
+            Log.i("ASD", acct.getIdToken().toString());
+            retrofitGoogleSignin(acct.getIdToken());
             updateUI(true);
         } else {
             // Signed out, show unauthenticated UI.
@@ -437,6 +462,67 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 break;
         }
     }
+
+    /**
+     * Validates that there is a reasonable server client ID in strings.xml, this is only needed
+     * to make sure users of this sample follow the README.
+     */
+    private void validateServerClientID() {
+        String serverClientId = getString(R.string.server_client_id);
+        String suffix = ".apps.googleusercontent.com";
+        if (!serverClientId.trim().endsWith(suffix)) {
+            String message = "Invalid server client ID in strings.xml, must end with " + suffix;
+
+            Log.w(TAG, message);
+            Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void retrofitGoogleSignin(String googleToken) {
+        final Dialog loading = new ShowDialog().loading(this);
+        loading.show();
+
+        String host = "http://primafx-api.tk/v1/";
+        final OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .readTimeout(120, TimeUnit.SECONDS)
+                .connectTimeout(120, TimeUnit.SECONDS)
+                .build();
+
+        ParseGoogleSignin jsonSend = new ParseGoogleSignin(googleToken);
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(host)
+                .client(okHttpClient)
+                .addConverterFactory(GsonConverterFactory.create()).build();
+        RequestLibrary requestLibrary = retrofit.create(RequestLibrary.class);
+        Call<ParseGoogleSignin> callData = requestLibrary.googleSignin(jsonSend);
+
+        callData.enqueue(new Callback<ParseGoogleSignin>() {
+            @Override
+            public void onResponse(Call<ParseGoogleSignin> call, Response<ParseGoogleSignin> response) {
+                loading.hide();
+                if (response.isSuccessful()) {
+                    ParseGoogleSignin response_body = response.body();
+                    if (response_body.getCode().equals("200")) {
+                        Log.i("200", response_body.getMessage());
+                        new ShowDialog().success(LoginActivity.this, response_body.getData().getLogin_code());
+                    } else {
+                        Log.i(response_body.getCode(), response_body.getMessage());
+                        new ShowDialog().error(LoginActivity.this, response_body.getMessage());
+                    }
+                } else {
+                    Log.e("Server Problem", "Server Responding but error callback : " + response.body().toString());
+                    new ShowDialog().error(LoginActivity.this, response.body().toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ParseGoogleSignin> call, Throwable t) {
+                loading.hide();
+                Log.e("Network", "ParseGoogleSignin");
+                new ShowDialog().error(LoginActivity.this, "Tidak dapat terhubung, terjadi masalah jaringan.");
+            }
+        });
+    }
+
 
     private interface ProfileQuery {
         String[] PROJECTION = {

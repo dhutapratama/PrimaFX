@@ -1,4 +1,4 @@
-package com.primafx.client.model;
+package com.primafx.client.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -65,6 +65,13 @@ public class ShowDialog {
         editMessage.setText(message);
 
         dialog.show();
+        return dialog;
+    }
+
+    public static Dialog loading(Context context) {
+        final Dialog dialog = new Dialog(context, R.style.Loading);
+        dialog.setContentView(R.layout.dialog_loading);
+        dialog.setCancelable(false);
         return dialog;
     }
 
