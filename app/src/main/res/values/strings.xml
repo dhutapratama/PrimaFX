@@ -11,10 +11,10 @@
     <string name="prompt_password">Sandi</string>
     <string name="action_sign_in">Masuk</string>
     <string name="action_sign_in_short">Masuk dengan Google</string>
-    <string name="error_invalid_email">This email address is invalid</string>
-    <string name="error_invalid_password">This password is too short</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
-    <string name="error_field_required">This field is required</string>
+    <string name="error_invalid_email">Email tidak benar</string>
+    <string name="error_invalid_password">Password minimal 8 karakter</string>
+    <string name="error_incorrect_password">Password salah</string>
+    <string name="error_field_required">Mohon diisi</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>

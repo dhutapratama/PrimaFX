@@ -124,6 +124,7 @@ public class RegistrationActivity extends AppCompatActivity implements ParalaxSc
                     if (response_body.getCode().equals("200")) {
                         Log.i("200", response_body.getMessage());
                         new ShowDialog().success(RegistrationActivity.this, response_body.getMessage());
+                        finish();
                     } else {
                         Log.i(response_body.getCode(), response_body.getMessage());
                         new ShowDialog().error(RegistrationActivity.this, response_body.getMessage());

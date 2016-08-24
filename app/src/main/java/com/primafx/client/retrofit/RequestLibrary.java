@@ -30,10 +30,16 @@ public interface RequestLibrary {
     @POST("email_registration")
     Call<ParseEmailRegistration> emailRegistration(@Body ParseEmailRegistration value);
 
-    // Product
+    // Google Signin
     @Headers({"User-Agent: PrimaFX 1.0", "Login-Data: null", "Content-Type: application/json"})
     //@Headers(headerContent)
     @POST("google_registration")
     Call<ParseGoogleSignin> googleSignin(@Body ParseGoogleSignin value);
+
+    // Email Login
+    @Headers({"User-Agent: PrimaFX 1.0", "Login-Data: null", "Content-Type: application/json"})
+    //@Headers(headerContent)
+    @POST("email_login")
+    Call<ParseEmailLogin> emailLogin(@Body ParseEmailLogin value);
 }
 
