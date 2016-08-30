@@ -34,8 +34,8 @@ public class MainStoreActivity extends AppCompatActivity {
             public View getView(final int position, View convertView, ViewGroup parent) {
                 /*
                 ImageView imagePerson = (ImageView)v.findViewById(R.id.imagePerson);
-                Picasso.with(MainActivity.this).load(transactions.get(position).getPicture())
-                        .error(MainActivity.this.getResources().getDrawable(R.mipmap.no_image_square))
+                Picasso.with(MainManageActivity.this).load(transactions.get(position).getPicture())
+                        .error(MainManageActivity.this.getResources().getDrawable(R.mipmap.no_image_square))
                         .into(imagePerson);
                         */
                 return super.getView(position, convertView, parent);

@@ -28,9 +28,7 @@ import android.util.Log;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.primafx.client.R;
-import com.primafx.client.activity.MainActivity;
-
-import java.util.Map;
+import com.primafx.client.activity.MainManageActivity;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
@@ -62,7 +60,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     }
 
     private void sendNotification(Integer id, String title, String message, String vibrate) {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, MainManageActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
                 PendingIntent.FLAG_ONE_SHOT);

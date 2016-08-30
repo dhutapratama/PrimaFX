@@ -29,7 +29,7 @@ import java.util.HashMap;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity
+public class MainManageActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
     private FirebaseAnalytics mFirebaseAnalytics;
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_manage);
 
         // Inisialisasi UI
         uiInit();
@@ -164,7 +164,7 @@ public class MainActivity extends AppCompatActivity
         // [START image_view_event]
         Bundle bundle = new Bundle();
         bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "main_activity");
-        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "MainActivity");
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "MainManageActivity");
         bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "activity");
         mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
         // [END image_view_event]
@@ -189,8 +189,8 @@ public class MainActivity extends AppCompatActivity
                 View v = super.getView(position, convertView, parent);
                 /*
                 ImageView imagePerson = (ImageView)v.findViewById(R.id.imagePerson);
-                Picasso.with(MainActivity.this).load(transactions.get(position).getPicture())
-                        .error(MainActivity.this.getResources().getDrawable(R.mipmap.no_image_square))
+                Picasso.with(MainManageActivity.this).load(transactions.get(position).getPicture())
+                        .error(MainManageActivity.this.getResources().getDrawable(R.mipmap.no_image_square))
                         .into(imagePerson);
                         */
                 return v;
@@ -203,7 +203,7 @@ public class MainActivity extends AppCompatActivity
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(MainActivity.this, TransactionDetail.class);
+                Intent intent = new Intent(MainManageActivity.this, TransactionDetail.class);
                 intent.putExtra("transaction_refference", transactions.get(position).getTransaction_refference());
                 startActivity(intent);
             }
@@ -226,7 +226,7 @@ public class MainActivity extends AppCompatActivity
             btnBank.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(MainActivity.this, RebateBankActivity.class);
+                    Intent intent = new Intent(MainManageActivity.this, RebateBankActivity.class);
                     startActivity(intent);
                 }
             });
@@ -235,7 +235,7 @@ public class MainActivity extends AppCompatActivity
             btnAccount.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(MainActivity.this, RebateAccountActivity.class);
+                    Intent intent = new Intent(MainManageActivity.this, RebateAccountActivity.class);
                     startActivity(intent);
                 }
             });

@@ -103,7 +103,7 @@
         android:layout_alignParentTop="true">
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/textMoney"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -111,7 +111,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/textPrimaPay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -123,14 +123,14 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/textLogout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
-            android:text="Manage" />
+            android:text="Logout" />
     </RelativeLayout>
 
     <com.daimajia.slider.library.SliderLayout

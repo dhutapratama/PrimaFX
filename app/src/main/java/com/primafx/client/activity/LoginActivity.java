@@ -30,6 +30,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
+import com.primafx.client.database.DatabaseSQL;
+import com.primafx.client.database.GData;
 import com.primafx.client.dialog.ShowDialog;
 import com.primafx.client.retrofit.ParseEmailLogin;
 import com.primafx.client.retrofit.ParseGoogleSignin;
@@ -64,6 +66,12 @@ public class LoginActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        DatabaseSQL.getInitialData(this);
+        login_initialization();
+    }
+
+    private void login_initialization() {
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
 
@@ -84,8 +92,6 @@ public class LoginActivity extends AppCompatActivity implements
             @Override
             public void onClick(View view) {
                 attemptLogin();
-                //Intent intent = new Intent(LoginActivity.this, MainAppActivity.class);
-                //startActivity(intent);
             }
         });
 
@@ -123,7 +129,8 @@ public class LoginActivity extends AppCompatActivity implements
             }
         });
 
-
+        TextView textForgotPassword = (TextView) findViewById(R.id.textForgotPassword);
+        textForgotPassword.setOnClickListener(this);
     }
 
     /**
@@ -280,13 +287,13 @@ public class LoginActivity extends AppCompatActivity implements
 
     private void hideProgressDialog() {
         if (mProgressDialog != null && mProgressDialog.isShowing()) {
-            mProgressDialog.hide();
+            mProgressDialog.dismiss();
         }
     }
 
     /*
         private void updateUI(boolean signedIn) {
-            //Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            //Intent intent = new Intent(LoginActivity.this, MainManageActivity.class);
             //startActivity(intent);
             if (signedIn) {
                 findViewById(R.id.sign_in_button).setVisibility(View.GONE);
@@ -300,6 +307,10 @@ public class LoginActivity extends AppCompatActivity implements
         switch (v.getId()) {
             case R.id.sign_in_button:
                 signIn();
+                break;
+            case R.id.textForgotPassword:
+                Intent i = new Intent(this, ForgotPasswordActivity.class);
+                startActivity(i);
                 break;
         }
     }
@@ -323,7 +334,7 @@ public class LoginActivity extends AppCompatActivity implements
         final Dialog loading = new ShowDialog().loading(this);
         loading.show();
 
-        String host = "http://primafx-api.tk/v1/";
+        String host = GData.API_ADDRESS;
         final OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .readTimeout(120, TimeUnit.SECONDS)
                 .connectTimeout(120, TimeUnit.SECONDS)
@@ -339,25 +350,38 @@ public class LoginActivity extends AppCompatActivity implements
         callData.enqueue(new Callback<ParseGoogleSignin>() {
             @Override
             public void onResponse(Call<ParseGoogleSignin> call, Response<ParseGoogleSignin> response) {
-                loading.hide();
+                loading.dismiss();
                 if (response.isSuccessful()) {
                     ParseGoogleSignin response_body = response.body();
                     if (response_body.getCode().equals("200")) {
                         Log.i("200", response_body.getMessage());
-                        new ShowDialog().success(LoginActivity.this, response_body.getData().getLogin_code());
+                        if (!response_body.getMessage().equals("OK")) {
+                            new ShowDialog().success(LoginActivity.this, response_body.getMessage());
+                        } else {
+                            DatabaseSQL.updateSecurityData(LoginActivity.this, DatabaseSQL.FIELD_LOGIN_CODE, response_body.getData().getLogin_code());
+                            Intent i = new Intent(LoginActivity.this, MainAppActivity.class);
+                            startActivity(i);
+
+                            finish();
+                        }
                     } else {
                         Log.i(response_body.getCode(), response_body.getMessage());
                         new ShowDialog().error(LoginActivity.this, response_body.getMessage());
                     }
                 } else {
-                    Log.e("Server Problem", "Server Responding but error callback : " + response.body().toString());
-                    new ShowDialog().error(LoginActivity.this, response.body().toString());
+                    String errorMessage = "Kesalahan tidak diketahui.";
+                    if (response.body() != null) {
+                        errorMessage = response.body().toString();
+                    }
+
+                    Log.e("Server Problem", "Server Responding but error callback : " + errorMessage);
+                    new ShowDialog().error(LoginActivity.this, errorMessage);
                 }
             }
 
             @Override
             public void onFailure(Call<ParseGoogleSignin> call, Throwable t) {
-                loading.hide();
+                loading.dismiss();
                 Log.e("Network", "ParseGoogleSignin");
                 new ShowDialog().error(LoginActivity.this, "Tidak dapat terhubung, terjadi masalah jaringan.");
             }
@@ -368,7 +392,7 @@ public class LoginActivity extends AppCompatActivity implements
         final Dialog loading = new ShowDialog().loading(this);
         loading.show();
 
-        String host = "http://primafx-api.tk/v1/";
+        String host = GData.API_ADDRESS;
 
         ParseEmailLogin jsonSend = new ParseEmailLogin(email, password);
         Retrofit retrofit = new Retrofit.Builder().baseUrl(host)
@@ -379,29 +403,36 @@ public class LoginActivity extends AppCompatActivity implements
         callData.enqueue(new Callback<ParseEmailLogin>() {
             @Override
             public void onResponse(Call<ParseEmailLogin> call, Response<ParseEmailLogin> response) {
-                loading.hide();
+                loading.dismiss();
                 if (response.isSuccessful()) {
                     ParseEmailLogin response_body = response.body();
                     if (response_body.getCode().equals("200")) {
                         Log.i("200", response_body.getMessage());
-                        new ShowDialog().success(LoginActivity.this, response_body.getData().getLogin_code());
-                        //finish();
+                        //new ShowDialog().success(LoginActivity.this, response_body.getData().getLogin_code());
+                        DatabaseSQL.updateSecurityData(LoginActivity.this, DatabaseSQL.FIELD_LOGIN_CODE, response_body.getData().getLogin_code());
 
-                        //Intent i = new Intent(LoginActivity.this, MainActivity.class);
-                        //startActivity(i);
+                        Intent i = new Intent(LoginActivity.this, MainAppActivity.class);
+                        startActivity(i);
+
+                        finish();
                     } else {
                         Log.i(response_body.getCode(), response_body.getMessage());
                         new ShowDialog().error(LoginActivity.this, response_body.getMessage());
                     }
                 } else {
-                    Log.e("Server Problem", "Server Responding but error callback : " + response.body().toString());
-                    new ShowDialog().error(LoginActivity.this, response.body().toString());
+                    String errorMessage = "Kesalahan tidak diketahui";
+                    if (response.body() != null) {
+                        errorMessage = response.body().toString();
+                    }
+
+                    Log.e("Server Problem", "Server Responding but error callback : " + errorMessage);
+                    new ShowDialog().error(LoginActivity.this, errorMessage);
                 }
             }
 
             @Override
             public void onFailure(Call<ParseEmailLogin> call, Throwable t) {
-                loading.hide();
+                loading.dismiss();
                 Log.e("Network", "ParseEmailLogin");
                 new ShowDialog().error(LoginActivity.this, "Tidak dapat terhubung, terjadi masalah jaringan.");
             }

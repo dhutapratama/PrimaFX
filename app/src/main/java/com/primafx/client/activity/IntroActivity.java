@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import com.github.paolorotolo.appintro.AppIntro;
 import com.primafx.client.*;
+import com.primafx.client.database.DatabaseSQL;
 import com.primafx.client.model.IntroSlide;
 
 public class IntroActivity extends AppIntro {
@@ -39,6 +40,7 @@ public class IntroActivity extends AppIntro {
     @Override
     public void onSkipPressed() {
         // Do something when users tap on Skip button.
+        DatabaseSQL.updateSecurityData(this, DatabaseSQL.FIELD_FIRST_TIME, "false");
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         finish();
@@ -47,6 +49,7 @@ public class IntroActivity extends AppIntro {
     @Override
     public void onDonePressed() {
         // Do something when users tap on Done button.
+        DatabaseSQL.updateSecurityData(this, DatabaseSQL.FIELD_FIRST_TIME, "false");
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         finish();
