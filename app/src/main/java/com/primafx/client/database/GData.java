@@ -7,4 +7,5 @@ public class GData {
     public static String LOGIN_CODE = null;
     public static String FIRST_TIME = null;
     public static String API_ADDRESS = "http://primafx-api.tk/v1/";
+    public static String API_ADDRESS_MAIN = "http://primafx-api.tk/v1/";
 }

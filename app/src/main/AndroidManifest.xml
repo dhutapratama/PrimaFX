@@ -126,11 +126,12 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.PhoneRegistrationActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.ForgotPasswordActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".CheckRebateActivity"></activity>
     </application>
 
 </manifest>
