@@ -32,12 +32,20 @@
             android:name=".activity.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".activity.TestingApiActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+
         <activity
             android:name=".activity.IntroActivity"
             android:screenOrientation="portrait"
@@ -77,7 +85,10 @@
         <activity
             android:name=".activity.RebateAccountActivity"
             android:label="Tarik Rebate ke Account"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait">
+
+
+        </activity>
         <activity
             android:name=".activity.RebateBankActivity"
             android:label="Tarik Rebate Ke Bank"
@@ -131,7 +142,8 @@
             android:name=".activity.ForgotPasswordActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".CheckRebateActivity"></activity>
+        <activity android:name=".CheckRebateActivity" />
+
     </application>
 
 </manifest>

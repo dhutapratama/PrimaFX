@@ -32,7 +32,6 @@ public class MainAppActivity extends AppCompatActivity implements BaseSliderView
         HashMap<String, String> url_maps = new HashMap<>();
         url_maps.put("PrimaPAY", "http://static2.hypable.com/wp-content/uploads/2013/12/hannibal-season-2-release-date.jpg");
         url_maps.put("Kelola Akun Trading", "http://tvfiles.alphacoders.com/100/hdclearart-10.png");
-        url_maps.put("PrimaStore", "http://cdn3.nflximg.net/images/3093/2043093.jpg");
         url_maps.put("Obrolan", "http://images.boomsbeat.com/data/images/full/19640/game-of-thrones-season-4-jpg.jpg");
 
         for(String name : url_maps.keySet()){
@@ -90,6 +89,8 @@ public class MainAppActivity extends AppCompatActivity implements BaseSliderView
                     @Override
                     public void onClick(DialogInterface dlg, int position)
                     {
+                        Intent i = new Intent(MainAppActivity.this, MainManageActivity.class);
+                        startActivity(i);
 
                     }
                 })

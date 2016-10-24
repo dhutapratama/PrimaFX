@@ -23,8 +23,8 @@ public class MainStoreActivity extends AppCompatActivity {
 
         final List<HashMap<String, String>> aList = new ArrayList<>();
         HashMap<String, String> hm = new HashMap<>();
-        hm.put("name", "a");
-        hm.put("image", "a");
+        hm.put("name", "Baju");
+        hm.put("image", "http://asdasdadasd.com/asdgagdad.jpg");
         aList.add(hm);
 
         String[] from = {"name"};

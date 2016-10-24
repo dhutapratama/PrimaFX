@@ -42,5 +42,17 @@ public interface RequestLibrary {
     //@Headers(headerContent)
     @POST("forgot_password")
     Call<ParseForgotPassword> forgotPassword(@Body ParseForgotPassword value);
+
+    // Rebate Inquiry
+    @Headers({"User-Agent: PrimaFX 1.0", "Content-Type: application/json"})
+    //@Headers(headerContent)
+    @POST("client/check-rebate/inquiry")
+    Call<ParseCheckRebateInquiry> rebateInquiry(@Body ParseCheckRebateInquiry value);
+
+    // Deposit Inquiry
+    @Headers({"User-Agent: PrimaFX 1.0", "Content-Type: application/json"})
+    //@Headers(headerContent)
+    @POST("client/deposit/inquiry")
+    Call<ParseDepositInquiry> depositInquiry(@Body ParseDepositInquiry value);
 }
 

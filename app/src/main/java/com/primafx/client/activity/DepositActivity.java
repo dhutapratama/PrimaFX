@@ -24,7 +24,6 @@ import java.util.ArrayList;
 
 public class DepositActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    Integer currency = 13500;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,55 +54,8 @@ public class DepositActivity extends AppCompatActivity implements AdapterView.On
         adapterBank.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerBank.setAdapter(adapterBank);
         spinnerBank.setOnItemSelectedListener(this);
-
-        final TextView textDollarCurr = (TextView)findViewById(R.id.textDollarCurr);
-        final TextView textRupiahCurr = (TextView)findViewById(R.id.textRupiahCurr);
-
         final EditText editTotal = (EditText)findViewById(R.id.editTotal);
-        editTotal.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                editTotal.setError(null);
-            }
 
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                String valDollar = charSequence.toString();
-
-                if (valDollar.length() > 4) {
-                    valDollar = valDollar.substring(0, 4);
-                    editTotal.setText(valDollar);
-                    editTotal.setError("Deposit anda melebihi batas maksimum");
-                } else if (valDollar.length() == 0) {
-                    valDollar = "0";
-                }
-
-                Integer converter = Integer.parseInt(valDollar);
-                Integer rupiah = converter * currency;
-
-                DecimalFormat decimalFormat = (DecimalFormat) DecimalFormat.getCurrencyInstance();
-                decimalFormat.setGroupingUsed(true);
-
-                DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols();
-                decimalFormatSymbols.setCurrencySymbol("Rp ");
-                decimalFormatSymbols.setGroupingSeparator('.');
-                decimalFormatSymbols.setMonetaryDecimalSeparator(',');
-                decimalFormat.setDecimalFormatSymbols(decimalFormatSymbols);
-
-                String formatedMoney = decimalFormat.format(rupiah);
-
-                String formatedDollar = "$ " + valDollar + ".00";
-                String formatedRupiah = formatedMoney.replace(",00", "");
-
-                textDollarCurr.setText(formatedDollar);
-                textRupiahCurr.setText(formatedRupiah);
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
     }
 
     @Override

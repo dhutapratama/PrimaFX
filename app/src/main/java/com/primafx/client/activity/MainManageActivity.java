@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -23,10 +24,19 @@ import android.widget.TextView;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.primafx.client.R;
 import com.primafx.client.dialog.ShowDialog;
+import com.primafx.client.retrofit.ParseCheckRebateInquiry;
+import com.primafx.client.retrofit.ParseDataRebateInquiry;
+import com.primafx.client.retrofit.RequestLibrary;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class MainManageActivity extends AppCompatActivity
@@ -220,26 +230,82 @@ public class MainManageActivity extends AppCompatActivity
             Intent intent = new Intent(this, WithdrawalActivity.class);
             startActivity(intent);
         } else if (v.getId() == R.id.LLRebate) {
-            Dialog rebate = ShowDialog.rebate(this, "$12.00");
+            retrofitRebateInquiry("3652724", "passwordku");
 
-            Button btnBank = (Button) rebate.findViewById(R.id.buttonToBank);
-            btnBank.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(MainManageActivity.this, RebateBankActivity.class);
-                    startActivity(intent);
-                }
-            });
-
-            Button btnAccount = (Button) rebate.findViewById(R.id.buttonToAccount);
-            btnAccount.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(MainManageActivity.this, RebateAccountActivity.class);
-                    startActivity(intent);
-                }
-            });
 
         }
+    }
+
+    private void retrofitRebateInquiry(String akun, String authKey) {
+        final Dialog loading = new ShowDialog().loading(this);
+        loading.show();
+
+        String host = "http://api.primafx.com/";
+
+        ParseCheckRebateInquiry jsonSend = new ParseCheckRebateInquiry(akun, authKey);
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(host)
+                .addConverterFactory(GsonConverterFactory.create()).build();
+        RequestLibrary requestLibrary = retrofit.create(RequestLibrary.class);
+        Call<ParseCheckRebateInquiry> callData = requestLibrary.rebateInquiry(jsonSend);
+
+        callData.enqueue(new Callback<ParseCheckRebateInquiry>() {
+            @Override
+            public void onResponse(Call<ParseCheckRebateInquiry> call, Response<ParseCheckRebateInquiry> response) {
+                loading.hide();
+                if (response.isSuccessful()) {
+                    ParseCheckRebateInquiry response_body = response.body();
+                    if (response_body.getError()) {
+                        finish();
+                    } else {
+                        new ShowDialog().error(MainManageActivity.this, "Message : " + response_body.getMessage());
+                        setRebateData(response_body.getData());
+                    }
+                } else {
+                    Log.e("Server Problem", "Server Responding but error callback : " + response.body().toString());
+                    new ShowDialog().error(MainManageActivity.this, response.body().toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ParseCheckRebateInquiry> call, Throwable t) {
+                loading.hide();
+                Log.e("Network", "ParseCheckRebateInquiry" + t.getMessage());
+                new ShowDialog().error(MainManageActivity.this, "Tidak dapat terhubung, terjadi masalah jaringan.");
+            }
+        });
+    }
+
+    public void setRebateData(final List<ParseDataRebateInquiry> data) {
+
+        for (int i = 0; i < data.size(); i++) {
+            Log.i("Periode", data.get(i).getPeriode());
+            Log.i("Credit", data.get(i).getCredit());
+            Log.i("Debit", data.get(i).getDebit());
+            Log.i("Sisa", data.get(i).getSisa());
+
+            Log.i("Sep ", "-------------------------------------------");
+        }
+
+
+        Dialog rebate = ShowDialog.rebate(this, "$" + data.get(0).getSisa());
+
+        Button btnBank = (Button) rebate.findViewById(R.id.buttonToBank);
+        btnBank.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainManageActivity.this, RebateBankActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button btnAccount = (Button) rebate.findViewById(R.id.buttonToAccount);
+        btnAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainManageActivity.this, RebateAccountActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }

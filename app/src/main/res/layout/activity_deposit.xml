@@ -6,177 +6,130 @@
     tools:context=".activity.DepositActivity">
 
     <RelativeLayout
+        android:id="@+id/relativeLayout4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/relativeLayout3"
-        android:background="@color/colorBlueSoft">
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:gravity="center"
-            android:layout_margin="25dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="$0.00"
-                android:id="@+id/textDollarCurr"
-                android:textColor="@color/colorWhite"
-                android:textSize="30sp"/>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/imageView3"
-                android:src="@drawable/ic_arrow_forward_w"
-                android:layout_marginLeft="10dp"
-                android:textColor="@color/colorWhite"
-                android:layout_marginRight="10dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Rp 0"
-                android:textColor="@color/colorWhite"
-                android:id="@+id/textRupiahCurr"
-                android:textSize="30sp"  />
-        </LinearLayout>
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/relativeLayout3"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/relativeLayout4">
+        android:layout_below="@+id/relativeLayout3">
 
         <RelativeLayout
+            android:id="@+id/rlInputAccount"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/rlInputAccount">
+            android:layout_height="wrap_content">
 
             <TextView
+                android:id="@+id/textAccSource"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Account Tujuan"
-                android:id="@+id/textAccSource"
-                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_alignParentTop="true"
+                android:layout_marginBottom="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp" />
+                android:text="Account"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <Spinner
                 android:id="@+id/spinnerAccount"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="false"
-                android:layout_toRightOf="@+id/textAccSource"
-                android:layout_toEndOf="@+id/textAccSource"
-                android:layout_marginRight="16dp"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="16dp" />
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_toEndOf="@+id/textAccSource"
+                android:layout_toRightOf="@+id/textAccSource" />
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/rlInputBank"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/rlInputBank"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_below="@id/rlInputAccount">
 
             <TextView
+                android:id="@+id/textChooseBank"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Pilih Bank"
-                android:id="@+id/textChooseBank"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_alignTop="@+id/spinnerBank"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
+                android:layout_alignTop="@+id/spinnerBank"
+                android:layout_marginBottom="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp" />
+                android:text="Pilih Bank"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <Spinner
                 android:id="@+id/spinnerBank"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/textChooseBank"
-                android:layout_toEndOf="@+id/textChooseBank"
+                android:layout_centerVertical="true"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                android:layout_centerVertical="true" />
+                android:layout_toEndOf="@+id/textChooseBank"
+                android:layout_toRightOf="@+id/textChooseBank" />
 
         </RelativeLayout>
 
         <View
+            android:id="@+id/view2"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/colorAccent"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:id="@+id/view2"
-            android:layout_below="@id/rlInputAccount"/>
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/rlInputAccount"
+            android:background="@color/colorAccent" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/colorAccent"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@id/rlInputBank"/>
+            android:layout_below="@id/rlInputBank"
+            android:background="@color/colorAccent" />
 
     </RelativeLayout>
 
     <TextView
+        android:id="@+id/textDollarSymbol"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="$"
-        android:id="@+id/textDollarSymbol"
-        android:textSize="30sp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/editTotal"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="10dp"
-        android:layout_alignTop="@+id/editTotal" />
+        android:text="$"
+        android:textSize="24sp" />
 
     <EditText
+        android:id="@+id/editTotal"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:inputType="number"
-        android:ems="10"
-        android:id="@+id/editTotal"
-        android:hint="@string/zeroDollar"
-        android:textSize="30sp"
-        android:layout_below="@+id/relativeLayout4"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_toRightOf="@+id/textDollarSymbol"
-        android:layout_toEndOf="@+id/textDollarSymbol"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/relativeLayout4"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp"
+        android:layout_toEndOf="@+id/textDollarSymbol"
+        android:layout_toRightOf="@+id/textDollarSymbol"
+        android:ems="10"
+        android:hint="@string/zeroDollar"
+        android:inputType="numberDecimal"
+        android:textSize="24sp" />
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Bagaimana Cara Deposit?"
-        android:id="@+id/textView"
-        android:textColor="@color/colorBlueSoft"
         android:layout_below="@+id/editTotal"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp"
+        android:text="Bagaimana Cara Deposit?"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@color/colorBlueSoft" />
 
 </RelativeLayout>
