@@ -28,7 +28,6 @@ public class ParseDepositInquiry {
     public ParseDepositInquiry(String akun, String authKey, String pay_to, String usd) {
         this.akun = akun;
         this.authKey = authKey;
-
         this.pay_to = pay_to;
         this.usd = usd;
     }

@@ -1,9 +1,13 @@
 package com.primafx.client.activity;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,14 +18,22 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.primafx.client.R;
+import com.primafx.client.dialog.ShowDialog;
+import com.primafx.client.retrofit.ParseDataWithdrawalRebate;
+import com.primafx.client.retrofit.ParseWithdrawalRebate;
+import com.primafx.client.retrofit.RequestLibrary;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 
-public class RebateBankActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
-    Integer currency = 13500;
+public class RebateBankActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,16 +45,6 @@ public class RebateBankActivity extends AppCompatActivity implements AdapterView
     }
 
     private void initUI() {
-
-        Spinner spinnerBank = (Spinner) findViewById(R.id.spinnerBank);
-        ArrayAdapter<CharSequence> adapterBank = ArrayAdapter.createFromResource(this,
-                R.array.listBank, android.R.layout.simple_spinner_item);
-        adapterBank.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerBank.setAdapter(adapterBank);
-        spinnerBank.setOnItemSelectedListener(this);
-
-        final TextView textDollarCurr = (TextView)findViewById(R.id.textDollarCurr);
-        final TextView textRupiahCurr = (TextView)findViewById(R.id.textRupiahCurr);
 
         final EditText editTotal = (EditText)findViewById(R.id.editTotal);
         editTotal.addTextChangedListener(new TextWatcher() {
@@ -65,26 +67,6 @@ public class RebateBankActivity extends AppCompatActivity implements AdapterView
                 } else if (valDollar.length() == 0) {
                     valDollar = "0";
                 }
-
-                Integer converter = Integer.parseInt(valDollar);
-                Integer rupiah = converter * currency;
-
-                DecimalFormat decimalFormat = (DecimalFormat) DecimalFormat.getCurrencyInstance();
-                decimalFormat.setGroupingUsed(true);
-
-                DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols();
-                decimalFormatSymbols.setCurrencySymbol("Rp ");
-                decimalFormatSymbols.setGroupingSeparator('.');
-                decimalFormatSymbols.setMonetaryDecimalSeparator(',');
-                decimalFormat.setDecimalFormatSymbols(decimalFormatSymbols);
-
-                String formatedMoney = decimalFormat.format(rupiah);
-
-                String formatedDollar = "$ " + valDollar + ".00";
-                String formatedRupiah = formatedMoney.replace(",00", "");
-
-                textDollarCurr.setText(formatedDollar);
-                textRupiahCurr.setText(formatedRupiah);
                 return;
             }
 
@@ -107,6 +89,8 @@ public class RebateBankActivity extends AppCompatActivity implements AdapterView
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_send:
+                EditText editTotal = (EditText) findViewById(R.id.editTotal);
+                retrofitWithdrawalRebate("7597802", "passwordku", editTotal.getText().toString(), "true");
                 return true;
 
             case android.R.id.home:
@@ -127,5 +111,77 @@ public class RebateBankActivity extends AppCompatActivity implements AdapterView
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
+    }
+
+    private void retrofitWithdrawalRebate(String akun, String authKey, String usd, String preview) {
+        final Dialog loading = new ShowDialog().loading(this);
+        loading.show();
+
+        String host = "http://apis.primafx.com/";
+
+        ParseWithdrawalRebate jsonSend = new ParseWithdrawalRebate(akun, authKey, usd, preview);
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(host)
+                .addConverterFactory(GsonConverterFactory.create()).build();
+        RequestLibrary requestLibrary = retrofit.create(RequestLibrary.class);
+        Call<ParseWithdrawalRebate> callData = requestLibrary.withdrawalRebate(jsonSend);
+
+        callData.enqueue(new Callback<ParseWithdrawalRebate>() {
+            @Override
+            public void onResponse(Call<ParseWithdrawalRebate> call, Response<ParseWithdrawalRebate> response) {
+                loading.dismiss();
+                if (response.isSuccessful()) {
+                    ParseWithdrawalRebate response_body = response.body();
+                    if (response_body.getError()) {
+                        new ShowDialog().error(RebateBankActivity.this, response_body.getMessage()).setOnDismissListener(new DialogInterface.OnDismissListener() {
+                            @Override
+                            public void onDismiss(DialogInterface dialog) {
+                                finish();
+                            }
+                        });
+                    } else {
+                        setData(response_body.getData());
+                    }
+                } else {
+                    Log.e("Server Problem", "Server Responding but error callback : " + response.body().toString());
+                    new ShowDialog().error(RebateBankActivity.this, response.body().toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ParseWithdrawalRebate> call, Throwable t) {
+                loading.dismiss();
+                Log.e("Network", "ParseWithdrrawalRebate" + t.getMessage());
+                new ShowDialog().error(RebateBankActivity.this, "Tidak dapat terhubung, terjadi masalah jaringan.");
+            }
+        });
+    }
+
+    public void setData(final ParseDataWithdrawalRebate data) {
+        Log.i("Type Order", data.getType_order());
+        Log.i("Akun", data.getAkun());
+        Log.i("Nama", data.getNama());
+        Log.i("Phone", data.getPhone());
+        Log.i("Email", data.getEmail());
+        Log.i("Kode Agen", data.getKode_agen());
+        Log.i("Best Regard", data.getBestRegard());
+        Log.i("Pay To", data.getPay_to());
+        Log.i("Pay Number", data.getPay_number());
+        Log.i("Pay Name", data.getPay_name());
+        Log.i("USD", data.getUsd());
+        Log.i("Kurs", data.getKurs());
+        Log.i("IDR", data.getIdr());
+
+        Log.i("Sep ", "-------------------------------------------");
+
+        Intent intent = new Intent(this, WithdrawalRebateResultActivity.class);
+        intent.putExtra("akun", data.getAkun());
+        intent.putExtra("nama", data.getNama());
+        intent.putExtra("usd", data.getUsd());
+        intent.putExtra("pay_number", data.getPay_number());
+        intent.putExtra("pay_name", data.getPay_name());
+        intent.putExtra("pay_to", data.getPay_to());
+        intent.putExtra("kurs", data.getKurs());
+        intent.putExtra("idr", data.getIdr());
+        startActivity(intent);
     }
 }

@@ -6,212 +6,104 @@
     tools:context=".activity.RebateBankActivity">
 
     <RelativeLayout
+        android:id="@+id/relativeLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/relativeLayout3"
+        android:layout_alignParentTop="true"
         android:background="@color/colorBlueSoft">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/llAvailableRebate"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_marginTop="16dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="TOTAL REBATE ANDA"
-                android:textColor="@color/colorWhite" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="$0.00"
-                android:textColor="@color/colorWhite"
-                android:id="@+id/textAvailableRebate"
-                android:textSize="30sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="PENARIKAN"
-                android:textColor="@color/colorWhite"
-                android:layout_marginTop="16dp" />
-        </LinearLayout>
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:gravity="center"
-            android:layout_below="@id/llAvailableRebate"
-            android:layout_marginBottom="16dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="$0.00"
-                android:id="@+id/textDollarCurr"
-                android:textColor="@color/colorWhite"
-                android:textSize="30sp"/>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/imageView3"
-                android:src="@drawable/ic_arrow_forward_w"
-                android:layout_marginLeft="10dp"
-                android:textColor="@color/colorWhite"
-                android:layout_marginRight="10dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Rp 0"
-                android:textColor="@color/colorWhite"
-                android:id="@+id/textRupiahCurr"
-                android:textSize="30sp"  />
-        </LinearLayout>
 
     </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/textDollarSymbol"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/relativeLayout3"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/relativeLayout4">
+        android:layout_alignTop="@+id/editTotal"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="10dp"
+        android:text="$"
+        android:textSize="30sp" />
+
+    <EditText
+        android:id="@+id/editTotal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/relativeLayout4"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_toEndOf="@+id/textDollarSymbol"
+        android:layout_toRightOf="@+id/textDollarSymbol"
+        android:ems="10"
+        android:fontFamily="sans-serif"
+        android:hint="@string/zeroDollar"
+        android:inputType="number|numberDecimal"
+        android:textSize="30sp" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
 
         <RelativeLayout
+            android:id="@+id/rlInputAccount"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/rlInputAccount">
+            android:layout_height="wrap_content">
 
             <TextView
+                android:id="@+id/textAccSource"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Account"
-                android:id="@+id/textAccSource"
-                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_alignParentTop="true"
+                android:layout_marginBottom="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp" />
+                android:text="Account"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="14sp" />
 
             <TextView
+                android:id="@+id/textAccountName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="#123456 (NAME ACC)"
-                android:id="@+id/textAccountName"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_alignTop="@+id/textAccSource"
-                android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@+id/textAccSource"
                 android:layout_marginRight="16dp"
+                android:text="#123456"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="14sp"
                 android:textStyle="bold" />
 
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/rlInputBank"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/rlInputBank"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_below="@id/rlInputAccount">
 
 
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Bank Tujuan"
-                android:id="@+id/textBankDestination"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_alignParentTop="true"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp" />
-
-            <Spinner
-                android:id="@+id/spinnerBank"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="false"
-                android:layout_toRightOf="@+id/textBankDestination"
-                android:layout_toEndOf="@+id/textBankDestination"
-                android:layout_marginRight="16dp"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="16dp" />
-
         </RelativeLayout>
 
         <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/colorAccent"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
             android:id="@+id/view2"
-            android:layout_below="@id/rlInputAccount"/>
-
-        <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/colorAccent"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@id/rlInputBank"/>
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/rlInputAccount"
+            android:background="@color/colorAccent" />
 
     </RelativeLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="$"
-        android:id="@+id/textDollarSymbol"
-        android:textSize="30sp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="10dp"
-        android:layout_alignTop="@+id/editTotal" />
-
-    <EditText
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:ems="10"
-        android:id="@+id/editTotal"
-        android:hint="@string/zeroDollar"
-        android:textSize="30sp"
-        android:layout_below="@+id/relativeLayout4"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_toRightOf="@+id/textDollarSymbol"
-        android:layout_toEndOf="@+id/textDollarSymbol"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="16dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Bagaimana Cara Rebate Ke Rekening Bank?"
-        android:id="@+id/textView"
-        android:textColor="@color/colorBlueSoft"
-        android:layout_below="@+id/editTotal"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp" />
 </RelativeLayout>

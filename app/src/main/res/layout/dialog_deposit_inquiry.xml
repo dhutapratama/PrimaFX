@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:background="#fafafa"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBlueSoft"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="DEPOSIT"
+            android:textColor="@color/colorWhite" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textUsd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_weight="1"
+                    android:text="-" />
+
+                <TextView
+                    android:id="@+id/textAccountNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_weight="1"
+                    android:text="-" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textRupiah"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="16dp"
+                    android:paddingTop="16dp"
+                    android:text="-"
+                    android:textAlignment="center"
+                    android:textStyle="normal|bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textKurs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="0dp"
+                    android:paddingTop="0dp"
+                    android:text="-"
+                    android:textAlignment="center"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/buttonLanjutkan"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/btn_white_blue"
+                android:padding="5dp"
+                android:shadowColor="@null"
+                android:text="Lanjutkan"
+                android:textColor="@color/colorBlueSoft"
+                android:textSize="12sp" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

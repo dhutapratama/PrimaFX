@@ -4,17 +4,16 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by Technical on 10/18/2016.
+ * Created by Technical on 11/4/2016.
  */
 
-public class ParseDeposit {
-
+public class ParseTransferRebate {
     // Post Parameter
     private String akun;
     private String authKey;
-    private String pay_to;
     private String usd;
-    private String idr;
+    private String pay_number;
+    private String preview;
     // Reply Parameter
     @SerializedName("code")
     private Integer code;
@@ -23,14 +22,14 @@ public class ParseDeposit {
     @SerializedName("message")
     private String message;
     @Expose
-    private ParseDataDeposit data;
+    private ParseDataTransferRebate data;
 
-    public ParseDeposit(String akun, String authKey, String pay_to, String usd, String idr) {
+    public ParseTransferRebate(String akun, String authKey, String usd, String pay_number, String preview) {
         this.akun = akun;
         this.authKey = authKey;
-        this.pay_to = pay_to;
         this.usd = usd;
-        this.idr = idr;
+        this.pay_number = pay_number;
+        this.preview = preview;
     }
 
     public Integer getCode() {
@@ -57,7 +56,7 @@ public class ParseDeposit {
         this.message = message;
     }
 
-    public ParseDataDeposit getData() {
+    public ParseDataTransferRebate getData() {
         return data;
     }
 }

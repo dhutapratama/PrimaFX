@@ -1,21 +1,20 @@
 package com.primafx.client.activity;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
 import com.primafx.client.R;
 import com.primafx.client.dialog.ShowDialog;
-import com.primafx.client.retrofit.ParseCheckRebateInquiry;
-import com.primafx.client.retrofit.ParseDataDepositInquiry;
-import com.primafx.client.retrofit.ParseDataRebateInquiry;
-import com.primafx.client.retrofit.ParseDepositInquiry;
+import com.primafx.client.retrofit.ParseDataDeposit;
+import com.primafx.client.retrofit.ParseDataTransferRebate;
+import com.primafx.client.retrofit.ParseDataWithdrawalRebate;
+import com.primafx.client.retrofit.ParseDeposit;
+import com.primafx.client.retrofit.ParseTransferRebate;
+import com.primafx.client.retrofit.ParseWithdrawalRebate;
 import com.primafx.client.retrofit.RequestLibrary;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,33 +29,35 @@ public class TestingApiActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_testing_api);
 
-        retrofitDepositInquiry("3652724", "passwordku", "bca", "5.00");
+        retrofitWithdrawalRebate("7597802", "passwordku", "0.10", "true");
     }
 
-    private void retrofitDepositInquiry(String akun, String authKey, String pay_to, String usd) {
+    private void retrofitWithdrawalRebate(String akun, String authKey, String usd, String preview) {
         final Dialog loading = new ShowDialog().loading(this);
         loading.show();
 
-        String host = "http://api.primafx.com/";
+        String host = "http://apis.primafx.com/";
 
-        ParseDepositInquiry jsonSend = new ParseDepositInquiry(akun, authKey, pay_to, usd);
+        ParseWithdrawalRebate jsonSend = new ParseWithdrawalRebate(akun, authKey, usd, preview);
         Retrofit retrofit = new Retrofit.Builder().baseUrl(host)
                 .addConverterFactory(GsonConverterFactory.create()).build();
         RequestLibrary requestLibrary = retrofit.create(RequestLibrary.class);
-        Call<ParseDepositInquiry> callData = requestLibrary.depositInquiry(jsonSend);
+        Call<ParseWithdrawalRebate> callData = requestLibrary.withdrawalRebate(jsonSend);
 
-        callData.enqueue(new Callback<ParseDepositInquiry>() {
+        callData.enqueue(new Callback<ParseWithdrawalRebate>() {
             @Override
-            public void onResponse(Call<ParseDepositInquiry> call, Response<ParseDepositInquiry> response) {
+            public void onResponse(Call<ParseWithdrawalRebate> call, Response<ParseWithdrawalRebate> response) {
                 loading.hide();
                 if (response.isSuccessful()) {
-                    ParseDepositInquiry response_body = response.body();
+                    ParseWithdrawalRebate response_body = response.body();
                     if (response_body.getError()) {
-                        //new ShowDialog().success(TestingApiActivity.this, response_body.getMessage());
-                        finish();
+                        new ShowDialog().success(TestingApiActivity.this, response_body.getMessage()).setOnDismissListener(new DialogInterface.OnDismissListener() {
+                            @Override
+                            public void onDismiss(DialogInterface dialog) {
+                                finish();
+                            }
+                        });
                     } else {
-                        //Log.i(response_body.getCode(), response_body.getMessage());
-                        new ShowDialog().error(TestingApiActivity.this, "Message : " + response_body.getMessage());
                         setData(response_body.getData());
                     }
                 } else {
@@ -66,15 +67,15 @@ public class TestingApiActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<ParseDepositInquiry> call, Throwable t) {
+            public void onFailure(Call<ParseWithdrawalRebate> call, Throwable t) {
                 loading.hide();
-                Log.e("Network", "ParseCheckRebateInquiry" + t.getMessage());
+                Log.e("Network", "ParseWithdrrawalRebate" + t.getMessage());
                 new ShowDialog().error(TestingApiActivity.this, "Tidak dapat terhubung, terjadi masalah jaringan.");
             }
         });
     }
 
-    public void setData(final ParseDataDepositInquiry data) {
+    public void setData(final ParseDataWithdrawalRebate data) {
         Log.i("Type Order", data.getType_order());
         Log.i("Akun", data.getAkun());
         Log.i("Nama", data.getNama());
@@ -86,31 +87,9 @@ public class TestingApiActivity extends AppCompatActivity {
         Log.i("Pay Number", data.getPay_number());
         Log.i("Pay Name", data.getPay_name());
         Log.i("USD", data.getUsd());
-        Log.i("USD Normal", data.getUsd_n());
-        Log.i("USD Spesial", data.getUsd_s());
-        Log.i("Kurs", data.getKurs());
-        Log.i("Kurs Normal", data.getKurs_n());
-        Log.i("Kurs Spesial", data.getKurs_s());
-        Log.i("IDR", data.getIdr());
-        Log.i("IDR Normal", data.getIdr_n());
-        Log.i("IDR Spesial", data.getIdr_s());
 
         Log.i("Sep ", "-------------------------------------------");
 
+
     }
 }
-
-/*
-    @SerializedName("kurs")
-    private String kurs;
-    @SerializedName("kurs_n")
-    private String kurs_n;
-    @SerializedName("kurs_s")
-    private String kurs_s;
-    @SerializedName("idr")
-    private String idr;
-    @SerializedName("idr_n")
-    private String idr_n;
-    @SerializedName("idr_s")
-    private String idr_s;
- */

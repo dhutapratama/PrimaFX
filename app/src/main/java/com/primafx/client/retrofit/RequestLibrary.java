@@ -54,5 +54,23 @@ public interface RequestLibrary {
     //@Headers(headerContent)
     @POST("client/deposit/inquiry")
     Call<ParseDepositInquiry> depositInquiry(@Body ParseDepositInquiry value);
+
+    // Deposit
+    @Headers({"User-Agent: PrimaFX 1.0", "Content-Type: application/json"})
+    //@Headers(headerContent)
+    @POST("client/deposit")
+    Call<ParseDeposit> deposit(@Body ParseDeposit value);
+
+    // Transfer Rebate
+    @Headers({"User-Agent: PrimaFX 1.0", "Content-Type: application/json"})
+    //@Headers(headerContent)
+    @POST("client/transfer-rebate")
+    Call<ParseTransferRebate> transferRebate(@Body ParseTransferRebate value);
+
+    // Transfer Rebate
+    @Headers({"User-Agent: PrimaFX 1.0", "Content-Type: application/json"})
+    //@Headers(headerContent)
+    @POST("client/withdrawal-rebate")
+    Call<ParseWithdrawalRebate> withdrawalRebate(@Body ParseWithdrawalRebate value);
 }
 

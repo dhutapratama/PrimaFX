@@ -75,4 +75,28 @@ public class ShowDialog {
         return dialog;
     }
 
+    public static Dialog deposit(Context context, String akun, String usd, String kurs, String rupiah) {
+        final Dialog dialog = new Dialog(context, R.style.IMMEDialog);
+        dialog.setContentView(R.layout.dialog_deposit_inquiry);
+        dialog.setCancelable(true);
+
+        TextView textAccountNumber = (TextView) dialog.findViewById(R.id.textAccountNumber);
+        textAccountNumber.setText(akun);
+
+        TextView textUsd = (TextView) dialog.findViewById(R.id.textUsd);
+        textUsd.setText(usd);
+
+        TextView textKurs = (TextView) dialog.findViewById(R.id.textKurs);
+        textKurs.setText(kurs);
+
+        TextView textRupiah = (TextView) dialog.findViewById(R.id.textRupiah);
+        textRupiah.setText(rupiah);
+
+        Button button = (Button) dialog.findViewById(R.id.buttonLanjutkan);
+
+
+        dialog.show();
+        return dialog;
+    }
+
 }

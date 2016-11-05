@@ -34,28 +34,6 @@ public class WithdrawalActivity extends AppCompatActivity implements AdapterView
     }
 
     private void initUI() {
-        ArrayList<String> valueAccount = new ArrayList<>();
-        valueAccount.add("#12312313 (GPBUSD)");
-        valueAccount.add("#12312313 (GPBUSD)");
-        valueAccount.add("#12312313 (GPBUSD)");
-        valueAccount.add("#12312313 (GPBUSD)");
-        valueAccount.add("#12312313 (GPBUSD)");
-
-        Spinner spinnerAccount = (Spinner) findViewById(R.id.spinnerAccount);
-        ArrayAdapter<String> adapterAccount = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item, valueAccount);
-        adapterAccount.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerAccount.setAdapter(adapterAccount);
-        spinnerAccount.setOnItemSelectedListener(this);
-
-        Spinner spinnerBank = (Spinner) findViewById(R.id.spinnerBank);
-        ArrayAdapter<CharSequence> adapterBank = ArrayAdapter.createFromResource(this,
-                R.array.listBank, android.R.layout.simple_spinner_item);
-        adapterBank.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerBank.setAdapter(adapterBank);
-        spinnerBank.setOnItemSelectedListener(this);
-
-        final TextView textDollarCurr = (TextView)findViewById(R.id.textDollarCurr);
-        final TextView textRupiahCurr = (TextView)findViewById(R.id.textRupiahCurr);
 
         final EditText editTotal = (EditText)findViewById(R.id.editTotal);
         editTotal.addTextChangedListener(new TextWatcher() {
@@ -79,25 +57,6 @@ public class WithdrawalActivity extends AppCompatActivity implements AdapterView
                     valDollar = "0";
                 }
 
-                Integer converter = Integer.parseInt(valDollar);
-                Integer rupiah = converter * currency;
-
-                DecimalFormat decimalFormat = (DecimalFormat) DecimalFormat.getCurrencyInstance();
-                decimalFormat.setGroupingUsed(true);
-
-                DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols();
-                decimalFormatSymbols.setCurrencySymbol("Rp ");
-                decimalFormatSymbols.setGroupingSeparator('.');
-                decimalFormatSymbols.setMonetaryDecimalSeparator(',');
-                decimalFormat.setDecimalFormatSymbols(decimalFormatSymbols);
-
-                String formatedMoney = decimalFormat.format(rupiah);
-
-                String formatedDollar = "$ " + valDollar + ".00";
-                String formatedRupiah = formatedMoney.replace(",00", "");
-
-                textDollarCurr.setText(formatedDollar);
-                textRupiahCurr.setText(formatedRupiah);
                 return;
             }
 

@@ -55,7 +55,7 @@ public class MainManageActivity extends AppCompatActivity
         uiInit();
 
         // Variable Initialization
-        this.accounts = new String[] {"#0981231 (GPBUSD)", "#0981231 (GPBUSD)","#0981231 (GPBUSD)","#0981231 (GPBUSD)"};
+        this.accounts = new String[]{"#0981231", "#0981231", "#0981231", "#0981231"};
         this.transactionHistory = new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "7", "2", "3", "4", "5", "6", "7", "8", "9", "0", "7"};
 
         // Method Call
@@ -257,7 +257,6 @@ public class MainManageActivity extends AppCompatActivity
                     if (response_body.getError()) {
                         finish();
                     } else {
-                        new ShowDialog().error(MainManageActivity.this, "Message : " + response_body.getMessage());
                         setRebateData(response_body.getData());
                     }
                 } else {

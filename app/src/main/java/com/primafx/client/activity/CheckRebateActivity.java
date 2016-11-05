@@ -1,7 +1,9 @@
-package com.primafx.client;
+package com.primafx.client.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.primafx.client.R;
 
 public class CheckRebateActivity extends AppCompatActivity {
 

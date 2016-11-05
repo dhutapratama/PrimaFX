@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="TARIK REBATE"
+            android:text="REBATE"
             android:textColor="@color/colorWhite" />
     </LinearLayout>
 
@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Tersedia"
+            android:text="Sisa Rebate Anda"
             android:textColor="@color/textColorPrimary" />
 
         <TextView
@@ -62,7 +62,7 @@
                 android:background="@drawable/btn_white_blue"
                 android:padding="5dp"
                 android:shadowColor="@null"
-                android:text="Ke Account"
+                android:text="TRANSFER"
                 android:textColor="@color/colorBlueSoft"
                 android:textSize="12sp" />
 
@@ -76,7 +76,7 @@
                 android:background="@drawable/btn_white_blue"
                 android:padding="5dp"
                 android:shadowColor="@null"
-                android:text="Ke Rekening"
+                android:text="WITHDRAWAL"
                 android:textColor="@color/colorBlueSoft"
                 android:textSize="12sp" />
         </RelativeLayout>
