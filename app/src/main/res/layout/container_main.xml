@@ -110,7 +110,7 @@
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:src="@drawable/ic_rebate" />
+                    android:src="@drawable/ic_history" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -192,13 +192,13 @@
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:src="@drawable/ic_rebate" />
+                    android:src="@drawable/ic_history" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:text="Histori" />
+                    android:text="Histori Rebate" />
             </LinearLayout>
         </TableRow>
     </TableLayout>

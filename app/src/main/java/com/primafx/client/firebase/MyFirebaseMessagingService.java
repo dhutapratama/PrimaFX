@@ -49,7 +49,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         Log.d(TAG, "From: " + remoteMessage.getFrom());
         //Log.d(TAG, "Notification Message Body: " + remoteMessage.getNotification().getBody());
         Log.d(TAG, remoteMessage.getData().toString());
-
+        Log.d(TAG, remoteMessage.getData().get("message"));
         sendNotification(
                 Integer.parseInt(remoteMessage.getData().get("tickerText")),
                 remoteMessage.getData().get("title"),
