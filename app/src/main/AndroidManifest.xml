@@ -42,12 +42,11 @@
             android:name=".activity.TestingApiActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
-
         </activity>
         <activity
             android:name=".activity.IntroActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".activity.LoginActivity"
             android:screenOrientation="portrait"
@@ -123,6 +122,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.MainAppActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.MainStoreActivity"
@@ -140,13 +140,22 @@
         <activity android:name=".activity.CheckRebateActivity" />
         <activity
             android:name=".activity.DepositResultActivity"
-            android:label="Transfer Bank" />
+            android:label="Transfer Bank"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.TransferRebateResultActivity"
-            android:label="Transfer Rebate" />
+            android:label="Transfer Rebate"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.WithdrawalRebateResultActivity"
-            android:label="Withdrawal Rebate"></activity>
+            android:label="Withdrawal Rebate"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.WithdrawalResultActivity"
+            android:label="Withdrawal"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activity.QuotesActivity"
+            android:label="Quotes"></activity>
     </application>
 
 </manifest>

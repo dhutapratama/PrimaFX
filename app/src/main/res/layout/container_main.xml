@@ -25,16 +25,28 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:text="MY ACCOUNT"
+            android:text="ACCOUNTS"
             android:textColor="@color/colorWhite"
             android:textStyle="bold" />
     </RelativeLayout>
 
     <TableLayout
         android:layout_width="wrap_content"
-        android:layout_height="90dp"
-        android:stretchColumns="1">
+        android:layout_height="wrap_content"
+        android:stretchColumns="1"
+        android:padding="16dp"
+        android:layout_marginBottom="16dp">
+        <TableRow android:id="@+id/tableRow1_logo"
+            android:gravity="center"></TableRow>
 
+        <TableRow android:id="@+id/tableRow1_title"
+            android:gravity="center"
+            android:paddingTop="16dp">
+            <TextView android:layout_gravity="center" android:text="Order Balance"
+                android:textSize="14sp"
+                android:layout_marginBottom="5dp"
+                android:textStyle="normal|bold" />
+        </TableRow>
         <TableRow
             android:id="@+id/tableRow1">
             <LinearLayout
@@ -57,7 +69,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:text="DEPOSIT" />
+                    android:text="Deposit" />
 
             </LinearLayout>
 
@@ -81,7 +93,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:text="WITHDRAWAL" />
+                    android:text="Withdrawal" />
             </LinearLayout>
 
             <LinearLayout
@@ -104,16 +116,99 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:text="REBATE" />
+                    android:text="Histori Order" />
+            </LinearLayout>
+        </TableRow>
+        <TableRow android:id="@+id/tableRow2_title" android:paddingTop="20dp"
+            android:paddingBottom="5dp"
+            android:gravity="center">
+            <TextView android:text="Order Rebate"
+                android:textSize="14sp"
+                android:textStyle="normal|bold"
+                android:gravity="center" />
+        </TableRow>
+        <TableRow
+            android:id="@+id/tableRow2">
+            <LinearLayout
+                android:id="@+id/LLTransferRebate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/hover_selector_home"
+                android:gravity="center"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:src="@drawable/ic_deposit" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="Transfer"
+                    android:gravity="center" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LLWithdrawalRebate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/hover_selector_home"
+                android:gravity="center"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:src="@drawable/ic_withdrawal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="Withdrawal"
+                    android:gravity="center" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LLHistoriRebate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/hover_selector_home"
+                android:gravity="center"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:src="@drawable/ic_rebate" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="Histori" />
             </LinearLayout>
         </TableRow>
     </TableLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@color/colorBlue"></View>
-
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/bg_login_img"
+            android:scaleType="centerCrop" />
+    <!--
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -135,5 +230,5 @@
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-
+-->
 </LinearLayout>

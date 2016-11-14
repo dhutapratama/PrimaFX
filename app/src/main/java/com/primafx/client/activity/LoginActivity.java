@@ -360,6 +360,7 @@ public class LoginActivity extends AppCompatActivity implements
                         } else {
                             DatabaseSQL.updateSecurityData(LoginActivity.this, DatabaseSQL.FIELD_LOGIN_CODE, response_body.getData().getLogin_code());
                             Intent i = new Intent(LoginActivity.this, MainAppActivity.class);
+                            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(i);
 
                             finish();

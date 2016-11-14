@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:text="Bid"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/bid"
+        android:width="100dp"
+        android:gravity="center"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:paddingTop="10dp"
+        android:textAlignment="viewEnd"
+        android:paddingRight="10dp"
+        android:textSize="18sp" />
+
+    <TextView
+        android:text="Ask"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/ask"
+        android:width="100dp"
+        android:gravity="center"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/bid"
+        android:layout_toStartOf="@+id/bid"
+        android:paddingTop="10dp"
+        android:textAlignment="textEnd"
+        android:paddingRight="10dp"
+        android:textSize="18sp" />
+
+    <TextView
+        android:text="High"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/high"
+        android:width="50dp"
+        android:gravity="center"
+        android:layout_below="@+id/ask"
+        android:layout_alignLeft="@+id/ask"
+        android:layout_alignStart="@+id/ask"
+        android:layout_toStartOf="@+id/bid"
+        android:paddingBottom="10dp"
+        android:layout_toLeftOf="@+id/bid"
+        android:textAlignment="textEnd"
+        android:paddingRight="10dp"
+        android:textSize="10sp" />
+
+    <TextView
+        android:text="Low"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/low"
+        android:width="50dp"
+        android:gravity="center"
+        android:layout_below="@+id/bid"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:paddingBottom="10dp"
+        android:layout_toRightOf="@+id/ask"
+        android:layout_toEndOf="@+id/ask"
+        android:textAlignment="textEnd"
+        android:paddingRight="10dp"
+        android:textSize="10sp" />
+
+    <TextView
+        android:text="Symbol"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/symbol"
+        android:textAlignment="textStart"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:paddingStart="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/ask"
+        android:layout_toStartOf="@+id/ask" />
+
+    <TextView
+        android:text="Ranges"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/ranges"
+        android:width="60dp"
+        android:gravity="center"
+        android:textAlignment="textStart"
+        android:paddingLeft="10dp"
+        android:paddingBottom="10dp"
+        android:textSize="10sp"
+        android:layout_below="@+id/open"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/high"
+        android:layout_toStartOf="@+id/high" />
+
+    <TextView
+        android:text="Open"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/open"
+        android:width="60dp"
+        android:gravity="center"
+        android:textAlignment="textStart"
+        android:paddingLeft="10dp"
+        android:textSize="10sp"
+        android:layout_below="@+id/symbol"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/ask"
+        android:layout_toStartOf="@+id/ask" />
+
+</RelativeLayout>

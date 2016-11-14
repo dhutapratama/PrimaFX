@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
@@ -61,7 +62,7 @@ public class MainAppActivity extends AppCompatActivity implements BaseSliderView
         // Variable Initialization
         this.accounts = new String[] {"#0981231 (GPBUSD)", "#0981231 (GPBUSD)","#0981231 (GPBUSD)","#0981231 (GPBUSD)"};
 
-        RelativeLayout kelola_account = (RelativeLayout) findViewById(R.id.rl_KelolaAccount);
+        LinearLayout kelola_account = (LinearLayout) findViewById(R.id.menu_kelola_akun);
         kelola_account.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,12 +70,21 @@ public class MainAppActivity extends AppCompatActivity implements BaseSliderView
             }
         });
 
-        RelativeLayout store = (RelativeLayout) findViewById(R.id.rl_Store);
-        store.setOnClickListener(new View.OnClickListener() {
+        LinearLayout quotes = (LinearLayout) findViewById(R.id.menu_quotes);
+        quotes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainAppActivity.this, MainStoreActivity.class);
-                startActivity(i);
+                Intent intent = new Intent(MainAppActivity.this, QuotesActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        LinearLayout support = (LinearLayout) findViewById(R.id.menu_support);
+        support.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainAppActivity.this, CallMeActivity.class);
+                startActivity(intent);
             }
         });
     }

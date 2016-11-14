@@ -23,6 +23,7 @@ import android.widget.TextView;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.primafx.client.R;
+import com.primafx.client.database.DatabaseSQL;
 import com.primafx.client.dialog.ShowDialog;
 import com.primafx.client.retrofit.ParseCheckRebateInquiry;
 import com.primafx.client.retrofit.ParseDataRebateInquiry;
@@ -60,7 +61,8 @@ public class MainManageActivity extends AppCompatActivity
 
         // Method Call
         setTransactionHistory();
-        setMenuCounter(R.id.nav_notification, 5);
+
+       // setMenuCounter(R.id.nav_notification, 5);
 
         /* Error Reporting */
         // Firebase Analytics
@@ -73,6 +75,7 @@ public class MainManageActivity extends AppCompatActivity
 
     // UI Init
     private void uiInit() {
+        /*
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
@@ -84,7 +87,7 @@ public class MainManageActivity extends AppCompatActivity
                 drawer.openDrawer(GravityCompat.START);
             }
         });
-
+        */
         LinearLayout deposit = (LinearLayout)findViewById(R.id.LLDeposit);
         deposit.setOnClickListener(this);
 
@@ -121,12 +124,13 @@ public class MainManageActivity extends AppCompatActivity
     }
 
     // Method Menu Counter
+    /*
     private void setMenuCounter(@IdRes int itemId, int count) {
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         TextView view = (TextView) navigationView.getMenu().findItem(itemId).getActionView();
         view.setText(count > 0 ? String.valueOf(count) : null);
     }
-
+*/
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -163,6 +167,14 @@ public class MainManageActivity extends AppCompatActivity
         } else if (id == R.id.nav_about) {
             Intent intent = new Intent(this, AboutActivity.class);
             startActivity(intent);
+        } else if (id == R.id.Logout) {
+            DatabaseSQL.Logout(this);
+            DatabaseSQL.removeAllAccount(this);
+
+            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -206,9 +218,11 @@ public class MainManageActivity extends AppCompatActivity
                 return v;
             }
         };
+
+        /*
         ListView listView = (ListView) findViewById(R.id.listView);
         listView.setAdapter(adapter);
-
+*/
         /*
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -231,8 +245,6 @@ public class MainManageActivity extends AppCompatActivity
             startActivity(intent);
         } else if (v.getId() == R.id.LLRebate) {
             retrofitRebateInquiry("3652724", "passwordku");
-
-
         }
     }
 

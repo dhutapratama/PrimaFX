@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -18,80 +19,160 @@
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/slider">
+        android:layout_below="@+id/slider"
+        android:gravity="center">
 
-        <RelativeLayout
-            android:id="@+id/rl_KelolaAccount"
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@+id/sep_hor"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:background="#3974B1">
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/menu_1"
+            android:layout_marginTop="25dp">
 
-            <ImageView
-                android:id="@+id/imageView6"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/icon_kelola_akun" />
-        </RelativeLayout>
-
-        <View
-            android:id="@+id/sep_hor"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_centerVertical="true"
-            android:background="@color/colorWhite" />
-
-        <View
-            android:id="@+id/view4"
-            android:layout_width="2dp"
-            android:layout_height="match_parent"
-            android:layout_alignTop="@+id/sep_hor"
-            android:layout_centerHorizontal="true"
-            android:background="@color/colorWhite" />
-
-        <RelativeLayout
-            android:id="@+id/rl_Store"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/sep_hor"
-            android:layout_toLeftOf="@+id/view4"
-            android:layout_toStartOf="@+id/view4"
-            android:background="#56AD89">
-
-            <ImageView
-                android:id="@+id/imageView7"
-                android:layout_width="100dp"
-                android:layout_height="35dp"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/icon_store" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/sep_hor"
-            android:layout_toEndOf="@+id/view4"
-            android:layout_toRightOf="@+id/view4"
-            android:background="#D0583B">
-
-            <ImageView
-                android:id="@+id/imageView8"
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:src="@drawable/icon_obrolan" />
-        </RelativeLayout>
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:paddingLeft="32dp"
+                android:paddingRight="32dp"
+                android:id="@+id/menu_kelola_akun">
 
+                <ImageView
+                    app:srcCompat="@drawable/kelola_account"
+                    android:id="@+id/imageView7"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp" />
+
+                <TextView
+                    android:text="Accounts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView21"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="25dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:paddingLeft="32dp"
+                android:paddingRight="32dp"
+                android:id="@+id/menu_kalender">
+
+                <ImageView
+                    app:srcCompat="@drawable/kalender"
+                    android:id="@+id/imageView7"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp" />
+
+                <TextView
+                    android:text="Kalender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView21"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="25dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/menu_2"
+            android:layout_below="@+id/menu_1"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:paddingLeft="32dp"
+                android:paddingRight="32dp"
+                android:id="@+id/menu_quotes">
+
+                <ImageView
+                    app:srcCompat="@drawable/quotes"
+                    android:id="@+id/imageView7"
+                    android:layout_height="50dp"
+                    android:layout_width="50dp" />
+
+                <TextView
+                    android:text="Quotes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView21"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="25dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:paddingLeft="32dp"
+                android:paddingRight="32dp"
+                android:id="@+id/menu_news">
+
+                <ImageView
+                    app:srcCompat="@drawable/news"
+                    android:id="@+id/imageView7"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp" />
+
+                <TextView
+                    android:text="News"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView21"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="25dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/menu_3"
+            android:layout_below="@+id/menu_2"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:id="@+id/menu_support">
+
+                <ImageView
+                    app:srcCompat="@drawable/support"
+                    android:id="@+id/imageView7"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp" />
+
+                <TextView
+                    android:text="Support"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView21"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="16dp" />
+            </LinearLayout>
+
+        </LinearLayout>
     </RelativeLayout>
 
     <com.daimajia.slider.library.SliderLayout
