@@ -68,6 +68,30 @@ public class ShowDialog {
         return dialog;
     }
 
+    public static Dialog rebateTransfer(Context context, String message) {
+        final Dialog dialog = new Dialog(context, R.style.IMMEDialog);
+        dialog.setContentView(R.layout.dialog_rebate_transfer);
+        dialog.setCancelable(true);
+
+        TextView editMessage = (TextView)dialog.findViewById(R.id.textMessage);
+        editMessage.setText(message);
+
+        dialog.show();
+        return dialog;
+    }
+
+    public static Dialog rebateWithdrawal(Context context, String message) {
+        final Dialog dialog = new Dialog(context, R.style.IMMEDialog);
+        dialog.setContentView(R.layout.dialog_rebate_withdrawal);
+        dialog.setCancelable(true);
+
+        TextView editMessage = (TextView)dialog.findViewById(R.id.textMessage);
+        editMessage.setText(message);
+
+        dialog.show();
+        return dialog;
+    }
+
     public static Dialog loading(Context context) {
         final Dialog dialog = new Dialog(context, R.style.Loading);
         dialog.setContentView(R.layout.dialog_loading);

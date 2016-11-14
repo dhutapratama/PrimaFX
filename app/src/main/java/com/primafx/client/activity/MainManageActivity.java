@@ -57,10 +57,7 @@ public class MainManageActivity extends AppCompatActivity
 
         // Variable Initialization
         this.accounts = new String[]{"#0981231", "#0981231", "#0981231", "#0981231"};
-        this.transactionHistory = new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "7", "2", "3", "4", "5", "6", "7", "8", "9", "0", "7"};
 
-        // Method Call
-        setTransactionHistory();
 
        // setMenuCounter(R.id.nav_notification, 5);
 
@@ -94,8 +91,11 @@ public class MainManageActivity extends AppCompatActivity
         LinearLayout withdrawal = (LinearLayout)findViewById(R.id.LLWithdrawal);
         withdrawal.setOnClickListener(this);
 
-        LinearLayout rebate = (LinearLayout)findViewById(R.id.LLRebate);
-        rebate.setOnClickListener(this);
+        LinearLayout rebateTransfer = (LinearLayout)findViewById(R.id.LLTransferRebate);
+        rebateTransfer.setOnClickListener(this);
+
+        LinearLayout rebateWithdrawal = (LinearLayout)findViewById(R.id.LLWithdrawalRebate);
+        rebateWithdrawal.setOnClickListener(this);
 
         TextView textAccName = (TextView)findViewById(R.id.textAccName);
         textAccName.setOnClickListener(new View.OnClickListener() {
@@ -104,6 +104,12 @@ public class MainManageActivity extends AppCompatActivity
                 switch_account();
             }
         });
+
+        LinearLayout OrderHistory = (LinearLayout)findViewById(R.id.LLHistoriOrder);
+        OrderHistory.setOnClickListener(this);
+
+        LinearLayout RebateHistory = (LinearLayout)findViewById(R.id.LLHistoriRebate);
+        RebateHistory.setOnClickListener(this);
     }
 
     // Account Switcher
@@ -192,49 +198,6 @@ public class MainManageActivity extends AppCompatActivity
         // [END image_view_event]
     }
 
-    public void setTransactionHistory() {
-        final List<HashMap<String, String>> aList = new ArrayList<>();
-
-        for (int i = 0; i < this.transactionHistory.length; i++) {
-            HashMap<String, String> hm = new HashMap<>();
-            hm.put("data", this.transactionHistory[i]);
-            aList.add(hm);
-        }
-
-        String[] from = {};
-        int[] to = {};
-        SimpleAdapter adapter = new SimpleAdapter(getBaseContext(), aList, R.layout.list_transaction_history, from, to)
-        {
-            @Override
-            public View getView (final int position, View convertView, ViewGroup parent)
-            {
-                View v = super.getView(position, convertView, parent);
-                /*
-                ImageView imagePerson = (ImageView)v.findViewById(R.id.imagePerson);
-                Picasso.with(MainManageActivity.this).load(transactions.get(position).getPicture())
-                        .error(MainManageActivity.this.getResources().getDrawable(R.mipmap.no_image_square))
-                        .into(imagePerson);
-                        */
-                return v;
-            }
-        };
-
-        /*
-        ListView listView = (ListView) findViewById(R.id.listView);
-        listView.setAdapter(adapter);
-*/
-        /*
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(MainManageActivity.this, TransactionDetail.class);
-                intent.putExtra("transaction_refference", transactions.get(position).getTransaction_refference());
-                startActivity(intent);
-            }
-        });
-        */
-    }
-
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.LLDeposit) {
@@ -243,12 +206,20 @@ public class MainManageActivity extends AppCompatActivity
         } else if (v.getId() == R.id.LLWithdrawal) {
             Intent intent = new Intent(this, WithdrawalActivity.class);
             startActivity(intent);
-        } else if (v.getId() == R.id.LLRebate) {
-            retrofitRebateInquiry("3652724", "passwordku");
+        } else if (v.getId() == R.id.LLWithdrawalRebate) {
+            retrofitRebateInquiry("3652724", "passwordku", "withdrawal");
+        } else if (v.getId() == R.id.LLTransferRebate) {
+            retrofitRebateInquiry("3652724", "passwordku", "transfer");
+        } else if (v.getId() == R.id.LLHistoriOrder) {
+            Intent intent = new Intent(this, OrderHistoryActivity.class);
+            startActivity(intent);
+        } else if (v.getId() == R.id.LLHistoriRebate) {
+            Intent intent = new Intent(this, RebateHistoryActivity.class);
+            startActivity(intent);
         }
     }
 
-    private void retrofitRebateInquiry(String akun, String authKey) {
+    private void retrofitRebateInquiry(String akun, String authKey, final String type) {
         final Dialog loading = new ShowDialog().loading(this);
         loading.show();
 
@@ -269,7 +240,7 @@ public class MainManageActivity extends AppCompatActivity
                     if (response_body.getError()) {
                         finish();
                     } else {
-                        setRebateData(response_body.getData());
+                        setRebateData(response_body.getData(), type);
                     }
                 } else {
                     Log.e("Server Problem", "Server Responding but error callback : " + response.body().toString());
@@ -286,7 +257,7 @@ public class MainManageActivity extends AppCompatActivity
         });
     }
 
-    public void setRebateData(final List<ParseDataRebateInquiry> data) {
+    public void setRebateData(final List<ParseDataRebateInquiry> data, String type) {
 
         for (int i = 0; i < data.size(); i++) {
             Log.i("Periode", data.get(i).getPeriode());
@@ -297,26 +268,33 @@ public class MainManageActivity extends AppCompatActivity
             Log.i("Sep ", "-------------------------------------------");
         }
 
+        if (type.equals("withdrawal")) {
+            Dialog rebate = ShowDialog.rebateWithdrawal(this, "$" + data.get(0).getSisa());
 
-        Dialog rebate = ShowDialog.rebate(this, "$" + data.get(0).getSisa());
+            Button btnBank = (Button) rebate.findViewById(R.id.buttonToBank);
+            btnBank.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainManageActivity.this, RebateBankActivity.class);
+                    startActivity(intent);
+                }
+            });
+        } else {
+            Dialog rebate = ShowDialog.rebateTransfer(this, "$" + data.get(0).getSisa());
+            Button btnAccount = (Button) rebate.findViewById(R.id.buttonToAccount);
+            btnAccount.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainManageActivity.this, RebateAccountActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }
 
-        Button btnBank = (Button) rebate.findViewById(R.id.buttonToBank);
-        btnBank.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainManageActivity.this, RebateBankActivity.class);
-                startActivity(intent);
-            }
-        });
 
-        Button btnAccount = (Button) rebate.findViewById(R.id.buttonToAccount);
-        btnAccount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainManageActivity.this, RebateAccountActivity.class);
-                startActivity(intent);
-            }
-        });
+
+
+
 
     }
 }

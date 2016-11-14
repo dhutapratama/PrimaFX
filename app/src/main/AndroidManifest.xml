@@ -41,12 +41,11 @@
         <activity
             android:name=".activity.TestingApiActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.IntroActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.LoginActivity"
             android:screenOrientation="portrait"
@@ -154,8 +153,13 @@
             android:name=".activity.WithdrawalResultActivity"
             android:label="Withdrawal"
             android:screenOrientation="portrait" />
-        <activity android:name=".activity.QuotesActivity"
-            android:label="Quotes"></activity>
+        <activity
+            android:name=".activity.QuotesActivity"
+            android:label="Quotes" />
+        <activity android:name=".activity.OrderHistoryActivity"
+            android:label="Histori Order"/>
+        <activity android:name=".activity.RebateHistoryActivity"
+            android:label="Histori Rebate"></activity>
     </application>
 
 </manifest>
