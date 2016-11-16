@@ -38,7 +38,7 @@ public class RegistrationActivity extends AppCompatActivity implements ParalaxSc
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
-        Button registration = (Button) findViewById(R.id.buttonRegister);
+        Button registration = (Button) findViewById(R.id.buttonAddAccount);
         registration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,7 +78,7 @@ public class RegistrationActivity extends AppCompatActivity implements ParalaxSc
 
     private void validation() {
         EditText password = (EditText) findViewById(R.id.editPassword);
-        EditText password2 = (EditText) findViewById(R.id.editPassword2);
+        EditText password2 = (EditText) findViewById(R.id.editPhonePassword);
 
         password.setError(null);
         password2.setError(null);
@@ -119,7 +119,7 @@ public class RegistrationActivity extends AppCompatActivity implements ParalaxSc
         callData.enqueue(new Callback<ParseEmailRegistration>() {
             @Override
             public void onResponse(Call<ParseEmailRegistration> call, Response<ParseEmailRegistration> response) {
-                loading.hide();
+                loading.dismiss();
                 if (response.isSuccessful()) {
                     ParseEmailRegistration response_body = response.body();
                     if (response_body.getCode().equals("200")) {
@@ -138,7 +138,7 @@ public class RegistrationActivity extends AppCompatActivity implements ParalaxSc
 
             @Override
             public void onFailure(Call<ParseEmailRegistration> call, Throwable t) {
-                loading.hide();
+                loading.dismiss();
                 Log.e("Network", "ParseEmailRegistration");
                 new ShowDialog().error(RegistrationActivity.this, "Tidak dapat terhubung, terjadi masalah jaringan.");
             }

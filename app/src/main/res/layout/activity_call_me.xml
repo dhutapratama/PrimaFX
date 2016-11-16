@@ -137,7 +137,7 @@
         android:background="@color/colorAccent" />
 
      <Button
-         android:id="@+id/buttonRegister"
+         android:id="@+id/buttonAddAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
          android:layout_below="@+id/view3"
@@ -155,7 +155,7 @@
         android:id="@+id/textHelp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/buttonRegister"
+        android:layout_below="@+id/buttonAddAccount"
         android:layout_centerHorizontal="true"
         android:text="Cara menggunakan Call Me?"
         android:textColor="@color/colorBlueSoft" />

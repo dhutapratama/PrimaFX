@@ -16,8 +16,11 @@ import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import com.primafx.client.R;
+import com.primafx.client.database.DatabaseSQL;
+import com.primafx.client.database.GData;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class MainAppActivity extends AppCompatActivity implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
     private SliderLayout mDemoSlider;
@@ -60,7 +63,9 @@ public class MainAppActivity extends AppCompatActivity implements BaseSliderView
 
 
         // Variable Initialization
-        this.accounts = new String[] {"#0981231 (GPBUSD)", "#0981231 (GPBUSD)","#0981231 (GPBUSD)","#0981231 (GPBUSD)"};
+
+        List<String> my_accounts = DatabaseSQL.getAccountData(this);
+        this.accounts = my_accounts.toArray(new String[my_accounts.size()]);
 
         LinearLayout kelola_account = (LinearLayout) findViewById(R.id.menu_kelola_akun);
         kelola_account.setOnClickListener(new View.OnClickListener() {
@@ -94,14 +99,21 @@ public class MainAppActivity extends AppCompatActivity implements BaseSliderView
         Dialog d = new AlertDialog.Builder(this, AlertDialog.THEME_HOLO_LIGHT)
                 .setTitle("Pilih Account")
                 .setNegativeButton("Batal", null)
-                .setPositiveButton("Tambah Account", null)
+                .setPositiveButton("Tambah Account", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(MainAppActivity.this, AddAccountActivity.class);
+                        startActivity(intent);
+                    }
+                })
                 .setItems(this.accounts, new DialogInterface.OnClickListener(){
                     @Override
                     public void onClick(DialogInterface dlg, int position)
                     {
+                        GData.CURRENT_ACCOUNT = accounts[position];
+
                         Intent i = new Intent(MainAppActivity.this, MainManageActivity.class);
                         startActivity(i);
-
                     }
                 })
                 .create();

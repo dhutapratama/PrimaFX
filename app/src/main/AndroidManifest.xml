@@ -34,14 +34,22 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".activity.TestingApiActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:label="Testing PFX">
+
+            <!--
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            -->
+        </activity>
         <activity
             android:name=".activity.IntroActivity"
             android:screenOrientation="portrait"
@@ -114,7 +122,8 @@
             android:name=".activity.CallMeActivity"
             android:label="Request Call Me"
             android:screenOrientation="portrait" />
-        <activity android:name=".activity.AddAccountActivity" />
+        <activity android:name=".activity.AddAccountActivity"
+            android:label="Tambahkan Akun InstaForex"/>
         <activity
             android:name=".activity.RegistrationActivity"
             android:screenOrientation="portrait"

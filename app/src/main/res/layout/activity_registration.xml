@@ -133,7 +133,7 @@
                     android:text="Ulangi Password" />
 
                 <EditText
-                    android:id="@+id/editPassword2"
+                    android:id="@+id/editPhonePassword"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -154,7 +154,7 @@
                 android:background="@color/colorAccent" />
 
             <Button
-                android:id="@+id/buttonRegister"
+                android:id="@+id/buttonAddAccount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/view3"

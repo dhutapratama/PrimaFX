@@ -30,7 +30,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/spinnerAccount"
+                android:id="@+id/textAccount"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="false"
@@ -40,7 +40,7 @@
                 android:layout_toEndOf="@+id/textAccSource"
                 android:layout_toRightOf="@+id/textAccSource"
                 android:gravity="end"
-                android:text="#123456"
+                android:text="#"
                 android:textAlignment="textEnd" />
         </RelativeLayout>
 

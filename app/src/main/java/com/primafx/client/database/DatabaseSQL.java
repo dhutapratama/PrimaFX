@@ -127,7 +127,7 @@ public class DatabaseSQL extends SQLiteOpenHelper {
         return array;
     }
 
-    public static void addAccount(Context context, String account, String phone_password) {
+    public static void addAccount(Context context, String account) {
         DatabaseSQL mDbHelper = new DatabaseSQL(context);
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
 

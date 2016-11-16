@@ -19,6 +19,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.primafx.client.R;
+import com.primafx.client.database.GData;
 import com.primafx.client.dialog.ShowDialog;
 import com.primafx.client.retrofit.ParseDataDepositInquiry;
 import com.primafx.client.retrofit.ParseDepositInquiry;
@@ -58,6 +59,8 @@ public class DepositActivity extends AppCompatActivity implements AdapterView.On
         spinnerBank.setOnItemSelectedListener(this);
         editTotal = (EditText) findViewById(R.id.editTotal);
 
+        TextView account = (TextView) findViewById(R.id.textAccount);
+        account.setText("#"+GData.CURRENT_ACCOUNT);
     }
 
     @Override
@@ -87,7 +90,7 @@ public class DepositActivity extends AppCompatActivity implements AdapterView.On
                     new ShowDialog().error(DepositActivity.this, "Mohon isikan deposit anda!");
                 } else {
                     Log.i("Bank", spinnerBank.getSelectedItem().toString());
-                    retrofitDepositInquiry("1521161", "passwordku", spinnerBank.getSelectedItem().toString(), editTotal.getText().toString());
+                    retrofitDepositInquiry(GData.CURRENT_ACCOUNT, GData.LOGIN_CODE, spinnerBank.getSelectedItem().toString(), editTotal.getText().toString());
                 }
                 return true;
 
@@ -116,7 +119,7 @@ public class DepositActivity extends AppCompatActivity implements AdapterView.On
         callData.enqueue(new Callback<ParseDepositInquiry>() {
             @Override
             public void onResponse(Call<ParseDepositInquiry> call, Response<ParseDepositInquiry> response) {
-                loading.hide();
+                loading.dismiss();
                 if (response.isSuccessful()) {
                     final ParseDepositInquiry response_body = response.body();
                     if (response_body.getError()) {
@@ -135,8 +138,8 @@ public class DepositActivity extends AppCompatActivity implements AdapterView.On
                             @Override
                             public void onClick(View v) {
                                 Intent intent = new Intent(DepositActivity.this, DepositResultActivity.class);
-                                intent.putExtra("akun", "3652724");
-                                intent.putExtra("authKey", "passwordku");
+                                intent.putExtra("akun", GData.CURRENT_ACCOUNT);
+                                intent.putExtra("authKey", GData.LOGIN_CODE);
                                 intent.putExtra("pay_to", response_body.getData().getPay_to());
                                 intent.putExtra("usd", response_body.getData().getUsd());
                                 intent.putExtra("idr", response_body.getData().getIdr());

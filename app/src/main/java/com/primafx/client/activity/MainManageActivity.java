@@ -24,6 +24,7 @@ import android.widget.TextView;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.primafx.client.R;
 import com.primafx.client.database.DatabaseSQL;
+import com.primafx.client.database.GData;
 import com.primafx.client.dialog.ShowDialog;
 import com.primafx.client.retrofit.ParseCheckRebateInquiry;
 import com.primafx.client.retrofit.ParseDataRebateInquiry;
@@ -56,7 +57,8 @@ public class MainManageActivity extends AppCompatActivity
         uiInit();
 
         // Variable Initialization
-        this.accounts = new String[]{"#0981231", "#0981231", "#0981231", "#0981231"};
+        List<String> my_accounts = DatabaseSQL.getAccountData(this);
+        this.accounts = my_accounts.toArray(new String[my_accounts.size()]);
 
 
        // setMenuCounter(R.id.nav_notification, 5);
@@ -110,6 +112,9 @@ public class MainManageActivity extends AppCompatActivity
 
         LinearLayout RebateHistory = (LinearLayout)findViewById(R.id.LLHistoriRebate);
         RebateHistory.setOnClickListener(this);
+
+        TextView textAccNumber = (TextView)findViewById(R.id.textAccNumber);
+        textAccNumber.setText("#"+ GData.CURRENT_ACCOUNT);
     }
 
     // Account Switcher
@@ -117,18 +122,27 @@ public class MainManageActivity extends AppCompatActivity
         Dialog d = new AlertDialog.Builder(this, AlertDialog.THEME_HOLO_LIGHT)
                 .setTitle("Pilih Account")
                 .setNegativeButton("Batal", null)
-                .setPositiveButton("Tambah Account", null)
+                .setPositiveButton("Tambah Account", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(MainManageActivity.this, AddAccountActivity.class);
+                        startActivity(intent);
+                    }
+                })
                 .setItems(this.accounts, new DialogInterface.OnClickListener(){
                     @Override
                     public void onClick(DialogInterface dlg, int position)
                     {
+                        GData.CURRENT_ACCOUNT = accounts[position];
 
+                        Intent i = new Intent(MainManageActivity.this, MainManageActivity.class);
+                        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(i);
                     }
                 })
                 .create();
         d.show();
     }
-
     // Method Menu Counter
     /*
     private void setMenuCounter(@IdRes int itemId, int count) {
@@ -143,7 +157,11 @@ public class MainManageActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            //super.onBackPressed();
+            Intent i = new Intent(MainManageActivity.this, MainAppActivity.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(i);
+            finish();
         }
     }
 
@@ -207,9 +225,9 @@ public class MainManageActivity extends AppCompatActivity
             Intent intent = new Intent(this, WithdrawalActivity.class);
             startActivity(intent);
         } else if (v.getId() == R.id.LLWithdrawalRebate) {
-            retrofitRebateInquiry("3652724", "passwordku", "withdrawal");
+            retrofitRebateInquiry(GData.CURRENT_ACCOUNT, GData.LOGIN_CODE, "withdrawal");
         } else if (v.getId() == R.id.LLTransferRebate) {
-            retrofitRebateInquiry("3652724", "passwordku", "transfer");
+            retrofitRebateInquiry(GData.CURRENT_ACCOUNT, GData.LOGIN_CODE, "transfer");
         } else if (v.getId() == R.id.LLHistoriOrder) {
             Intent intent = new Intent(this, OrderHistoryActivity.class);
             startActivity(intent);
@@ -234,7 +252,7 @@ public class MainManageActivity extends AppCompatActivity
         callData.enqueue(new Callback<ParseCheckRebateInquiry>() {
             @Override
             public void onResponse(Call<ParseCheckRebateInquiry> call, Response<ParseCheckRebateInquiry> response) {
-                loading.hide();
+                loading.dismiss();
                 if (response.isSuccessful()) {
                     ParseCheckRebateInquiry response_body = response.body();
                     if (response_body.getError()) {
@@ -250,7 +268,7 @@ public class MainManageActivity extends AppCompatActivity
 
             @Override
             public void onFailure(Call<ParseCheckRebateInquiry> call, Throwable t) {
-                loading.hide();
+                loading.dismiss();
                 Log.e("Network", "ParseCheckRebateInquiry" + t.getMessage());
                 new ShowDialog().error(MainManageActivity.this, "Tidak dapat terhubung, terjadi masalah jaringan.");
             }
@@ -290,11 +308,5 @@ public class MainManageActivity extends AppCompatActivity
                 }
             });
         }
-
-
-
-
-
-
     }
 }

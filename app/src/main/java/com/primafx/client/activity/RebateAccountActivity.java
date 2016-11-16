@@ -71,6 +71,9 @@ public class RebateAccountActivity extends AppCompatActivity  implements Adapter
 
             }
         });
+
+        TextView account = (TextView) findViewById(R.id.textAccount);
+        account.setText("#"+GData.CURRENT_ACCOUNT);
     }
 
     @Override
@@ -113,7 +116,7 @@ public class RebateAccountActivity extends AppCompatActivity  implements Adapter
         EditText editTotal = (EditText) findViewById(R.id.editTotal);
 
 
-        retrofitTransferRebate("7597802", "passwordku", editTotal.getText().toString(), editAccountTujuan.getText().toString(), "true");
+        retrofitTransferRebate(GData.CURRENT_ACCOUNT, GData.LOGIN_CODE, editTotal.getText().toString(), editAccountTujuan.getText().toString(), "true");
     }
 
     private void retrofitTransferRebate(String akun, String authKey, String usd, String pay_number, String preview) {

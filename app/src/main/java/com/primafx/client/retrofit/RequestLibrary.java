@@ -73,5 +73,10 @@ public interface RequestLibrary {
     @Headers({"User-Agent: PrimaFX 1.0", "Content-Type: application/json"})
     @GET("tools/quotes")
     Call<ParseQuotes> getQuotes();
+
+    // Transfer Rebate
+    @Headers({"User-Agent: PrimaFX 1.0", "Content-Type: application/json"})
+    @POST("trader/addakun")
+    Call<ParseAddAccount> addAccount(@Body ParseAddAccount value);
 }
 

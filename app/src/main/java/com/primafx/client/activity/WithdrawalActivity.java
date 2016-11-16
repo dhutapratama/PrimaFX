@@ -80,6 +80,9 @@ public class WithdrawalActivity extends AppCompatActivity implements AdapterView
 
             }
         });
+
+        TextView account = (TextView) findViewById(R.id.textAccount);
+        account.setText("#"+GData.CURRENT_ACCOUNT);
     }
 
     @Override
@@ -95,7 +98,7 @@ public class WithdrawalActivity extends AppCompatActivity implements AdapterView
         switch (item.getItemId()) {
             case R.id.action_send:
                 EditText editTotal = (EditText)findViewById(R.id.editTotal);
-                retrofitWithdrawal("7597802", "passwordku", editTotal.getText().toString());
+                retrofitWithdrawal(GData.CURRENT_ACCOUNT, GData.LOGIN_CODE, editTotal.getText().toString());
                 return true;
 
             case android.R.id.home:

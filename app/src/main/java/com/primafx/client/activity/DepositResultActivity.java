@@ -63,7 +63,7 @@ public class DepositResultActivity extends AppCompatActivity {
         callData.enqueue(new Callback<ParseDeposit>() {
             @Override
             public void onResponse(Call<ParseDeposit> call, Response<ParseDeposit> response) {
-                loading.hide();
+                loading.dismiss();
                 if (response.isSuccessful()) {
                     ParseDeposit response_body = response.body();
                     if (response_body.getError()) {
@@ -84,7 +84,7 @@ public class DepositResultActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ParseDeposit> call, Throwable t) {
-                loading.hide();
+                loading.dismiss();
                 Log.e("Network", "ParseDeposit" + t.getMessage());
                 new ShowDialog().error(DepositResultActivity.this, "Tidak dapat terhubung, terjadi masalah jaringan.");
             }

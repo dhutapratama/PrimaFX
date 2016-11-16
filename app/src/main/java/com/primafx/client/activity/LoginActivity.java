@@ -354,16 +354,13 @@ public class LoginActivity extends AppCompatActivity implements
                 if (response.isSuccessful()) {
                     ParseGoogleSignin response_body = response.body();
                     if (!response_body.getError()) {
-                        if (!response_body.getMessage().equals("OK")) {
-                            new ShowDialog().success(LoginActivity.this, response_body.getMessage());
-                        } else {
-                            DatabaseSQL.updateSecurityData(LoginActivity.this, DatabaseSQL.FIELD_LOGIN_CODE, response_body.getData().getLogin_code());
-                            Intent i = new Intent(LoginActivity.this, MainAppActivity.class);
-                            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(i);
+                        DatabaseSQL.updateSecurityData(LoginActivity.this, DatabaseSQL.FIELD_LOGIN_CODE, response_body.getData().getLogin_code());
+                        DatabaseSQL.getInitialData(LoginActivity.this);
+                        Intent i = new Intent(LoginActivity.this, MainAppActivity.class);
+                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(i);
 
-                            finish();
-                        }
+                        finish();
                     } else {
                         new ShowDialog().error(LoginActivity.this, response_body.getMessage());
                     }
@@ -407,7 +404,7 @@ public class LoginActivity extends AppCompatActivity implements
                     ParseEmailLogin response_body = response.body();
                     if (!response_body.getError()) {
                         DatabaseSQL.updateSecurityData(LoginActivity.this, DatabaseSQL.FIELD_LOGIN_CODE, response_body.getData().getLogin_code());
-
+                        DatabaseSQL.getInitialData(LoginActivity.this);
                         Intent i = new Intent(LoginActivity.this, MainAppActivity.class);
                         startActivity(i);
 
