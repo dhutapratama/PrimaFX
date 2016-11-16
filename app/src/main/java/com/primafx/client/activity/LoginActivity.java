@@ -353,8 +353,7 @@ public class LoginActivity extends AppCompatActivity implements
                 loading.dismiss();
                 if (response.isSuccessful()) {
                     ParseGoogleSignin response_body = response.body();
-                    if (response_body.getCode().equals("200")) {
-                        Log.i("200", response_body.getMessage());
+                    if (!response_body.getError()) {
                         if (!response_body.getMessage().equals("OK")) {
                             new ShowDialog().success(LoginActivity.this, response_body.getMessage());
                         } else {
@@ -366,7 +365,6 @@ public class LoginActivity extends AppCompatActivity implements
                             finish();
                         }
                     } else {
-                        Log.i(response_body.getCode(), response_body.getMessage());
                         new ShowDialog().error(LoginActivity.this, response_body.getMessage());
                     }
                 } else {
@@ -407,9 +405,7 @@ public class LoginActivity extends AppCompatActivity implements
                 loading.dismiss();
                 if (response.isSuccessful()) {
                     ParseEmailLogin response_body = response.body();
-                    if (response_body.getCode().equals("200")) {
-                        Log.i("200", response_body.getMessage());
-                        //new ShowDialog().success(LoginActivity.this, response_body.getData().getLogin_code());
+                    if (!response_body.getError()) {
                         DatabaseSQL.updateSecurityData(LoginActivity.this, DatabaseSQL.FIELD_LOGIN_CODE, response_body.getData().getLogin_code());
 
                         Intent i = new Intent(LoginActivity.this, MainAppActivity.class);
@@ -417,7 +413,6 @@ public class LoginActivity extends AppCompatActivity implements
 
                         finish();
                     } else {
-                        Log.i(response_body.getCode(), response_body.getMessage());
                         new ShowDialog().error(LoginActivity.this, response_body.getMessage());
                     }
                 } else {

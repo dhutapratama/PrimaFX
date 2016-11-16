@@ -40,7 +40,7 @@ public class SplashActivity extends AppCompatActivity {
             Intent i = new Intent(this, IntroActivity.class);
             startActivity(i);
         } else {
-            if (GData.LOGIN_CODE.equals(null) || GData.LOGIN_CODE.equals("null")) {
+            if (GData.LOGIN_CODE.equals("null")) {
                 Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
                 startActivity(intent);
             } else {
@@ -90,32 +90,20 @@ public class SplashActivity extends AppCompatActivity {
                 loading.dismiss();
                 if (response.isSuccessful()) {
                     ParseAuthenticate response_body = response.body();
-                    if (response_body.getCode().equals("200")) {
-                        Log.i("200", response_body.getMessage());
-                        //new ShowDialog().success(SplashActivity.this, response_body.getData().getEmail());
-                        //DatabaseSQL.updateSecurityData(LoginActivity.this, DatabaseSQL.FIELD_LOGIN_CODE, response_body.getData().getLogin_code());
-
+                    if (!response_body.getError()) {
                         Intent i = new Intent(SplashActivity.this, MainAppActivity.class);
                         startActivity(i);
 
                         finish();
                     } else {
-                        Log.i(response_body.getCode(), response_body.getMessage());
-
-                        final Dialog errorDialog = new ShowDialog().error(SplashActivity.this, response_body.getMessage());
-
-                        errorDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                            @Override
-                            public void onDismiss(DialogInterface dialogInterface) {
-                                finish();
-                            }
-                        });
+                        DatabaseSQL.removeAllAccount(SplashActivity.this);
+                        DatabaseSQL.Logout(SplashActivity.this);
+                        Intent i = new Intent(SplashActivity.this, LoginActivity.class);
+                        startActivity(i);
+                        finish();
                     }
                 } else {
                     String errorMessage = "Kesalahan tidak diketahui";
-                    if (response.body().toString() != null) {
-                        errorMessage = response.body().toString();
-                    }
                     Log.e("Server Problem", "Respond error : " + errorMessage);
                     final Dialog errorDialog = new ShowDialog().error(SplashActivity.this, errorMessage);
                     errorDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -130,7 +118,7 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<ParseAuthenticate> call, Throwable t) {
                 loading.dismiss();
-                Log.e("Network", "ParseEmailLogin");
+                Log.e("Network", "ParseAuthenticate");
                 final Dialog errorDialog = new ShowDialog().error(SplashActivity.this, "Tidak dapat terhubung, terjadi masalah jaringan.");
                 errorDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override

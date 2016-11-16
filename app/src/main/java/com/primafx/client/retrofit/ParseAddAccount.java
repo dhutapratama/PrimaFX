@@ -4,17 +4,15 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by Technical on 11/7/2016.
+ * Created by Technical on 11/15/2016.
  */
 
-public class ParseWithdrawal {
-
+public class ParseAddAccount {
     // Post Parameter
     private String akun;
     private String authKey;
+    private String phone_pass;
     private String app;
-    private String usd;
-    private String preview;
     // Reply Parameter
     @SerializedName("code")
     private Integer code;
@@ -23,14 +21,13 @@ public class ParseWithdrawal {
     @SerializedName("message")
     private String message;
     @Expose
-    private ParseDataWithdrawal data;
+    private ParseDataDeposit data;
 
-    public ParseWithdrawal(String akun, String authKey, String usd) {
+    public ParseAddAccount(String akun, String authKey, String phone_pass) {
         this.akun = akun;
         this.authKey = authKey;
+        this.phone_pass = phone_pass;
         this.app = "android";
-        this.usd = usd;
-        this.preview = "true";
     }
 
     public Integer getCode() {
@@ -57,7 +54,7 @@ public class ParseWithdrawal {
         this.message = message;
     }
 
-    public ParseDataWithdrawal getData() {
+    public ParseDataDeposit getData() {
         return data;
     }
 }

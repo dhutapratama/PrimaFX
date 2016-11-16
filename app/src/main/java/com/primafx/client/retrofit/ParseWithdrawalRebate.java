@@ -11,6 +11,7 @@ public class ParseWithdrawalRebate {
     // Post Parameter
     private String akun;
     private String authKey;
+    private String app;
     private String usd;
     private String preview;
     // Reply Parameter
@@ -23,11 +24,12 @@ public class ParseWithdrawalRebate {
     @Expose
     private ParseDataWithdrawalRebate data;
 
-    public ParseWithdrawalRebate(String akun, String authKey, String usd, String preview) {
+    public ParseWithdrawalRebate(String akun, String authKey, String usd) {
         this.akun = akun;
         this.authKey = authKey;
+        this.app = "android";
         this.usd = usd;
-        this.preview = preview;
+        this.preview = "true";
     }
 
     public Integer getCode() {

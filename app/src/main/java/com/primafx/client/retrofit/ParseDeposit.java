@@ -12,9 +12,11 @@ public class ParseDeposit {
     // Post Parameter
     private String akun;
     private String authKey;
+    private String app;
     private String pay_to;
     private String usd;
     private String idr;
+    private String preview;
     // Reply Parameter
     @SerializedName("code")
     private Integer code;
@@ -29,8 +31,10 @@ public class ParseDeposit {
         this.akun = akun;
         this.authKey = authKey;
         this.pay_to = pay_to;
+        this.app = "android";
         this.usd = usd;
         this.idr = idr;
+        this.preview = "true";
     }
 
     public Integer getCode() {

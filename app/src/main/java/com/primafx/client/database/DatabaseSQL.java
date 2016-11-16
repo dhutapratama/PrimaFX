@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +51,7 @@ public class DatabaseSQL extends SQLiteOpenHelper {
 
         collected_data.moveToFirst();
         GData.LOGIN_CODE = collected_data.getString(collected_data.getColumnIndexOrThrow(DatabaseSQL.FIELD_LOGIN_CODE));
+        Log.i("GDATA", GData.LOGIN_CODE);
         GData.FIRST_TIME = collected_data.getString(collected_data.getColumnIndexOrThrow(DatabaseSQL.FIELD_FIRST_TIME));
         db.close();
     }

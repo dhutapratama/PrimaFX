@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.primafx.client.R;
+import com.primafx.client.database.GData;
 import com.primafx.client.dialog.ShowDialog;
 import com.primafx.client.model.ParalaxScrollView;
 import com.primafx.client.retrofit.ParseEmailRegistration;
@@ -107,7 +108,7 @@ public class RegistrationActivity extends AppCompatActivity implements ParalaxSc
         final Dialog loading = new ShowDialog().loading(this);
         loading.show();
 
-        String host = "http://primafx-api.tk/v1/";
+        String host = GData.API_ADDRESS;
 
         ParseEmailRegistration jsonSend = new ParseEmailRegistration(email, password);
         Retrofit retrofit = new Retrofit.Builder().baseUrl(host)

@@ -16,22 +16,22 @@ public interface RequestLibrary {
 
     // Product
     @Headers({"User-Agent: PrimaFX 1.0", "Content-Type: application/json"})
-    @POST("email_registration")
+    @POST("trader/register-email")
     Call<ParseEmailRegistration> emailRegistration(@Body ParseEmailRegistration value);
 
     // Google Signin
     @Headers({"User-Agent: PrimaFX 1.0", "Content-Type: application/json"})
-    @POST("google_registration")
+    @POST("trader/auth-google")
     Call<ParseGoogleSignin> googleSignin(@Body ParseGoogleSignin value);
 
     // Email Login
     @Headers({"User-Agent: PrimaFX 1.0", "Content-Type: application/json"})
-    @POST("email_login")
+    @POST("trader/login-email")
     Call<ParseEmailLogin> emailLogin(@Body ParseEmailLogin value);
 
     // Email Login
     @Headers({"User-Agent: PrimaFX 1.0", "Content-Type: application/json"})
-    @POST("authenticate")
+    @POST("trader/authenticate")
     Call<ParseAuthenticate> authenticate(@Body ParseAuthenticate value);
 
     // Forgot Password

@@ -18,6 +18,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.primafx.client.R;
+import com.primafx.client.database.GData;
 import com.primafx.client.dialog.ShowDialog;
 import com.primafx.client.retrofit.ParseDataWithdrawal;
 import com.primafx.client.retrofit.ParseWithdrawal;
@@ -94,7 +95,7 @@ public class WithdrawalActivity extends AppCompatActivity implements AdapterView
         switch (item.getItemId()) {
             case R.id.action_send:
                 EditText editTotal = (EditText)findViewById(R.id.editTotal);
-                retrofitWithdrawal("7597802", "passwordku", editTotal.getText().toString(), "true");
+                retrofitWithdrawal("7597802", "passwordku", editTotal.getText().toString());
                 return true;
 
             case android.R.id.home:
@@ -117,13 +118,13 @@ public class WithdrawalActivity extends AppCompatActivity implements AdapterView
 
     }
 
-    private void retrofitWithdrawal(String akun, String authKey, String usd, String preview) {
+    private void retrofitWithdrawal(String akun, String authKey, String usd) {
         final Dialog loading = new ShowDialog().loading(this);
         loading.show();
 
-        String host = "http://apis.primafx.com/";
+        String host = GData.API_ADDRESS;
 
-        ParseWithdrawal jsonSend = new ParseWithdrawal(akun, authKey, usd, preview);
+        ParseWithdrawal jsonSend = new ParseWithdrawal(akun, authKey, usd);
         Retrofit retrofit = new Retrofit.Builder().baseUrl(host)
                 .addConverterFactory(GsonConverterFactory.create()).build();
         RequestLibrary requestLibrary = retrofit.create(RequestLibrary.class);

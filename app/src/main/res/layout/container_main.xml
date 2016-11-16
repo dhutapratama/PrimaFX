@@ -32,12 +32,9 @@
 
     <TableLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="180dp"
         android:stretchColumns="1"
-        android:padding="16dp"
-        android:layout_marginBottom="16dp">
-        <TableRow android:id="@+id/tableRow1_logo"
-            android:gravity="center"></TableRow>
+        android:padding="16dp">
 
         <TableRow android:id="@+id/tableRow1_title"
             android:gravity="center"
@@ -119,6 +116,18 @@
                     android:text="Histori Order" />
             </LinearLayout>
         </TableRow>
+    </TableLayout>
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="180dp"
+        android:stretchColumns="1"
+        android:paddingTop="0dp"
+        android:layout_marginBottom="16dp"
+        android:paddingBottom="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:elevation="1dp">
+
         <TableRow android:id="@+id/tableRow2_title" android:paddingTop="20dp"
             android:paddingBottom="5dp"
             android:gravity="center">
@@ -203,11 +212,12 @@
         </TableRow>
     </TableLayout>
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/bg_login_img"
-            android:scaleType="centerCrop" />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/bg_login_img"
+        android:scaleType="centerCrop"
+        android:id="@+id/imageView3" />
     <!--
     <RelativeLayout
         android:layout_width="match_parent"

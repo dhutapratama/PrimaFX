@@ -14,6 +14,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
 import com.primafx.client.R;
+import com.primafx.client.database.GData;
 import com.primafx.client.dialog.ShowDialog;
 import com.primafx.client.retrofit.ParseDataQuotes;
 import com.primafx.client.retrofit.ParseQuotes;
@@ -58,7 +59,7 @@ public class QuotesActivity extends AppCompatActivity {
         final Dialog loading = new ShowDialog().loading(this);
         loading.show();
 
-        String host = "http://apis.primafx.com/";
+        String host = GData.API_ADDRESS;
 
         ParseQuotes jsonSend = new ParseQuotes();
         Retrofit retrofit = new Retrofit.Builder().baseUrl(host)

@@ -18,6 +18,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.primafx.client.R;
+import com.primafx.client.database.GData;
 import com.primafx.client.dialog.ShowDialog;
 import com.primafx.client.retrofit.ParseDataTransferRebate;
 import com.primafx.client.retrofit.ParseTransferRebate;
@@ -119,9 +120,9 @@ public class RebateAccountActivity extends AppCompatActivity  implements Adapter
         final Dialog loading = new ShowDialog().loading(this);
         loading.show();
 
-        String host = "http://apis.primafx.com/";
+        String host = GData.API_ADDRESS;
 
-        ParseTransferRebate jsonSend = new ParseTransferRebate(akun, authKey, usd, pay_number, preview);
+        ParseTransferRebate jsonSend = new ParseTransferRebate(akun, authKey, usd, pay_number);
         Retrofit retrofit = new Retrofit.Builder().baseUrl(host)
                 .addConverterFactory(GsonConverterFactory.create()).build();
         RequestLibrary requestLibrary = retrofit.create(RequestLibrary.class);

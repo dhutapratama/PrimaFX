@@ -7,8 +7,8 @@ public class ParseGoogleSignin {
     // Post Parameter
     private String google_token;
     // Reply Parameter
-    @SerializedName("code")
-    private String code;
+    @SerializedName("error")
+    private Boolean error;
     @SerializedName("message")
     private String message;
     @Expose
@@ -18,12 +18,13 @@ public class ParseGoogleSignin {
         this.google_token = google_token;
     }
 
-    public String getCode() {
-        return code;
+
+    public void setError(Boolean error) {
+        this.error = error;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public Boolean getError() {
+        return error;
     }
 
     public String getMessage() {

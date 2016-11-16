@@ -11,6 +11,7 @@ public class ParseTransferRebate {
     // Post Parameter
     private String akun;
     private String authKey;
+    private String app;
     private String usd;
     private String pay_number;
     private String preview;
@@ -24,12 +25,13 @@ public class ParseTransferRebate {
     @Expose
     private ParseDataTransferRebate data;
 
-    public ParseTransferRebate(String akun, String authKey, String usd, String pay_number, String preview) {
+    public ParseTransferRebate(String akun, String authKey, String usd, String pay_number) {
         this.akun = akun;
         this.authKey = authKey;
+        this.app = "android";
         this.usd = usd;
         this.pay_number = pay_number;
-        this.preview = preview;
+        this.preview = "true";
     }
 
     public Integer getCode() {

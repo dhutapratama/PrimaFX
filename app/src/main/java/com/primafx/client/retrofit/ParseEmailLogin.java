@@ -8,9 +8,9 @@ public class ParseEmailLogin {
     private String email;
     private String password;
 
-    // Reply Parameter
-    @SerializedName("code")
-    private String code;
+    // Callback Parameter
+    @SerializedName("error")
+    private Boolean error;
     @SerializedName("message")
     private String message;
     @Expose
@@ -21,12 +21,12 @@ public class ParseEmailLogin {
         this.password = password;
     }
 
-    public String getCode() {
-        return code;
+    public void setError(Boolean error) {
+        this.error = error;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public Boolean getError() {
+        return error;
     }
 
     public String getMessage() {
