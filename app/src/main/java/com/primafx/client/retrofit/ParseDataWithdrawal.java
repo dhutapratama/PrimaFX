@@ -14,14 +14,6 @@ public class ParseDataWithdrawal {
     private String akun;
     @SerializedName("nama")
     private String nama;
-    @SerializedName("phone")
-    private String phone;
-    @SerializedName("email")
-    private String email;
-    @SerializedName("kode_agen")
-    private String kode_agen;
-    @SerializedName("bestRegard")
-    private String bestRegard;
     @SerializedName("pay_to")
     private String pay_to;
     @SerializedName("pay_number")
@@ -57,38 +49,6 @@ public class ParseDataWithdrawal {
 
     public void setNama(String nama) {
         this.nama = nama;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getKode_agen() {
-        return kode_agen;
-    }
-
-    public void setKode_agen(String kode_agen) {
-        this.kode_agen = kode_agen;
-    }
-
-    public String getBestRegard() {
-        return bestRegard;
-    }
-
-    public void setBestRegard(String bestRegard) {
-        this.bestRegard = bestRegard;
     }
 
     public String getPay_to() {

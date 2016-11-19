@@ -11,15 +11,6 @@
     tools:context="com.primafx.client.activity.DepositResultActivity">
 
     <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:text="Permintaan deposit anda telah terkirim, Selanjutnya lakukan transfer dana ke :"
-        android:textAlignment="center" />
-
-    <TextView
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -125,6 +116,15 @@
             android:layout_centerHorizontal="true"
             android:text="Rp0"
             android:textSize="20sp" />
+
+        <Button
+            android:text="Order Sekarang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button2"
+            android:layout_below="@+id/textTotalTransfer"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="32dp"/>
     </RelativeLayout>
 
     <TextView
@@ -138,15 +138,6 @@
         android:text="Account" />
 
     <TextView
-        android:id="@+id/textView29"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView27"
-        android:text="Nama Account" />
-
-    <TextView
         android:id="@+id/textAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -156,21 +147,12 @@
         android:text="#" />
 
     <TextView
-        android:id="@+id/textName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/textAccount"
-        android:text="-" />
-
-    <TextView
         android:id="@+id/textView32"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView29"
+        android:layout_below="@+id/textView27"
         android:text="USD" />
 
     <TextView
@@ -189,6 +171,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/textName"
+        android:layout_below="@+id/textAccount"
         android:text="$0" />
+
 </RelativeLayout>

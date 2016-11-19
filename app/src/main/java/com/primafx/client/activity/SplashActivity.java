@@ -87,7 +87,6 @@ public class SplashActivity extends AppCompatActivity {
         callData.enqueue(new Callback<ParseAuthenticate>() {
             @Override
             public void onResponse(Call<ParseAuthenticate> call, Response<ParseAuthenticate> response) {
-                loading.dismiss();
                 if (response.isSuccessful()) {
                     ParseAuthenticate response_body = response.body();
                     if (!response_body.getError()) {
@@ -117,7 +116,6 @@ public class SplashActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ParseAuthenticate> call, Throwable t) {
-                loading.dismiss();
                 Log.e("Network", "ParseAuthenticate");
                 final Dialog errorDialog = new ShowDialog().error(SplashActivity.this, "Tidak dapat terhubung, terjadi masalah jaringan.");
                 errorDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {

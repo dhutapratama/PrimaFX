@@ -23,4 +23,8 @@
     <color name="colorDarkBlueGreen">#028090</color>
     <color name="colorBackgroundLogin">#77555555</color>
     <color name="colorGreenTransparent">#AA00A896</color>
+
+    <color name="colorHigh">#DD1C1A</color>
+    <color name="colorMedium">#E67E22</color>
+    <color name="colorLow">#F1C40F</color>
 </resources>

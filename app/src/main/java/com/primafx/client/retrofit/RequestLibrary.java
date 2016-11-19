@@ -74,6 +74,11 @@ public interface RequestLibrary {
     @GET("tools/quotes")
     Call<ParseQuotes> getQuotes();
 
+    // Get Quotes
+    @Headers({"User-Agent: PrimaFX 1.0", "Content-Type: application/json"})
+    @GET("tools/calendar")
+    Call<ParseCalendar> getCalendar();
+
     // Transfer Rebate
     @Headers({"User-Agent: PrimaFX 1.0", "Content-Type: application/json"})
     @POST("trader/addakun")

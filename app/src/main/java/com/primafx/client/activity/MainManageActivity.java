@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.util.Log;
@@ -20,7 +21,10 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.ViewFlipper;
 
+import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
+import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.primafx.client.R;
 import com.primafx.client.database.DatabaseSQL;
@@ -107,14 +111,44 @@ public class MainManageActivity extends AppCompatActivity
             }
         });
 
-        LinearLayout OrderHistory = (LinearLayout)findViewById(R.id.LLHistoriOrder);
-        OrderHistory.setOnClickListener(this);
-
-        LinearLayout RebateHistory = (LinearLayout)findViewById(R.id.LLHistoriRebate);
-        RebateHistory.setOnClickListener(this);
-
         TextView textAccNumber = (TextView)findViewById(R.id.textAccNumber);
         textAccNumber.setText("#"+ GData.CURRENT_ACCOUNT);
+
+
+        final String[] colors = {"#EF233C", "#EF233C", "#EF233C"};
+        AHBottomNavigation bottomNavigation = (AHBottomNavigation) findViewById(R.id.bottom_navigation);
+
+        AHBottomNavigationItem item1 = new AHBottomNavigationItem("Keuangan", R.drawable.shield, Color.parseColor(colors[0]));
+        AHBottomNavigationItem item2 = new AHBottomNavigationItem("Profil", R.drawable.profile, Color.parseColor(colors[1]));
+        AHBottomNavigationItem item3 = new AHBottomNavigationItem("Histori", R.drawable.history, Color.parseColor(colors[2]));
+
+        bottomNavigation.addItem(item1);
+        bottomNavigation.addItem(item2);
+        bottomNavigation.addItem(item3);
+
+        bottomNavigation.setDefaultBackgroundColor(Color.parseColor("#FEFEFE"));
+
+        bottomNavigation.setAccentColor(Color.parseColor("#F63D2B"));
+        bottomNavigation.setInactiveColor(Color.parseColor("#747474"));
+
+        //  Enables Reveal effect
+        bottomNavigation.setColored(true);
+
+        bottomNavigation.setCurrentItem(0);
+
+        final ViewFlipper vf = (ViewFlipper) findViewById( R.id.viewFlipper );
+        bottomNavigation.setOnTabSelectedListener(new AHBottomNavigation.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(int position, boolean wasSelected) {
+                vf.setDisplayedChild(position);
+            }
+        });
+
+
+
+        this.transactionHistory = new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "7", "2", "3", "4", "5", "6", "7", "8", "9", "0", "7"};
+        setTransactionHistory();
+
     }
 
     // Account Switcher
@@ -228,12 +262,6 @@ public class MainManageActivity extends AppCompatActivity
             retrofitRebateInquiry(GData.CURRENT_ACCOUNT, GData.LOGIN_CODE, "withdrawal");
         } else if (v.getId() == R.id.LLTransferRebate) {
             retrofitRebateInquiry(GData.CURRENT_ACCOUNT, GData.LOGIN_CODE, "transfer");
-        } else if (v.getId() == R.id.LLHistoriOrder) {
-            Intent intent = new Intent(this, OrderHistoryActivity.class);
-            startActivity(intent);
-        } else if (v.getId() == R.id.LLHistoriRebate) {
-            Intent intent = new Intent(this, RebateHistoryActivity.class);
-            startActivity(intent);
         }
     }
 
@@ -241,7 +269,7 @@ public class MainManageActivity extends AppCompatActivity
         final Dialog loading = new ShowDialog().loading(this);
         loading.show();
 
-        String host = "http://api.primafx.com/";
+        String host = GData.API_ADDRESS;
 
         ParseCheckRebateInquiry jsonSend = new ParseCheckRebateInquiry(akun, authKey);
         Retrofit retrofit = new Retrofit.Builder().baseUrl(host)
@@ -308,5 +336,49 @@ public class MainManageActivity extends AppCompatActivity
                 }
             });
         }
+    }
+
+    public void setTransactionHistory() {
+        final List<HashMap<String, String>> aList = new ArrayList<>();
+
+        for (int i = 0; i < this.transactionHistory.length; i++) {
+            HashMap<String, String> hm = new HashMap<>();
+            hm.put("data", this.transactionHistory[i]);
+            aList.add(hm);
+        }
+
+        String[] from = {};
+        int[] to = {};
+        SimpleAdapter adapter = new SimpleAdapter(getBaseContext(), aList, R.layout.list_transaction_history, from, to)
+        {
+            @Override
+            public View getView (final int position, View convertView, ViewGroup parent)
+            {
+                View v = super.getView(position, convertView, parent);
+                /*
+                ImageView imagePerson = (ImageView)v.findViewById(R.id.imagePerson);
+                Picasso.with(MainManageActivity.this).load(transactions.get(position).getPicture())
+                        .error(MainManageActivity.this.getResources().getDrawable(R.mipmap.no_image_square))
+                        .into(imagePerson);
+                        */
+                return v;
+            }
+        };
+
+
+        ListView listView = (ListView) findViewById(R.id.listView);
+        listView.setAdapter(adapter);
+
+        /*
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(MainManageActivity.this, TransactionDetail.class);
+                intent.putExtra("transaction_refference", transactions.get(position).getTransaction_refference());
+                startActivity(intent);
+            }
+        });
+        */
+
     }
 }

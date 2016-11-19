@@ -7,8 +7,11 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.SimpleAdapter;
 
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
@@ -19,6 +22,7 @@ import com.primafx.client.R;
 import com.primafx.client.database.DatabaseSQL;
 import com.primafx.client.database.GData;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -92,6 +96,15 @@ public class MainAppActivity extends AppCompatActivity implements BaseSliderView
                 startActivity(intent);
             }
         });
+
+        LinearLayout kalender = (LinearLayout) findViewById(R.id.menu_kalender);
+        kalender.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainAppActivity.this, CalendarActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     // Account Switcher
@@ -142,4 +155,6 @@ public class MainAppActivity extends AppCompatActivity implements BaseSliderView
 
     @Override
     public void onPageScrollStateChanged(int state) {}
+
+
 }

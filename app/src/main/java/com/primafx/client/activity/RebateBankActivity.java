@@ -164,10 +164,6 @@ public class RebateBankActivity extends AppCompatActivity implements AdapterView
         Log.i("Type Order", data.getType_order());
         Log.i("Akun", data.getAkun());
         Log.i("Nama", data.getNama());
-        Log.i("Phone", data.getPhone());
-        Log.i("Email", data.getEmail());
-        Log.i("Kode Agen", data.getKode_agen());
-        Log.i("Best Regard", data.getBestRegard());
         Log.i("Pay To", data.getPay_to());
         Log.i("Pay Number", data.getPay_number());
         Log.i("Pay Name", data.getPay_name());

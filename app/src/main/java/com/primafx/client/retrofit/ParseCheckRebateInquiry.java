@@ -14,6 +14,8 @@ public class ParseCheckRebateInquiry {
     // Post Parameter
     private String akun;
     private String authKey;
+
+
     // Reply Parameter
     @SerializedName("code")
     private Integer code;

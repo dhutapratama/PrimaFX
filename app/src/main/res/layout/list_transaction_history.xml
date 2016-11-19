@@ -13,7 +13,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:text="10 Mei 2016 16:30" />
+        android:text="10 Mei 2016 16:30"
+        android:textSize="12sp" />
 
     <View
         android:id="@+id/view"
@@ -32,19 +33,7 @@
         android:layout_alignLeft="@+id/view"
         android:layout_alignStart="@+id/view"
         android:layout_below="@+id/view"
-        android:text="Deposit"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textDeposit"
-        android:layout_marginLeft="5dp"
-        android:layout_toEndOf="@+id/imageView2"
-        android:layout_toRightOf="@+id/imageView2"
-        android:text="5.00 USD"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:text="Deposit" />
 
     <TextView
         android:id="@+id/textBank"
@@ -54,7 +43,8 @@
         android:layout_alignEnd="@+id/view"
         android:layout_alignRight="@+id/view"
         android:text="Bank BCA"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textSize="12sp" />
 
     <TextView
         android:id="@+id/textTransactionStatus"
@@ -64,8 +54,7 @@
         android:layout_alignRight="@+id/view"
         android:layout_alignTop="@+id/textDeposit"
         android:text="Pending"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textStyle="bold|italic" />
+        android:textAppearance="@android:style/TextAppearance.Material.Small" />
 
     <TextView
         android:id="@+id/texRupiahIDR"
@@ -76,15 +65,16 @@
         android:layout_alignTop="@+id/textView2"
         android:layout_marginRight="5dp"
         android:text="Rp150.350"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
 
-    <ImageView
-        android:id="@+id/imageView2"
+    <TextView
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/textView2"
-        android:layout_marginTop="3.5dp"
-        android:layout_toEndOf="@+id/texRupiahIDR"
+        android:text="/ 5.00 USD"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium"
+        android:layout_below="@+id/textDeposit"
         android:layout_toRightOf="@+id/texRupiahIDR"
-        android:src="@drawable/ic_arrow_forward" />
+        android:layout_toEndOf="@+id/texRupiahIDR" />
+
 </RelativeLayout>

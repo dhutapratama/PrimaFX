@@ -41,7 +41,7 @@
 
                 <ImageView
                     app:srcCompat="@drawable/kelola_account"
-                    android:id="@+id/imageView7"
+                    android:id="@+id/imageAccounts"
                     android:layout_width="50dp"
                     android:layout_height="50dp" />
 
@@ -49,7 +49,7 @@
                     android:text="Accounts"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textView21"
+                    android:id="@+id/textAccounts"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="25dp" />
             </LinearLayout>
@@ -65,7 +65,7 @@
 
                 <ImageView
                     app:srcCompat="@drawable/kalender"
-                    android:id="@+id/imageView7"
+                    android:id="@+id/imageKalender"
                     android:layout_width="50dp"
                     android:layout_height="50dp" />
 
@@ -73,7 +73,7 @@
                     android:text="Kalender"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textView21"
+                    android:id="@+id/texKalender"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="25dp" />
             </LinearLayout>
@@ -100,7 +100,7 @@
 
                 <ImageView
                     app:srcCompat="@drawable/quotes"
-                    android:id="@+id/imageView7"
+                    android:id="@+id/imageQuotes"
                     android:layout_height="50dp"
                     android:layout_width="50dp" />
 
@@ -108,7 +108,7 @@
                     android:text="Quotes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textView21"
+                    android:id="@+id/textQuotes"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="25dp" />
             </LinearLayout>
@@ -124,7 +124,7 @@
 
                 <ImageView
                     app:srcCompat="@drawable/news"
-                    android:id="@+id/imageView7"
+                    android:id="@+id/imageNews"
                     android:layout_width="50dp"
                     android:layout_height="50dp" />
 
@@ -132,7 +132,7 @@
                     android:text="News"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textView21"
+                    android:id="@+id/textNews"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="25dp" />
             </LinearLayout>
@@ -159,7 +159,7 @@
 
                 <ImageView
                     app:srcCompat="@drawable/support"
-                    android:id="@+id/imageView7"
+                    android:id="@+id/imageSupport"
                     android:layout_width="50dp"
                     android:layout_height="50dp" />
 
@@ -167,7 +167,7 @@
                     android:text="Support"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textView21"
+                    android:id="@+id/textSupport"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="16dp" />
             </LinearLayout>

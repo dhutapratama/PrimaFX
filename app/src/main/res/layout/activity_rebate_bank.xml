@@ -71,14 +71,14 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/textAccountName"
+                android:id="@+id/textAccount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignTop="@+id/textAccSource"
                 android:layout_marginRight="16dp"
-                android:text="#123456"
+                android:text="#"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textSize="14sp"
                 android:textStyle="bold" />

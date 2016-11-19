@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp">
+
+    <TextView
+        android:text="Actual"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textActual"
+        android:layout_below="@+id/textTitle"
+        android:layout_alignLeft="@+id/textTitle"
+        android:layout_alignStart="@+id/textTitle"
+        android:layout_marginRight="10dp"
+        android:textSize="12sp" />
+
+    <TextView
+        android:text="USD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textSymbol"
+        android:layout_below="@+id/textTime"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="12sp" />
+
+    <TextView
+        android:text="00:00"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textTime"
+        android:textStyle="normal|bold"
+        android:layout_below="@+id/textDate"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="1 Nov 2016"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textDate"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="10sp" />
+
+    <TextView
+        android:text="Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textTitle"
+        android:layout_toRightOf="@+id/importance"
+        android:layout_toEndOf="@+id/importance"
+        android:textStyle="normal|bold" />
+
+    <LinearLayout
+        android:layout_width="5dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/importance"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/textDate"
+        android:layout_toEndOf="@+id/textDate"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_alignBottom="@+id/textSymbol"
+        android:orientation="horizontal"/>
+
+    <TextView
+        android:text="Previous"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textPrevious"
+        android:textSize="12sp"
+        android:layout_below="@+id/textActual"
+        android:layout_toRightOf="@+id/importance"
+        android:layout_toEndOf="@+id/importance" />
+
+    <TextView
+        android:text="Forecast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textForecast"
+        android:textSize="12sp"
+        android:layout_below="@+id/textPrevious"
+        android:layout_alignLeft="@+id/textPrevious"
+        android:layout_alignStart="@+id/textPrevious" />
+</RelativeLayout>

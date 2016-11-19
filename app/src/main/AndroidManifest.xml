@@ -10,11 +10,11 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <!-- USE_CREDENTIALS is necessary for Google+ login -->
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
-    <!-- GET_ACCOUNTS is necessary to display email address of logged in user. This permission is optional -->
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
 
     <permission
         android:name="com.primafx.client.permission.C2D_MESSAGE"
@@ -24,9 +24,9 @@
 
     <application
         android:allowBackup="true"
+        android:fullBackupContent="true"
         android:icon="@mipmap/ic_launcher_2"
         android:label="@string/app_name"
-        android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
             android:name=".activity.SplashActivity"
@@ -34,21 +34,24 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <data
+                    android:host="primafx.com"
+                    android:scheme="http" />
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                .
             </intent-filter>
         </activity>
         <activity
             android:name=".activity.TestingApiActivity"
+            android:label="Testing PFX"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:label="Testing PFX">
-
-            <!--
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            -->
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
             android:name=".activity.IntroActivity"
@@ -122,8 +125,9 @@
             android:name=".activity.CallMeActivity"
             android:label="Request Call Me"
             android:screenOrientation="portrait" />
-        <activity android:name=".activity.AddAccountActivity"
-            android:label="Tambahkan Akun InstaForex"/>
+        <activity
+            android:name=".activity.AddAccountActivity"
+            android:label="Tambahkan Akun InstaForex" />
         <activity
             android:name=".activity.RegistrationActivity"
             android:screenOrientation="portrait"
@@ -148,7 +152,7 @@
         <activity android:name=".activity.CheckRebateActivity" />
         <activity
             android:name=".activity.DepositResultActivity"
-            android:label="Transfer Bank"
+            android:label="Deposit"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.TransferRebateResultActivity"
@@ -164,11 +168,22 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.QuotesActivity"
-            android:label="Quotes" />
-        <activity android:name=".activity.OrderHistoryActivity"
-            android:label="Histori Order"/>
-        <activity android:name=".activity.RebateHistoryActivity"
-            android:label="Histori Rebate"></activity>
+            android:label="Quotes"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.OrderHistoryActivity"
+            android:label="Histori Order"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.RebateHistoryActivity"
+            android:label="Histori Rebate"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.MenusActivity"
+            android:label="TESTING MENU" />
+        <activity android:name=".activity.ProfilActivity"/>
+        <activity android:name=".activity.CalendarActivity"
+            android:label="Kalender Forex"></activity>
     </application>
 
 </manifest>

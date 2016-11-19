@@ -61,4 +61,8 @@
         <item>Marketing</item>
     </string-array>
     <string name="server_client_id">993656556887-igs4q839dm9kf5mkv3d9j9f20f3ue2n8.apps.googleusercontent.com</string>
+
+    <string name="tab_1">Green</string>
+    <string name="tab_2">Red</string>
+    <string name="tab_3">Blue</string>
 </resources>
