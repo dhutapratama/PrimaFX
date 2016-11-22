@@ -26,15 +26,12 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class SplashActivity extends AppCompatActivity {
-    Dialog loading;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
         //Log.d("Firebase", "InstanceID token: " + FirebaseInstanceId.getInstance().getToken());
-        loading = new ShowDialog().loading(this);
         DatabaseSQL.getInitialData(this);
         if (GData.FIRST_TIME.equals("true")) {
             Intent i = new Intent(this, IntroActivity.class);
@@ -56,8 +53,6 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void retrofitCheckLoginCode() {
-        loading.show();
-
         String host = GData.API_ADDRESS;
 
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();

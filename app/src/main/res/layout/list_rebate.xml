@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textDetail"
+        android:text="agent '2450553' - 2016-09-14"
+        android:textSize="10sp"
+        android:gravity="center_vertical"
+        android:layout_below="@+id/textInputDate"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="10.02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:id="@+id/textProfit"
+        android:layout_toRightOf="@+id/textType"
+        android:layout_toLeftOf="@+id/textDetail"
+        android:layout_toStartOf="@+id/textDetail"
+        android:layout_marginRight="20dp"
+        android:layout_alignBottom="@+id/textType"
+        android:textColor="@color/colorBlueSoft"
+        android:layout_alignTop="@+id/textType" />
+
+    <TextView
+        android:text="backup rebate bulanan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textInfo"
+        android:textSize="10sp"
+        android:textAlignment="center"
+        android:textStyle="normal|italic"
+        android:textColor="@color/colorWhite"
+        android:background="@android:color/holo_blue_light"
+        android:textColorHighlight="@color/colorActiveSmall"
+        android:textAllCaps="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="5dp" />
+
+    <TextView
+        android:text="2016-06-21 21:00"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textInputDate"
+        android:textSize="10sp"
+        android:textColor="@color/colorBlueSoft"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/textProfit" />
+
+    <TextView
+        android:text="21654945"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textTicket"
+        android:textSize="10sp"
+        android:layout_below="@+id/textInfo"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/textDate"
+        android:layout_alignEnd="@+id/textDate" />
+
+    <TextView
+        android:text="2016-06-09"
+        android:layout_height="wrap_content"
+        android:id="@+id/textDate"
+        android:layout_width="80dp"
+        android:layout_below="@+id/textTicket"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="10sp" />
+
+    <TextView
+        android:text="debit"
+        android:layout_height="wrap_content"
+        android:id="@+id/textType"
+        android:layout_marginLeft="8dp"
+        android:gravity="center_vertical"
+        android:layout_marginStart="8dp"
+        android:layout_alignTop="@+id/textTicket"
+        android:layout_toRightOf="@+id/textDate"
+        android:layout_toEndOf="@+id/textDate"
+        android:layout_alignBottom="@+id/textDate"
+        android:layout_width="50dp" />
+</RelativeLayout>

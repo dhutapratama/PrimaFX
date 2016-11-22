@@ -44,6 +44,11 @@ public interface RequestLibrary {
     @POST("client/check-rebate/inquiry")
     Call<ParseCheckRebateInquiry> rebateInquiry(@Body ParseCheckRebateInquiry value);
 
+    // Check Rebate
+    @Headers({"User-Agent: PrimaFX 1.0", "Content-Type: application/json"})
+    @POST("client/check-rebate")
+    Call<ParseCheckRebate> checkRebate(@Body ParseCheckRebate value);
+
     // Deposit Inquiry
     @Headers({"User-Agent: PrimaFX 1.0", "Content-Type: application/json"})
     @POST("client/deposit/inquiry")
@@ -83,5 +88,20 @@ public interface RequestLibrary {
     @Headers({"User-Agent: PrimaFX 1.0", "Content-Type: application/json"})
     @POST("trader/addakun")
     Call<ParseAddAccount> addAccount(@Body ParseAddAccount value);
+
+    // Call Me Back
+    @Headers({"User-Agent: PrimaFX 1.0", "Content-Type: application/json"})
+    @POST("client/callmeback")
+    Call<ParseCallMeBack> callMeBack(@Body ParseCallMeBack value);
+
+    // OrderHistory
+    @Headers({"User-Agent: PrimaFX 1.0", "Content-Type: application/json"})
+    @POST("trader/useracc/orderhistory")
+    Call<ParseHistory> history(@Body ParseHistory value);
+
+    // Find History
+    //@Headers({"User-Agent: PrimaFX 1.0", "Content-Type: application/json"})
+    //@POST("trader/useracc/orderhistory")
+    //Call<ParseHistoryFind> callMeBack(@Body ParseHistoryFind value);
 }
 

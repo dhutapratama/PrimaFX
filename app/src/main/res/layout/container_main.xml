@@ -20,7 +20,7 @@
         android:id="@+id/textAccNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="#7566310"
+        android:text="#"
         android:textColor="@color/colorWhite"/>
 
     <TextView
@@ -34,17 +34,6 @@
         android:textColor="@color/colorWhite"
         android:textStyle="bold" />
 </RelativeLayout>
-
-    <com.aurelhubert.ahbottomnavigation.AHBottomNavigation
-        android:id="@+id/bottom_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="bottom"
-        android:background="@android:color/white"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_weight="1" />
 
     <ViewFlipper android:id="@+id/viewFlipper"
         android:layout_height="fill_parent"
@@ -80,12 +69,12 @@
                 android:textStyle="normal|bold"
                 android:textColor="@color/colorWhite"
                 android:id="@+id/textView"
-                android:layout_marginTop="32dp"/>
+                android:layout_marginTop="16dp"/>
 
             <View
                 android:layout_width="1dp"
                 android:layout_height="1dp"
-                android:layout_marginTop="120dp"
+                android:layout_marginTop="60dp"
                 android:layout_centerHorizontal="true"
                 android:id="@+id/view4"></View>
 
@@ -101,12 +90,12 @@
                 android:layout_toRightOf="@+id/view4"
                 android:layout_toEndOf="@+id/view4">
                 <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:src="@drawable/ic_withdrawal" />
+                    android:src="@drawable/ic_withdrawal"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -131,13 +120,13 @@
                 android:layout_alignStart="@+id/LLWithdrawal">
 
                 <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:src="@drawable/ic_withdrawal_rebate"
-                    android:id="@+id/imageView6" />
+                    android:id="@+id/imageView6"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -162,12 +151,12 @@
                 android:layout_toLeftOf="@+id/LLWithdrawalRebate"
                 android:layout_toStartOf="@+id/LLWithdrawalRebate">
                         <ImageView
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
                             android:layout_marginTop="5dp"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:src="@drawable/ic_transfer_rebate" />
+                            android:src="@drawable/ic_transfer_rebate"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -181,6 +170,37 @@
                     </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/LLCheckRebate"
+                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_weight="1"
+                android:background="@drawable/hover_selector_home"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_below="@+id/LLTransferRebate"
+                android:layout_marginTop="16dp"
+                android:layout_toLeftOf="@+id/LLWithdrawalRebate"
+                android:layout_toStartOf="@+id/LLWithdrawalRebate">
+                <ImageView
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:src="@drawable/ic_check_rebate"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="Check Rebate"
+                    android:gravity="center"
+                    android:textColor="@color/colorWhite"
+                    android:layout_marginTop="5dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/LLDeposit"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -192,12 +212,12 @@
                 android:layout_toLeftOf="@+id/view4"
                 android:layout_toStartOf="@+id/view4">
                 <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:src="@drawable/ic_deposit" />
+                    android:src="@drawable/ic_deposit"
+                    android:layout_height="50dp"
+                    android:layout_width="50dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -367,12 +387,63 @@
             android:id="@+id/activity_order_history"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/find"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:padding="16dp">
+
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:id="@+id/spinner2" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/editText2"
+                    android:layout_below="@+id/spinner2"
+                    android:layout_marginTop="16dp"
+                    android:layout_toLeftOf="@+id/buttonFind"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <Button
+                    android:text="Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/buttonFind"
+                    android:layout_alignBottom="@+id/editText2"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+            </RelativeLayout>
             <ListView
                 android:id="@+id/listView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/find" />
         </RelativeLayout>
+
     </ViewFlipper>
+
+    <com.aurelhubert.ahbottomnavigation.AHBottomNavigation
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom"
+        android:background="@android:color/white"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_weight="1" />
 
     <!--
     <RelativeLayout

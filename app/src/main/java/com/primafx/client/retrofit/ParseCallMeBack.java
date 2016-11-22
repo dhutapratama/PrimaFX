@@ -18,14 +18,12 @@ public class ParseCallMeBack {
     private String time;
     private String preview;
     // Reply Parameter
-    @SerializedName("code")
-    private Integer code;
     @SerializedName("error")
     private Boolean error;
     @SerializedName("message")
     private String message;
     @Expose
-    private ParseDataKlaimRebate data;
+    private ResponseData data;
 
     public ParseCallMeBack(String nama, String phone, String email, String support, String date, String time) {
         this.nama = nama;
@@ -34,14 +32,7 @@ public class ParseCallMeBack {
         this.support = support;
         this.date = date;
         this.time = time;
-    }
-
-    public Integer getCode() {
-        return code;
-    }
-
-    public void setCode(Integer code) {
-        this.code = code;
+        this.preview = "true";
     }
 
     public Boolean getError() {
@@ -56,11 +47,68 @@ public class ParseCallMeBack {
         return message;
     }
 
+    public ResponseData getData() {
+        return data;
+    }
+
     public void setMessage(String message) {
         this.message = message;
     }
 
-    public ParseDataKlaimRebate getData() {
-        return data;
+    public class ResponseData {
+        private String nama;
+        private String phone;
+        private String email;
+        private String support;
+        private String date;
+        private String time;
+
+        public String getDate() {
+            return date;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public String getNama() {
+            return nama;
+        }
+
+        public String getPhone() {
+            return phone;
+        }
+
+        public String getSupport() {
+            return support;
+        }
+
+        public String getTime() {
+            return time;
+        }
+
+        public void setDate(String date) {
+            this.date = date;
+        }
+
+        public void setEmail(String email) {
+            this.email = email;
+        }
+
+        public void setNama(String nama) {
+            this.nama = nama;
+        }
+
+        public void setPhone(String phone) {
+            this.phone = phone;
+        }
+
+        public void setSupport(String support) {
+            this.support = support;
+        }
+
+        public void setTime(String time) {
+            this.time = time;
+        }
     }
 }

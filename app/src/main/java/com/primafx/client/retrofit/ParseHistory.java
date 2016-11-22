@@ -6,27 +6,24 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 /**
- * Created by Technical on 10/4/2016.
+ * Created by Technical on 11/11/2016.
  */
 
-public class ParseCheckRebateInquiry {
-
+public class ParseHistory {
     // Post Parameter
     private String akun;
-    private String authKey;
-
-
+    private String login_hash;
     // Reply Parameter
     @SerializedName("error")
     private Boolean error;
     @SerializedName("message")
     private String message;
     @Expose
-    private List<ParseDataRebateInquiry> data;
+    private List<ParseDataHistory> data;
 
-    public ParseCheckRebateInquiry(String akun, String authKey) {
+    public ParseHistory(String akun, String login_hash) {
         this.akun = akun;
-        this.authKey = authKey;
+        this.login_hash = login_hash;
     }
 
     public Boolean getError() {
@@ -45,7 +42,7 @@ public class ParseCheckRebateInquiry {
         this.message = message;
     }
 
-    public List<ParseDataRebateInquiry> getData() {
+    public List<ParseDataHistory> getData() {
         return data;
     }
 }

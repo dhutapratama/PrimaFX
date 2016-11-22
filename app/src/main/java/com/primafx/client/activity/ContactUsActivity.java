@@ -25,7 +25,7 @@ public class ContactUsActivity extends AppCompatActivity {
         buttonCallTechnical.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent in = new Intent(Intent.ACTION_CALL, Uri.parse("081334000128"));
+                Intent in = new Intent(Intent.ACTION_CALL, Uri.parse("tel:081334000128"));
                 if (ActivityCompat.checkSelfPermission(ContactUsActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                     return;
                 }
@@ -38,7 +38,7 @@ public class ContactUsActivity extends AppCompatActivity {
         buttonCallFinance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent in = new Intent(Intent.ACTION_CALL, Uri.parse("081234323340"));
+                Intent in = new Intent(Intent.ACTION_CALL, Uri.parse("tel:081234323340"));
                 if (ActivityCompat.checkSelfPermission(ContactUsActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                     return;
                 }
@@ -51,7 +51,7 @@ public class ContactUsActivity extends AppCompatActivity {
         buttonCallConsultant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent in = new Intent(Intent.ACTION_CALL, Uri.parse("081234323341"));
+                Intent in = new Intent(Intent.ACTION_CALL, Uri.parse("tel:081234323341"));
                 if (ActivityCompat.checkSelfPermission(ContactUsActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                     return;
                 }
@@ -64,7 +64,7 @@ public class ContactUsActivity extends AppCompatActivity {
         buttonCallMarketing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent in = new Intent(Intent.ACTION_CALL, Uri.parse("082338036666"));
+                Intent in = new Intent(Intent.ACTION_CALL, Uri.parse("tel:082338036666"));
                 if (ActivityCompat.checkSelfPermission(ContactUsActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                     return;
                 }

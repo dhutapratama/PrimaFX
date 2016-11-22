@@ -5,12 +5,21 @@ import android.app.DialogFragment;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.widget.TimePicker;
+
+import com.primafx.client.database.GData;
 
 import java.util.Calendar;
 
-public class TimePickerFragment extends DialogFragment
-        implements TimePickerDialog.OnTimeSetListener {
+public class TimePickerFragment extends DialogFragment {
+
+    private TimePickerDialog.OnTimeSetListener listener;
+
+    public TimePickerFragment(TimePickerDialog.OnTimeSetListener listener) {
+        super();
+        this.listener = listener;
+    }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -20,11 +29,7 @@ public class TimePickerFragment extends DialogFragment
         int minute = c.get(Calendar.MINUTE);
 
         // Create a new instance of TimePickerDialog and return it
-        return new TimePickerDialog(getActivity(), this, hour, minute,
+        return new TimePickerDialog(getActivity(), listener, hour, minute,
                 DateFormat.is24HourFormat(getActivity()));
-    }
-
-    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-        // Do something with the time chosen by the user
     }
 }

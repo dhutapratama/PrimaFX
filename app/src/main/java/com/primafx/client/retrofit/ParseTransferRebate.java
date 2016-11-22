@@ -16,8 +16,6 @@ public class ParseTransferRebate {
     private String pay_number;
     private String preview;
     // Reply Parameter
-    @SerializedName("code")
-    private Integer code;
     @SerializedName("error")
     private Boolean error;
     @SerializedName("message")
@@ -32,14 +30,6 @@ public class ParseTransferRebate {
         this.usd = usd;
         this.pay_number = pay_number;
         this.preview = "true";
-    }
-
-    public Integer getCode() {
-        return code;
-    }
-
-    public void setCode(Integer code) {
-        this.code = code;
     }
 
     public Boolean getError() {

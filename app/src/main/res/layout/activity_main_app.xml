@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".activity.MainAppActivity">
 
+    <com.daimajia.slider.library.SliderLayout
+        android:id="@+id/slider"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
@@ -84,6 +91,43 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:id="@+id/menu_3"
+            android:layout_below="@+id/menu_2"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="false">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:id="@+id/menu_support">
+
+                <ImageView
+                    app:srcCompat="@drawable/support"
+                    android:id="@+id/imageSupport"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp" />
+
+                <TextView
+                    android:text="Support"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textSupport"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="16dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
             android:id="@+id/menu_2"
             android:layout_below="@+id/menu_1"
             android:layout_alignParentLeft="true"
@@ -137,49 +181,6 @@
                     android:layout_marginBottom="25dp" />
             </LinearLayout>
         </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:id="@+id/menu_3"
-            android:layout_below="@+id/menu_2"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true">
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
-                android:id="@+id/menu_support">
-
-                <ImageView
-                    app:srcCompat="@drawable/support"
-                    android:id="@+id/imageSupport"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp" />
-
-                <TextView
-                    android:text="Support"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/textSupport"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="16dp" />
-            </LinearLayout>
-
-        </LinearLayout>
     </RelativeLayout>
-
-    <com.daimajia.slider.library.SliderLayout
-        android:id="@+id/slider"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

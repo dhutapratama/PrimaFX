@@ -55,7 +55,7 @@
         android:text="-" />
 
     <TextView
-        android:id="@+id/textBank"
+        android:id="@+id/textFromTo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -169,6 +169,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/textBank"
+        android:layout_below="@+id/textFromTo"
         android:text="-" />
 </RelativeLayout>

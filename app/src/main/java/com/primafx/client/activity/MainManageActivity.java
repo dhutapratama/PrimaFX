@@ -6,7 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.IdRes;
+import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -15,7 +15,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -32,6 +32,7 @@ import com.primafx.client.database.GData;
 import com.primafx.client.dialog.ShowDialog;
 import com.primafx.client.retrofit.ParseCheckRebateInquiry;
 import com.primafx.client.retrofit.ParseDataRebateInquiry;
+import com.primafx.client.retrofit.ParseHistory;
 import com.primafx.client.retrofit.RequestLibrary;
 
 import java.util.ArrayList;
@@ -50,9 +51,11 @@ public class MainManageActivity extends AppCompatActivity
 
     private FirebaseAnalytics mFirebaseAnalytics;
     private String[] accounts;
-    private String[] transactionHistory;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        AppCompatDelegate.setDefaultNightMode(
+                AppCompatDelegate.MODE_NIGHT_AUTO);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_manage);
@@ -78,19 +81,6 @@ public class MainManageActivity extends AppCompatActivity
 
     // UI Init
     private void uiInit() {
-        /*
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
-        LinearLayout menuButton = (LinearLayout)findViewById(R.id.layout_click_sidebar);
-        menuButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-                drawer.openDrawer(GravityCompat.START);
-            }
-        });
-        */
         LinearLayout deposit = (LinearLayout)findViewById(R.id.LLDeposit);
         deposit.setOnClickListener(this);
 
@@ -103,6 +93,9 @@ public class MainManageActivity extends AppCompatActivity
         LinearLayout rebateWithdrawal = (LinearLayout)findViewById(R.id.LLWithdrawalRebate);
         rebateWithdrawal.setOnClickListener(this);
 
+        LinearLayout checkRebate = (LinearLayout)findViewById(R.id.LLCheckRebate);
+        checkRebate.setOnClickListener(this);
+
         TextView textAccName = (TextView)findViewById(R.id.textAccName);
         textAccName.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,7 +106,6 @@ public class MainManageActivity extends AppCompatActivity
 
         TextView textAccNumber = (TextView)findViewById(R.id.textAccNumber);
         textAccNumber.setText("#"+ GData.CURRENT_ACCOUNT);
-
 
         final String[] colors = {"#EF233C", "#EF233C", "#EF233C"};
         AHBottomNavigation bottomNavigation = (AHBottomNavigation) findViewById(R.id.bottom_navigation);
@@ -144,11 +136,7 @@ public class MainManageActivity extends AppCompatActivity
             }
         });
 
-
-
-        this.transactionHistory = new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "7", "2", "3", "4", "5", "6", "7", "8", "9", "0", "7"};
-        setTransactionHistory();
-
+        retrofitOrderHistory(GData.CURRENT_ACCOUNT, GData.LOGIN_CODE);
     }
 
     // Account Switcher
@@ -177,14 +165,7 @@ public class MainManageActivity extends AppCompatActivity
                 .create();
         d.show();
     }
-    // Method Menu Counter
-    /*
-    private void setMenuCounter(@IdRes int itemId, int count) {
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        TextView view = (TextView) navigationView.getMenu().findItem(itemId).getActionView();
-        view.setText(count > 0 ? String.valueOf(count) : null);
-    }
-*/
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -262,6 +243,9 @@ public class MainManageActivity extends AppCompatActivity
             retrofitRebateInquiry(GData.CURRENT_ACCOUNT, GData.LOGIN_CODE, "withdrawal");
         } else if (v.getId() == R.id.LLTransferRebate) {
             retrofitRebateInquiry(GData.CURRENT_ACCOUNT, GData.LOGIN_CODE, "transfer");
+        } else if (v.getId() == R.id.LLCheckRebate) {
+            Intent intent = new Intent(this, CheckRebateActivity.class);
+            startActivity(intent);
         }
     }
 
@@ -338,47 +322,103 @@ public class MainManageActivity extends AppCompatActivity
         }
     }
 
-    public void setTransactionHistory() {
-        final List<HashMap<String, String>> aList = new ArrayList<>();
+    private void retrofitOrderHistory(String akun, String login_hash) {
+        final Dialog loading = new ShowDialog().loading(this);
+        loading.show();
 
-        for (int i = 0; i < this.transactionHistory.length; i++) {
+        String host = GData.API_ADDRESS;
+
+        ParseHistory jsonSend = new ParseHistory(akun, login_hash);
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(host)
+                .addConverterFactory(GsonConverterFactory.create()).build();
+        RequestLibrary requestLibrary = retrofit.create(RequestLibrary.class);
+        Call<ParseHistory> callData = requestLibrary.history(jsonSend);
+
+        callData.enqueue(new Callback<ParseHistory>() {
+            @Override
+            public void onResponse(Call<ParseHistory> call, Response<ParseHistory> response) {
+                loading.dismiss();
+                if (response.isSuccessful()) {
+                    ParseHistory response_body = response.body();
+                    if (response_body.getError()) {
+                        new ShowDialog().error(MainManageActivity.this, response_body.getMessage()).setOnDismissListener(new DialogInterface.OnDismissListener() {
+                            @Override
+                            public void onDismiss(DialogInterface dialog) {
+                                finish();
+                            }
+                        });
+                    } else {
+                        setData(response_body);
+                    }
+                } else {
+                    Log.e("Server Problem", "Server Responding but error callback : " + response.message());
+                    new ShowDialog().error(MainManageActivity.this, response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ParseHistory> call, Throwable t) {
+                loading.dismiss();
+                Log.e("Network", "ParseHistory" + t.getMessage());
+                new ShowDialog().error(MainManageActivity.this, "Tidak dapat terhubung, terjadi masalah jaringan.");
+            }
+        });
+    }
+
+    public void setData(ParseHistory data) {
+        final List<HashMap<String, String>> aList = new ArrayList<>();
+        for (int i = 0; i < data.getData().size(); i++) {
+            Log.i("listCode", data.getData().get(i).getListCode());
+            Log.i("type_order", data.getData().get(i).getType_order());
+            Log.i("date", data.getData().get(i).getDate());
+            Log.i("tgl_order", data.getData().get(i).getTgl_order());
+            Log.i("tgl_transfer", data.getData().get(i).getTgl_transfer());
+            Log.i("tgl_proses", data.getData().get(i).getTgl_proses());
+            Log.i("tgl_audit", data.getData().get(i).getTgl_audit());
+            Log.i("akun", data.getData().get(i).getAkun());
+            Log.i("usd", data.getData().get(i).getUsd());
+            Log.i("kurs", data.getData().get(i).getKurs());
+            Log.i("total", data.getData().get(i).getTotal());
+            Log.i("pay_to", data.getData().get(i).getPay_to());
+            Log.i("pay_number", data.getData().get(i).getPay_number());
+            Log.i("pay_name", data.getData().get(i).getPay_name());
+            Log.i("status", data.getData().get(i).getStatus());
+            Log.i("result", data.getData().get(i).getResult());
+
+            Log.i("Sep ", "-------------------------------------------");
+
             HashMap<String, String> hm = new HashMap<>();
-            hm.put("data", this.transactionHistory[i]);
+            hm.put("listCode", data.getData().get(i).getListCode());
+            hm.put("type_order", data.getData().get(i).getType_order());
+            hm.put("date", data.getData().get(i).getDate());
+            hm.put("tgl_order", data.getData().get(i).getTgl_order());
+            hm.put("tgl_transfer", data.getData().get(i).getTgl_transfer());
+            hm.put("tgl_proses", data.getData().get(i).getTgl_proses());
+            hm.put("tgl_audit", data.getData().get(i).getTgl_audit());
+            hm.put("akun", data.getData().get(i).getAkun());
+            hm.put("usd", "/ "+data.getData().get(i).getUsd()+" USD");
+            hm.put("kurs", data.getData().get(i).getKurs());
+            hm.put("total", "Rp " + data.getData().get(i).getTotal());
+            hm.put("pay_to", data.getData().get(i).getPay_to());
+            hm.put("pay_number", data.getData().get(i).getPay_number());
+            hm.put("pay_name", data.getData().get(i).getPay_name());
+            hm.put("status", data.getData().get(i).getStatus());
+            hm.put("result", data.getData().get(i).getResult());
             aList.add(hm);
         }
 
-        String[] from = {};
-        int[] to = {};
-        SimpleAdapter adapter = new SimpleAdapter(getBaseContext(), aList, R.layout.list_transaction_history, from, to)
-        {
-            @Override
-            public View getView (final int position, View convertView, ViewGroup parent)
-            {
-                View v = super.getView(position, convertView, parent);
-                /*
-                ImageView imagePerson = (ImageView)v.findViewById(R.id.imagePerson);
-                Picasso.with(MainManageActivity.this).load(transactions.get(position).getPicture())
-                        .error(MainManageActivity.this.getResources().getDrawable(R.mipmap.no_image_square))
-                        .into(imagePerson);
-                        */
-                return v;
-            }
-        };
-
+        String[] from = { "tgl_order", "pay_to", "type_order", "status",  "total",  "usd" };
+        int[] to = { R.id.textTanggal, R.id.textFromTo, R.id.textOrderType, R.id.textStatus, R.id.textIDR, R.id.textUSD };
+        SimpleAdapter adapter = new SimpleAdapter(getBaseContext(), aList, R.layout.list_transaction_history, from, to);
 
         ListView listView = (ListView) findViewById(R.id.listView);
         listView.setAdapter(adapter);
 
-        /*
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(MainManageActivity.this, TransactionDetail.class);
-                intent.putExtra("transaction_refference", transactions.get(position).getTransaction_refference());
-                startActivity(intent);
+                new ShowDialog().success(MainManageActivity.this, Integer.toString(position));
             }
         });
-        */
-
     }
 }

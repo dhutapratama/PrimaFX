@@ -17,22 +17,12 @@ public class ParseQuotes {
     private String usd;
     private String idr;
     // Reply Parameter
-    @SerializedName("code")
-    private Integer code;
     @SerializedName("error")
     private Boolean error;
     @SerializedName("message")
     private String message;
     @Expose
     private List<ParseDataQuotes> data;
-
-    public Integer getCode() {
-        return code;
-    }
-
-    public void setCode(Integer code) {
-        this.code = code;
-    }
 
     public Boolean getError() {
         return error;
