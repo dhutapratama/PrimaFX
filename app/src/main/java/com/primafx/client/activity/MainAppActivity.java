@@ -7,11 +7,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.SimpleAdapter;
 
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
@@ -22,7 +18,6 @@ import com.primafx.client.R;
 import com.primafx.client.database.DatabaseSQL;
 import com.primafx.client.database.GData;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -64,10 +59,7 @@ public class MainAppActivity extends AppCompatActivity implements BaseSliderView
         mDemoSlider.setDuration(4000);
         mDemoSlider.addOnPageChangeListener(this);
 
-
-
         // Variable Initialization
-
         List<String> my_accounts = DatabaseSQL.getAccountData(this);
         this.accounts = my_accounts.toArray(new String[my_accounts.size()]);
 
@@ -157,14 +149,4 @@ public class MainAppActivity extends AppCompatActivity implements BaseSliderView
     public void onPageScrollStateChanged(int state) {}
 
 
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        if (GData.LOGIN_CODE.equals(null)) {
-            Intent intent = new Intent(this, SplashActivity.class);
-            startActivity(intent);
-        }
-    }
 }

@@ -1,7 +1,9 @@
 package com.primafx.client.activity;
 
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -16,10 +18,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
@@ -30,9 +35,12 @@ import com.primafx.client.R;
 import com.primafx.client.database.DatabaseSQL;
 import com.primafx.client.database.GData;
 import com.primafx.client.dialog.ShowDialog;
+import com.primafx.client.model.DatePickerFragment;
 import com.primafx.client.retrofit.ParseCheckRebateInquiry;
+import com.primafx.client.retrofit.ParseDataHistory;
 import com.primafx.client.retrofit.ParseDataRebateInquiry;
 import com.primafx.client.retrofit.ParseHistory;
+import com.primafx.client.retrofit.ParseHistoryFind;
 import com.primafx.client.retrofit.RequestLibrary;
 
 import java.util.ArrayList;
@@ -136,7 +144,77 @@ public class MainManageActivity extends AppCompatActivity
             }
         });
 
-        retrofitOrderHistory(GData.CURRENT_ACCOUNT, GData.LOGIN_CODE);
+        final Spinner spinnerType = (Spinner)findViewById(R.id.spinnerType);
+        final Spinner spinnerData = (Spinner)findViewById(R.id.spinnerData);
+
+        final ArrayList<String> find_type =new ArrayList<String>(){};
+        find_type.add("Semua");
+        find_type.add("Tipe");
+        find_type.add("Tanggal");
+        find_type.add("Status");
+        final ArrayAdapter<String> listType= new ArrayAdapter<>(this,android.R.layout.simple_spinner_item, find_type);
+        listType.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerType.setAdapter(listType);
+
+        final ArrayList<String> find_data_type =new ArrayList<String>(){};
+        find_data_type.add("deposit");
+        find_data_type.add("withdrawal");
+        find_data_type.add("transfer_rebate");
+
+        final ArrayList<String> find_data_status =new ArrayList<String>(){};
+        find_data_status.add("input");
+        find_data_status.add("proses");
+        find_data_status.add("pending");
+        find_data_status.add("sukses");
+        find_data_status.add("gagal");
+
+        spinnerType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (spinnerType.getSelectedItem().toString().equals("Semua")) {
+                    spinnerData.setVisibility(View.GONE);
+                    retrofitOrderHistory(GData.CURRENT_ACCOUNT, GData.LOGIN_CODE);
+                } else if (spinnerType.getSelectedItem().toString().equals("Tipe")) {
+                    spinnerData.setVisibility(View.VISIBLE);
+                    ArrayAdapter < String > listDataType = new ArrayAdapter<>(MainManageActivity.this, android.R.layout.simple_spinner_item, find_data_type);
+                    listDataType.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spinnerData.setAdapter(listDataType);
+                } else if (spinnerType.getSelectedItem().toString().equals("Tanggal")) {
+                    spinnerData.setVisibility(View.GONE);
+                    DatePickerFragment dialog = new DatePickerFragment(mDateSetListener);
+                    FragmentTransaction ft = getFragmentManager().beginTransaction();
+                    dialog.show(ft, "DatePicker");
+                } else if (spinnerType.getSelectedItem().toString().equals("Status")) {
+                    spinnerData.setVisibility(View.VISIBLE);
+                    ArrayAdapter < String > listDataStatus = new ArrayAdapter<>(MainManageActivity.this, android.R.layout.simple_spinner_item, find_data_status);
+                    listDataStatus.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spinnerData.setAdapter(listDataStatus);
+
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+
+        spinnerData.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (spinnerType.getSelectedItem().toString().equals("Tipe")) {
+                    retrofitOrderHistoryFind(GData.CURRENT_ACCOUNT, GData.LOGIN_CODE, "type_order", spinnerData.getSelectedItem().toString());
+                } else {
+                    retrofitOrderHistoryFind(GData.CURRENT_ACCOUNT, GData.LOGIN_CODE, "status", spinnerData.getSelectedItem().toString());
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 
     // Account Switcher
@@ -430,5 +508,124 @@ public class MainManageActivity extends AppCompatActivity
             Intent intent = new Intent(this, SplashActivity.class);
             startActivity(intent);
         }
+    }
+
+    DatePickerDialog.OnDateSetListener mDateSetListener =
+            new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                    String month = "";
+                    if (i1 < 10) {
+                        month = "0" + Integer.toString(i1+1);
+                    } else {
+                        month = Integer.toString(i1+1);
+                    }
+
+                    String date = "";
+                    if (i2 < 10) {
+                        date = "0" + Integer.toString(i2);
+                    } else {
+                        date = Integer.toString(i2);
+                    }
+
+                    Log.i("DATE", i + "-" + month + "-" + date);
+
+                    retrofitOrderHistoryFind(GData.CURRENT_ACCOUNT, GData.LOGIN_CODE, "date", i + "-" + month + "-" + date);
+                }
+            };
+
+    private void retrofitOrderHistoryFind(String akun, String login_hash, String find_type, String find_data) {
+        final Dialog loading = new ShowDialog().loading(this);
+        loading.show();
+
+        String host = GData.API_ADDRESS;
+
+        ParseHistoryFind jsonSend = new ParseHistoryFind(akun, login_hash, find_type, find_data);
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(host)
+                .addConverterFactory(GsonConverterFactory.create()).build();
+        RequestLibrary requestLibrary = retrofit.create(RequestLibrary.class);
+        Call<ParseHistoryFind> callData = requestLibrary.findHistory(jsonSend);
+
+        callData.enqueue(new Callback<ParseHistoryFind>() {
+            @Override
+            public void onResponse(Call<ParseHistoryFind> call, Response<ParseHistoryFind> response) {
+                loading.dismiss();
+                if (response.isSuccessful()) {
+                    ParseHistoryFind response_body = response.body();
+                    if (response_body.getError()) {
+                        new ShowDialog().error(MainManageActivity.this, response_body.getMessage());
+                    } else {
+                        setData(response_body);
+                    }
+                } else {
+                    Log.e("Server Problem", "Server Responding but error callback : " + response.message());
+                    new ShowDialog().error(MainManageActivity.this, response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ParseHistoryFind> call, Throwable t) {
+                loading.dismiss();
+                Log.e("Network", "ParseHistory" + t.getMessage());
+                new ShowDialog().error(MainManageActivity.this, "Tidak dapat terhubung, terjadi masalah jaringan.");
+            }
+        });
+    }
+
+    public void setData(ParseHistoryFind data) {
+        final List<HashMap<String, String>> aList = new ArrayList<>();
+        for (int i = 0; i < data.getData().size(); i++) {
+            Log.i("listCode", data.getData().get(i).getListCode());
+            Log.i("type_order", data.getData().get(i).getType_order());
+            Log.i("date", data.getData().get(i).getDate());
+            Log.i("tgl_order", data.getData().get(i).getTgl_order());
+            Log.i("tgl_transfer", data.getData().get(i).getTgl_transfer());
+            Log.i("tgl_proses", data.getData().get(i).getTgl_proses());
+            Log.i("tgl_audit", data.getData().get(i).getTgl_audit());
+            Log.i("akun", data.getData().get(i).getAkun());
+            Log.i("usd", data.getData().get(i).getUsd());
+            Log.i("kurs", data.getData().get(i).getKurs());
+            Log.i("total", data.getData().get(i).getTotal());
+            Log.i("pay_to", data.getData().get(i).getPay_to());
+            Log.i("pay_number", data.getData().get(i).getPay_number());
+            Log.i("pay_name", data.getData().get(i).getPay_name());
+            Log.i("status", data.getData().get(i).getStatus());
+            Log.i("result", data.getData().get(i).getResult());
+
+            Log.i("Sep ", "-------------------------------------------");
+
+            HashMap<String, String> hm = new HashMap<>();
+            hm.put("listCode", data.getData().get(i).getListCode());
+            hm.put("type_order", data.getData().get(i).getType_order());
+            hm.put("date", data.getData().get(i).getDate());
+            hm.put("tgl_order", data.getData().get(i).getTgl_order());
+            hm.put("tgl_transfer", data.getData().get(i).getTgl_transfer());
+            hm.put("tgl_proses", data.getData().get(i).getTgl_proses());
+            hm.put("tgl_audit", data.getData().get(i).getTgl_audit());
+            hm.put("akun", data.getData().get(i).getAkun());
+            hm.put("usd", "/ "+data.getData().get(i).getUsd()+" USD");
+            hm.put("kurs", data.getData().get(i).getKurs());
+            hm.put("total", "Rp " + data.getData().get(i).getTotal());
+            hm.put("pay_to", data.getData().get(i).getPay_to());
+            hm.put("pay_number", data.getData().get(i).getPay_number());
+            hm.put("pay_name", data.getData().get(i).getPay_name());
+            hm.put("status", data.getData().get(i).getStatus());
+            hm.put("result", data.getData().get(i).getResult());
+            aList.add(hm);
+        }
+
+        String[] from = { "tgl_order", "pay_to", "type_order", "status",  "total",  "usd" };
+        int[] to = { R.id.textTanggal, R.id.textFromTo, R.id.textOrderType, R.id.textStatus, R.id.textIDR, R.id.textUSD };
+        SimpleAdapter adapter = new SimpleAdapter(getBaseContext(), aList, R.layout.list_transaction_history, from, to);
+
+        ListView listView = (ListView) findViewById(R.id.listView);
+        listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                new ShowDialog().success(MainManageActivity.this, Integer.toString(position));
+            }
+        });
     }
 }

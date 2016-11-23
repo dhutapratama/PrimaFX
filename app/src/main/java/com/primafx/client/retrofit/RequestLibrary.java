@@ -99,6 +99,11 @@ public interface RequestLibrary {
     @POST("trader/useracc/orderhistory")
     Call<ParseHistory> history(@Body ParseHistory value);
 
+    // OrderHistory
+    @Headers({"User-Agent: PrimaFX 1.0", "Content-Type: application/json"})
+    @POST("trader/useracc/orderhistoryfind")
+    Call<ParseHistoryFind> findHistory(@Body ParseHistoryFind value);
+
     // Find History
     //@Headers({"User-Agent: PrimaFX 1.0", "Content-Type: application/json"})
     //@POST("trader/useracc/orderhistory")

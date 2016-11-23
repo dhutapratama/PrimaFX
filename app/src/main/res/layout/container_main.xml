@@ -402,28 +402,18 @@
                     android:layout_alignParentTop="true"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
-                    android:id="@+id/spinner2" />
+                    android:id="@+id/spinnerType" />
 
-                <EditText
+                <Spinner
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:ems="10"
-                    android:id="@+id/editText2"
-                    android:layout_below="@+id/spinner2"
-                    android:layout_marginTop="16dp"
-                    android:layout_toLeftOf="@+id/buttonFind"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
-
-                <Button
-                    android:text="Filter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/buttonFind"
-                    android:layout_alignBottom="@+id/editText2"
+                    android:layout_below="@+id/spinnerType"
+                    android:id="@+id/spinnerData"
+                    android:layout_alignParentTop="true"
                     android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true" />
+                    android:layout_alignParentEnd="true"
+                    android:layout_toRightOf="@+id/spinnerType"
+                    android:layout_toEndOf="@+id/spinnerType"/>
             </RelativeLayout>
             <ListView
                 android:id="@+id/listView"
@@ -445,27 +435,4 @@
         android:layout_alignParentStart="true"
         android:layout_weight="1" />
 
-    <!--
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorBackground"
-        android:padding="16dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:text="HISTORI TRANSAKSI"
-            android:textColor="@color/textColorPrimary"
-            android:textStyle="bold|italic" />
-    </RelativeLayout>
-
-    <ListView
-        android:id="@+id/listView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
--->
 </RelativeLayout>

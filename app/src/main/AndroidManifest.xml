@@ -42,7 +42,9 @@
                 <data
                     android:host="primafx.com"
                     android:scheme="http" />
+
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
@@ -51,9 +53,7 @@
             android:name=".activity.TestingApiActivity"
             android:label="Testing PFX"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".activity.IntroActivity"
             android:screenOrientation="portrait"
@@ -151,9 +151,10 @@
             android:name=".activity.ForgotPasswordActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.CheckRebateActivity"
-            android:screenOrientation="portrait"
-            android:label="Cek Rebate"/>
+        <activity
+            android:name=".activity.CheckRebateActivity"
+            android:label="Cek Rebate"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.DepositResultActivity"
             android:label="Deposit"
@@ -181,12 +182,14 @@
         <activity
             android:name=".activity.MenusActivity"
             android:label="TESTING MENU" />
-        <activity android:name=".activity.ProfilActivity"
+        <activity
+            android:name=".activity.ProfilActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.CalendarActivity"
-            android:screenOrientation="portrait"
-            android:label="Kalender Forex" />
+            android:label="Kalender Forex"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activity.FilterTransactionActivity"></activity>
     </application>
 
 </manifest>

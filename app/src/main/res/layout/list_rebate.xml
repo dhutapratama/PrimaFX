@@ -6,7 +6,6 @@
     android:padding="8dp">
 
     <TextView
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textDetail"
         android:text="agent '2450553' - 2016-09-14"
@@ -14,21 +13,9 @@
         android:gravity="center_vertical"
         android:layout_below="@+id/textInputDate"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <TextView
-        android:text="10.02"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:id="@+id/textProfit"
-        android:layout_toRightOf="@+id/textType"
-        android:layout_toLeftOf="@+id/textDetail"
-        android:layout_toStartOf="@+id/textDetail"
-        android:layout_marginRight="20dp"
-        android:layout_alignBottom="@+id/textType"
-        android:textColor="@color/colorBlueSoft"
-        android:layout_alignTop="@+id/textType" />
+        android:layout_alignParentEnd="true"
+        android:layout_width="150dp"
+        android:textAlignment="textEnd" />
 
     <TextView
         android:text="backup rebate bulanan"
@@ -48,17 +35,6 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="5dp" />
-
-    <TextView
-        android:text="2016-06-21 21:00"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textInputDate"
-        android:textSize="10sp"
-        android:textColor="@color/colorBlueSoft"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/textProfit" />
 
     <TextView
         android:text="21654945"
@@ -86,12 +62,36 @@
         android:text="debit"
         android:layout_height="wrap_content"
         android:id="@+id/textType"
-        android:layout_marginLeft="8dp"
         android:gravity="center_vertical"
-        android:layout_marginStart="8dp"
         android:layout_alignTop="@+id/textTicket"
-        android:layout_toRightOf="@+id/textDate"
-        android:layout_toEndOf="@+id/textDate"
-        android:layout_alignBottom="@+id/textDate"
-        android:layout_width="50dp" />
+        android:layout_width="50dp"
+        android:textSize="10sp"
+        android:layout_toRightOf="@+id/textTicket"
+        android:layout_toLeftOf="@+id/textDetail"
+        android:layout_toStartOf="@+id/textDetail" />
+
+    <TextView
+        android:text="10.02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:id="@+id/textProfit"
+        android:textColor="@color/colorBlueSoft"
+        android:layout_below="@+id/textType"
+        android:layout_alignLeft="@+id/textType"
+        android:layout_alignStart="@+id/textType"
+        android:textSize="10sp" />
+
+    <TextView
+        android:text="2016-06-21 21:00"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textInputDate"
+        android:textSize="10sp"
+        android:textColor="@color/colorBlueSoft"
+        android:textAlignment="textEnd"
+        android:gravity="end"
+        android:layout_below="@+id/textInfo"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 </RelativeLayout>

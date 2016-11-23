@@ -10,14 +10,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.primafx.client.R;
 import com.primafx.client.database.GData;
 import com.primafx.client.dialog.ShowDialog;
 import com.primafx.client.retrofit.ParseCheckRebate;
+import com.primafx.client.retrofit.ParseCheckRebateInquiry;
 import com.primafx.client.retrofit.RequestLibrary;
 
 import java.util.ArrayList;
@@ -31,17 +34,15 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CheckRebateActivity extends AppCompatActivity {
-
+    Spinner periode;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_rebate);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        retrofitCheckRebate(
-                GData.CURRENT_ACCOUNT,
-                GData.LOGIN_CODE,
-                "201609");
+        periode = (Spinner)findViewById(R.id.spinnerPeriode);
+        retrofitRebateInquiry(GData.CURRENT_ACCOUNT, GData.LOGIN_CODE);
     }
 
     @Override
@@ -165,6 +166,11 @@ public class CheckRebateActivity extends AppCompatActivity {
             }
         });
 
+        new ShowDialog().success(CheckRebateActivity.this,
+                "Periode: " + data.getData().getSummary().getPeriode()+
+                        "\nCredit: "+ data.getData().getSummary().getCredit()+
+                        "\nDebit: "+ data.getData().getSummary().getDebit()+
+                        "\nSisa: " + data.getData().getSummary().getSisa());
     }
 
     @Override
@@ -175,5 +181,66 @@ public class CheckRebateActivity extends AppCompatActivity {
             Intent intent = new Intent(this, SplashActivity.class);
             startActivity(intent);
         }
+    }
+
+    private void retrofitRebateInquiry(String akun, String authKey) {
+        final Dialog loading = new ShowDialog().loading(this);
+        loading.show();
+
+        String host = GData.API_ADDRESS;
+
+        ParseCheckRebateInquiry jsonSend = new ParseCheckRebateInquiry(akun, authKey);
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(host)
+                .addConverterFactory(GsonConverterFactory.create()).build();
+        RequestLibrary requestLibrary = retrofit.create(RequestLibrary.class);
+        Call<ParseCheckRebateInquiry> callData = requestLibrary.rebateInquiry(jsonSend);
+
+        callData.enqueue(new Callback<ParseCheckRebateInquiry>() {
+            @Override
+            public void onResponse(Call<ParseCheckRebateInquiry> call, Response<ParseCheckRebateInquiry> response) {
+                loading.dismiss();
+                if (response.isSuccessful()) {
+                    ParseCheckRebateInquiry response_body = response.body();
+                    if (response_body.getError()) {
+                        finish();
+                    } else {
+                        ArrayList<String> test=new ArrayList<String>(){};
+
+                        for (int i = 0; i < response_body.getData().size(); i++) {
+                            test.add(response_body.getData().get(i).getPeriode());
+                        }
+
+                        ArrayAdapter<String> listPeriode= new ArrayAdapter<>(CheckRebateActivity.this,android.R.layout.simple_spinner_item, test);
+                        listPeriode.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        periode.setAdapter(listPeriode);
+
+                        periode.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                retrofitCheckRebate(
+                                        GData.CURRENT_ACCOUNT,
+                                        GData.LOGIN_CODE,
+                                        periode.getSelectedItem().toString());
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                            }
+                        });
+                    }
+                } else {
+                    Log.e("Server Problem", "Server Responding but error callback : " + response.body().toString());
+                    new ShowDialog().error(CheckRebateActivity.this, response.body().toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ParseCheckRebateInquiry> call, Throwable t) {
+                loading.dismiss();
+                Log.e("Network", "ParseCheckRebateInquiry" + t.getMessage());
+                new ShowDialog().error(CheckRebateActivity.this, "Tidak dapat terhubung, terjadi masalah jaringan.");
+            }
+        });
     }
 }
