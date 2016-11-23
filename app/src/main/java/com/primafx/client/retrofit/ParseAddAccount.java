@@ -14,8 +14,6 @@ public class ParseAddAccount {
     private String phone_pass;
     private String app;
     // Reply Parameter
-    @SerializedName("code")
-    private Integer code;
     @SerializedName("error")
     private Boolean error;
     @SerializedName("message")
@@ -28,14 +26,6 @@ public class ParseAddAccount {
         this.authKey = authKey;
         this.phone_pass = phone_pass;
         this.app = "android";
-    }
-
-    public Integer getCode() {
-        return code;
-    }
-
-    public void setCode(Integer code) {
-        this.code = code;
     }
 
     public Boolean getError() {
