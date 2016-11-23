@@ -1,5 +1,6 @@
 package com.primafx.client.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.primafx.client.R;
+import com.primafx.client.database.GData;
 import com.primafx.client.model.SquareFragment;
 
 public class MenusActivity extends AppCompatActivity {
@@ -66,5 +68,15 @@ public class MenusActivity extends AppCompatActivity {
             });
 
         }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (GData.LOGIN_CODE.equals(null)) {
+            Intent intent = new Intent(this, SplashActivity.class);
+            startActivity(intent);
+        }
+    }
     }
 

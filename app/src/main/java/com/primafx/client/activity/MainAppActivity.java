@@ -157,4 +157,14 @@ public class MainAppActivity extends AppCompatActivity implements BaseSliderView
     public void onPageScrollStateChanged(int state) {}
 
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (GData.LOGIN_CODE.equals(null)) {
+            Intent intent = new Intent(this, SplashActivity.class);
+            startActivity(intent);
+        }
+    }
 }

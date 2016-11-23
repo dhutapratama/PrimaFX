@@ -188,4 +188,14 @@ public class WithdrawalActivity extends AppCompatActivity implements AdapterView
         intent.putExtra("idr", data.getIdr());
         startActivity(intent);
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (GData.LOGIN_CODE.equals(null)) {
+            Intent intent = new Intent(this, SplashActivity.class);
+            startActivity(intent);
+        }
+    }
 }

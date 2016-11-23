@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.primafx.client.R;
+import com.primafx.client.database.GData;
 
 public class DepositResultActivity extends AppCompatActivity {
 
@@ -55,5 +56,15 @@ public class DepositResultActivity extends AppCompatActivity {
         }
     }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (GData.LOGIN_CODE.equals(null)) {
+            Intent intent = new Intent(this, SplashActivity.class);
+            startActivity(intent);
+        }
+    }
 
 }

@@ -1,5 +1,6 @@
 package com.primafx.client.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -9,6 +10,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
 import com.primafx.client.R;
+import com.primafx.client.database.GData;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -81,5 +83,15 @@ public class RebateHistoryActivity extends AppCompatActivity {
             }
         });
         */
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (GData.LOGIN_CODE.equals(null)) {
+            Intent intent = new Intent(this, SplashActivity.class);
+            startActivity(intent);
+        }
     }
 }

@@ -1,10 +1,12 @@
 package com.primafx.client.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.primafx.client.R;
+import com.primafx.client.database.GData;
 
 public class ProfilActivity extends AppCompatActivity {
 
@@ -25,6 +27,16 @@ public class ProfilActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
 
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (GData.LOGIN_CODE.equals(null)) {
+            Intent intent = new Intent(this, SplashActivity.class);
+            startActivity(intent);
         }
     }
 

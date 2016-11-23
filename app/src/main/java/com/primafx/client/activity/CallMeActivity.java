@@ -233,4 +233,16 @@ public class CallMeActivity extends AppCompatActivity implements AdapterView.OnI
                     textDate.setText(i + "-" + i1 + "-" + i2);
                 }
             };
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (GData.LOGIN_CODE.equals(null)) {
+            Intent intent = new Intent(this, SplashActivity.class);
+            startActivity(intent);
+        }
+
+        Log.i("GDATA", GData.LOGIN_CODE);
+    }
 }

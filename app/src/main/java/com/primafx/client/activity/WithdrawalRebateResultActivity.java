@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.primafx.client.R;
+import com.primafx.client.database.GData;
 
 public class WithdrawalRebateResultActivity extends AppCompatActivity {
 
@@ -52,6 +53,16 @@ public class WithdrawalRebateResultActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
 
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (GData.LOGIN_CODE.equals(null)) {
+            Intent intent = new Intent(this, SplashActivity.class);
+            startActivity(intent);
         }
     }
 }
