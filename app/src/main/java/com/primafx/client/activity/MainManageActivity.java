@@ -36,6 +36,7 @@ import com.primafx.client.database.DatabaseSQL;
 import com.primafx.client.database.GData;
 import com.primafx.client.dialog.ShowDialog;
 import com.primafx.client.model.DatePickerFragment;
+import com.primafx.client.retrofit.ParseAccountDetail;
 import com.primafx.client.retrofit.ParseCheckRebateInquiry;
 import com.primafx.client.retrofit.ParseDataHistory;
 import com.primafx.client.retrofit.ParseDataRebateInquiry;
@@ -215,6 +216,10 @@ public class MainManageActivity extends AppCompatActivity
 
             }
         });
+
+        retrofitDetailAccount(
+                GData.CURRENT_ACCOUNT,
+                GData.LOGIN_CODE);
     }
 
     // Account Switcher
@@ -504,7 +509,7 @@ public class MainManageActivity extends AppCompatActivity
     protected void onResume() {
         super.onResume();
 
-        if (GData.LOGIN_CODE.equals(null)) {
+        if (GData.LOGIN_CODE== null) {
             Intent intent = new Intent(this, SplashActivity.class);
             startActivity(intent);
         }
@@ -627,5 +632,149 @@ public class MainManageActivity extends AppCompatActivity
                 new ShowDialog().success(MainManageActivity.this, Integer.toString(position));
             }
         });
+    }
+
+    private void retrofitDetailAccount(String akun, String login_hash ) {
+        final Dialog loading = new ShowDialog().loading(this);
+        loading.show();
+
+        String host = GData.API_ADDRESS;
+        ParseAccountDetail jsonSend = new ParseAccountDetail(akun, login_hash);
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(host)
+                .addConverterFactory(GsonConverterFactory.create()).build();
+        RequestLibrary requestLibrary = retrofit.create(RequestLibrary.class);
+        Call<ParseAccountDetail> callData = requestLibrary.accountDetail(jsonSend);
+
+        callData.enqueue(new Callback<ParseAccountDetail>() {
+            @Override
+            public void onResponse(Call<ParseAccountDetail> call, Response<ParseAccountDetail> response) {
+                loading.dismiss();
+                if (response.isSuccessful()) {
+                    ParseAccountDetail response_body = response.body();
+                    if (response_body.getError()) {
+                        new ShowDialog().error(MainManageActivity.this, response_body.getMessage()).setOnDismissListener(new DialogInterface.OnDismissListener() {
+                            @Override
+                            public void onDismiss(DialogInterface dialog) {
+                                finish();
+                            }
+                        });
+                    } else {
+                        setDataAccount(response_body);
+                    }
+                } else {
+                    Log.e("Server Problem", "Server Responding but error callback : " + response.message());
+                    //new ShowDialog().error(TestingApiActivity.this, response.body().toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ParseAccountDetail> call, Throwable t) {
+                loading.dismiss();
+                Log.e("Network", "ParseCallMeBack" + t.getMessage());
+                new ShowDialog().error(MainManageActivity.this, "Tidak dapat terhubung, terjadi masalah jaringan.");
+            }
+        });
+    }
+
+    public void setDataAccount(ParseAccountDetail data) {
+        Log.i("Sep ", "Akun -------------------------------------------");
+        Log.i("tgl_input", data.getData().getdAkun().getTgl_input());
+        Log.i("Date_Register", data.getData().getdAkun().getDate_Register());
+        Log.i("nama", data.getData().getdAkun().getNama());
+        Log.i("phone", data.getData().getdAkun().getPhone());
+        Log.i("email", data.getData().getdAkun().getEmail());
+        Log.i("kode_agen", data.getData().getdAkun().getKode_agen());
+        Log.i("pay_to", data.getData().getdAkun().getPay_to());
+        Log.i("pay_number", data.getData().getdAkun().getPay_number());
+        Log.i("pay_name", data.getData().getdAkun().getPay_name());
+        Log.i("Address", data.getData().getdAkun().getAddress());
+        Log.i("City", data.getData().getdAkun().getCity());
+        Log.i("State", data.getData().getdAkun().getState());
+        Log.i("Country", data.getData().getdAkun().getCountry());
+        Log.i("Currency", data.getData().getdAkun().getCurrency());
+        Log.i("sisa_rebate", data.getData().getdAkun().getSisa_rebate());
+        Log.i("Sep ", "Akun Rebate -------------------------------------------");
+        if (data.getData().getdAkunRbt() != null) {
+            Log.i("tgl_input", data.getData().getdAkunRbt().getTgl_input());
+            Log.i("pay_to", data.getData().getdAkunRbt().getPay_to());
+            Log.i("pay_number", data.getData().getdAkunRbt().getPay_number());
+            Log.i("pay_name", data.getData().getdAkunRbt().getPay_name());
+            Log.i("email", data.getData().getdAkunRbt().getEmail());
+            Log.i("phone", data.getData().getdAkunRbt().getPhone());
+        }
+
+        TextView textAccount = (TextView)findViewById(R.id.textAccount);
+        TextView textName = (TextView)findViewById(R.id.textName);
+        TextView textPhone = (TextView)findViewById(R.id.textPhone);
+        TextView textEmail = (TextView)findViewById(R.id.textEmail);
+        TextView textBank = (TextView)findViewById(R.id.textBank);
+        TextView textRekening = (TextView)findViewById(R.id.textRekening);
+        TextView textAtasNama = (TextView)findViewById(R.id.textAtasNama);
+        TextView textRegistrationDate = (TextView)findViewById(R.id.textRegistrationDate);
+        TextView textValidationDate = (TextView)findViewById(R.id.textValidationDate);
+        TextView textAgen = (TextView)findViewById(R.id.textAgen);
+        TextView textProvinsi = (TextView)findViewById(R.id.textProvinsi);
+        TextView textCity = (TextView)findViewById(R.id.textCity);
+        TextView textAddress = (TextView)findViewById(R.id.textAddress);
+
+        TextView textRbtBank = (TextView)findViewById(R.id.textRbtBank);
+        TextView textRbtRekening = (TextView)findViewById(R.id.textRbtRekening);
+        TextView textRbtAtasNama = (TextView)findViewById(R.id.textRbtAtasNama);
+        TextView textRbtEmail = (TextView)findViewById(R.id.textRbtEmail);
+        TextView textRbtPhone = (TextView)findViewById(R.id.textRbtPhone);
+
+        TextView textLabelRbtBank = (TextView)findViewById(R.id.textRbtView31);
+        TextView textLabelRbtRekening = (TextView)findViewById(R.id.textRbtView34);
+        TextView textLabelRbtAtasNama = (TextView)findViewById(R.id.textRbtView46);
+        TextView textLabelRbtEmail = (TextView)findViewById(R.id.textLabelEmail);
+        TextView textLabelRbtPhone = (TextView)findViewById(R.id.textRbtView24);
+
+        Button buttonKlaimRebate = (Button)findViewById(R.id.buttonKlaimRebate);
+        TextView textWarningRebate = (TextView)findViewById(R.id.textWarningRebate);
+
+        textAccount.setText(GData.CURRENT_ACCOUNT + "/" + data.getData().getdAkun().getCurrency() + "\n" + data.getData().getdAkun().getServer());
+        textName.setText(data.getData().getdAkun().getNama());
+        textPhone.setText(data.getData().getdAkun().getPhone());
+        textEmail.setText(data.getData().getdAkun().getEmail());
+        textBank.setText(data.getData().getdAkun().getPay_to());
+        textRekening.setText(data.getData().getdAkun().getPay_number());
+        textAtasNama.setText(data.getData().getdAkun().getPay_name());
+        textRegistrationDate.setText(data.getData().getdAkun().getDate_Register());
+        textValidationDate.setText(data.getData().getdAkun().getTgl_input());
+        textAgen.setText(data.getData().getdAkun().getKode_agen());
+        textProvinsi.setText(data.getData().getdAkun().getState());
+        textCity.setText(data.getData().getdAkun().getCity());
+        textAddress.setText(data.getData().getdAkun().getAddress());
+
+        if (data.getData().getdAkunRbt() == null) {
+            textRbtBank.setVisibility(View.GONE);
+            textRbtRekening.setVisibility(View.GONE);
+            textRbtAtasNama.setVisibility(View.GONE);
+            textRbtEmail.setVisibility(View.GONE);
+            textRbtPhone.setVisibility(View.GONE);
+            textLabelRbtBank.setVisibility(View.GONE);
+            textLabelRbtRekening.setVisibility(View.GONE);
+            textLabelRbtAtasNama.setVisibility(View.GONE);
+            textLabelRbtEmail.setVisibility(View.GONE);
+            textLabelRbtPhone.setVisibility(View.GONE);
+
+            buttonKlaimRebate.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(MainManageActivity.this, ClaimRebateActivity.class);
+                    startActivity(intent);
+                }
+            });
+        } else {
+            buttonKlaimRebate.setVisibility(View.GONE);
+            textWarningRebate.setVisibility(View.GONE);
+
+            textRbtBank.setText(data.getData().getdAkunRbt().getPay_to());
+            textRbtRekening.setText(data.getData().getdAkunRbt().getPay_number());
+            textRbtAtasNama.setText(data.getData().getdAkunRbt().getPay_name());
+            textRbtEmail.setText(data.getData().getdAkunRbt().getEmail());
+            textRbtPhone.setText(data.getData().getdAkunRbt().getPhone());
+        }
+
     }
 }

@@ -14,7 +14,7 @@
         android:text="Nama"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView21"
+        android:layout_below="@+id/textAccount"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:id="@+id/textView22"
@@ -25,7 +25,7 @@
         android:text="#4345345"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView21"
+        android:id="@+id/textAccount"
         android:layout_below="@+id/textView20"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -37,13 +37,13 @@
         android:layout_below="@+id/textView22"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/textView23" />
+        android:id="@+id/textName" />
 
     <TextView
         android:text="Nomor Handphone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView23"
+        android:layout_below="@+id/textName"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:id="@+id/textView24"
@@ -57,13 +57,13 @@
         android:layout_below="@+id/textView24"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/textView25" />
+        android:id="@+id/textPhone" />
 
     <TextView
         android:text="Bank"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView25"
+        android:layout_below="@+id/textPhone"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:id="@+id/bank"
@@ -77,13 +77,13 @@
         android:layout_below="@+id/bank"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/textView30" />
+        android:id="@+id/textEmail" />
 
     <TextView
         android:text="Nomor Rekening"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView30"
+        android:layout_below="@+id/textEmail"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:id="@+id/textView31"
@@ -97,13 +97,13 @@
         android:layout_below="@+id/textView31"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/textView33" />
+        android:id="@+id/textBank" />
 
     <TextView
         android:text="Status Rebate Otomatis"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView33"
+        android:layout_below="@+id/textBank"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:id="@+id/textView34"
@@ -117,7 +117,7 @@
         android:layout_below="@+id/textView34"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/textView35" />
+        android:id="@+id/textRekening" />
 
     <LinearLayout
         android:orientation="vertical"

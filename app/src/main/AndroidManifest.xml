@@ -53,7 +53,8 @@
             android:name=".activity.TestingApiActivity"
             android:label="Testing PFX"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
         <activity
             android:name=".activity.IntroActivity"
             android:screenOrientation="portrait"
@@ -189,7 +190,8 @@
             android:name=".activity.CalendarActivity"
             android:label="Kalender Forex"
             android:screenOrientation="portrait" />
-        <activity android:name=".activity.FilterTransactionActivity"></activity>
+        <activity android:name=".activity.ClaimRebateActivity"
+            android:label="Klaim Rebate"></activity>
     </application>
 
 </manifest>

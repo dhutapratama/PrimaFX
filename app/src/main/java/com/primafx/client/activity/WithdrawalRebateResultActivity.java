@@ -60,9 +60,11 @@ public class WithdrawalRebateResultActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        if (GData.LOGIN_CODE.equals(null)) {
-            Intent intent = new Intent(this, SplashActivity.class);
-            startActivity(intent);
+        if (GData.LOGIN_CODE== null) {
+            Intent i = getBaseContext().getPackageManager()
+                    .getLaunchIntentForPackage( getBaseContext().getPackageName() );
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(i);
         }
     }
 }

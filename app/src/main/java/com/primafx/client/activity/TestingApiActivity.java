@@ -2,12 +2,16 @@ package com.primafx.client.activity;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
@@ -39,7 +43,7 @@ public class TestingApiActivity extends AppCompatActivity {
         setContentView(R.layout.activity_testing_api);
 
         retrofitDetailAccount(
-                "2450553",
+                "3652724",
                 "88f200b77cccee4a6e95c383d33e0f22");
 
         //DatabaseSQL.removeAllAccount(this);
@@ -118,12 +122,90 @@ public class TestingApiActivity extends AppCompatActivity {
         Log.i("Currency", data.getData().getdAkun().getCurrency());
         Log.i("sisa_rebate", data.getData().getdAkun().getSisa_rebate());
         Log.i("Sep ", "Akun Rebate -------------------------------------------");
-        Log.i("tgl_input", data.getData().getdAkunRbt().getTgl_input());
-        Log.i("pay_to", data.getData().getdAkunRbt().getPay_to());
-        Log.i("pay_number", data.getData().getdAkunRbt().getPay_number());
-        Log.i("pay_name", data.getData().getdAkunRbt().getPay_name());
-        Log.i("email", data.getData().getdAkunRbt().getEmail());
-        Log.i("phone", data.getData().getdAkunRbt().getPhone());
+        if (data.getData().getdAkunRbt() != null) {
+            Log.i("tgl_input", data.getData().getdAkunRbt().getTgl_input());
+            Log.i("pay_to", data.getData().getdAkunRbt().getPay_to());
+            Log.i("pay_number", data.getData().getdAkunRbt().getPay_number());
+            Log.i("pay_name", data.getData().getdAkunRbt().getPay_name());
+            Log.i("email", data.getData().getdAkunRbt().getEmail());
+            Log.i("phone", data.getData().getdAkunRbt().getPhone());
+        }
+
+        TextView textAccount = (TextView)findViewById(R.id.textAccount);
+        TextView textName = (TextView)findViewById(R.id.textName);
+        TextView textPhone = (TextView)findViewById(R.id.textPhone);
+        TextView textEmail = (TextView)findViewById(R.id.textEmail);
+        TextView textBank = (TextView)findViewById(R.id.textBank);
+        TextView textRekening = (TextView)findViewById(R.id.textRekening);
+        TextView textAtasNama = (TextView)findViewById(R.id.textAtasNama);
+        TextView textRegistrationDate = (TextView)findViewById(R.id.textRegistrationDate);
+        TextView textValidationDate = (TextView)findViewById(R.id.textValidationDate);
+        TextView textAgen = (TextView)findViewById(R.id.textAgen);
+        TextView textProvinsi = (TextView)findViewById(R.id.textProvinsi);
+        TextView textCity = (TextView)findViewById(R.id.textCity);
+        TextView textAddress = (TextView)findViewById(R.id.textAddress);
+
+        TextView textRbtBank = (TextView)findViewById(R.id.textRbtBank);
+        TextView textRbtRekening = (TextView)findViewById(R.id.textRbtRekening);
+        TextView textRbtAtasNama = (TextView)findViewById(R.id.textRbtAtasNama);
+        TextView textRbtEmail = (TextView)findViewById(R.id.textRbtEmail);
+        TextView textRbtPhone = (TextView)findViewById(R.id.textRbtPhone);
+
+        TextView textLabelRbtBank = (TextView)findViewById(R.id.textRbtView31);
+        TextView textLabelRbtRekening = (TextView)findViewById(R.id.textRbtView34);
+        TextView textLabelRbtAtasNama = (TextView)findViewById(R.id.textRbtView46);
+        TextView textLabelRbtEmail = (TextView)findViewById(R.id.textLabelEmail);
+        TextView textLabelRbtPhone = (TextView)findViewById(R.id.textRbtView24);
+
+        Button buttonKlaimRebate = (Button)findViewById(R.id.buttonKlaimRebate);
+        TextView textWarningRebate = (TextView)findViewById(R.id.textWarningRebate);
+
+        textAccount.setText(GData.CURRENT_ACCOUNT + " / " + data.getData().getdAkun().getCurrency() + " / " + data.getData().getdAkun().getServer());
+        textName.setText(data.getData().getdAkun().getNama());
+        textPhone.setText(data.getData().getdAkun().getPhone());
+        textEmail.setText(data.getData().getdAkun().getEmail());
+        textBank.setText(data.getData().getdAkun().getPay_to());
+        textRekening.setText(data.getData().getdAkun().getPay_number());
+        textAtasNama.setText(data.getData().getdAkun().getPay_name());
+        textRegistrationDate.setText(data.getData().getdAkun().getDate_Register());
+        textValidationDate.setText(data.getData().getdAkun().getTgl_input());
+        textAgen.setText(data.getData().getdAkun().getKode_agen());
+        textProvinsi.setText(data.getData().getdAkun().getState());
+        textCity.setText(data.getData().getdAkun().getCity());
+        textAddress.setText(data.getData().getdAkun().getAddress());
+
+        if (data.getData().getdAkunRbt() == null) {
+            textRbtBank.setVisibility(View.GONE);
+            textRbtRekening.setVisibility(View.GONE);
+            textRbtAtasNama.setVisibility(View.GONE);
+            textRbtEmail.setVisibility(View.GONE);
+            textRbtPhone.setVisibility(View.GONE);
+            textLabelRbtBank.setVisibility(View.GONE);
+            textLabelRbtRekening.setVisibility(View.GONE);
+            textLabelRbtAtasNama.setVisibility(View.GONE);
+            textLabelRbtEmail.setVisibility(View.GONE);
+            textLabelRbtPhone.setVisibility(View.GONE);
+
+            buttonKlaimRebate.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(TestingApiActivity.this, ClaimRebateActivity.class);
+                    startActivity(intent);
+                }
+            });
+        } else {
+            buttonKlaimRebate.setVisibility(View.GONE);
+            textWarningRebate.setVisibility(View.GONE);
+
+            textRbtBank.setText(data.getData().getdAkunRbt().getPay_to());
+            textRbtRekening.setText(data.getData().getdAkunRbt().getPay_number());
+            textRbtAtasNama.setText(data.getData().getdAkunRbt().getPay_name());
+            textRbtEmail.setText(data.getData().getdAkunRbt().getEmail());
+            textRbtPhone.setText(data.getData().getdAkunRbt().getPhone());
+        }
+
+
+
 
         /*for (int i = 0; i < data.getData().getDetail().size(); i++) {
             Log.i("id", data.getData().getDetail().get(i).getId());
