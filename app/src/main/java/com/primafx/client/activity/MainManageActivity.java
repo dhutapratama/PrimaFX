@@ -38,7 +38,6 @@ import com.primafx.client.dialog.ShowDialog;
 import com.primafx.client.model.DatePickerFragment;
 import com.primafx.client.retrofit.ParseAccountDetail;
 import com.primafx.client.retrofit.ParseCheckRebateInquiry;
-import com.primafx.client.retrofit.ParseDataHistory;
 import com.primafx.client.retrofit.ParseDataRebateInquiry;
 import com.primafx.client.retrofit.ParseHistory;
 import com.primafx.client.retrofit.ParseHistoryFind;
@@ -153,6 +152,7 @@ public class MainManageActivity extends AppCompatActivity
         find_type.add("Tipe");
         find_type.add("Tanggal");
         find_type.add("Status");
+
         final ArrayAdapter<String> listType= new ArrayAdapter<>(this,android.R.layout.simple_spinner_item, find_type);
         listType.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerType.setAdapter(listType);
@@ -182,9 +182,10 @@ public class MainManageActivity extends AppCompatActivity
                     spinnerData.setAdapter(listDataType);
                 } else if (spinnerType.getSelectedItem().toString().equals("Tanggal")) {
                     spinnerData.setVisibility(View.GONE);
-                    DatePickerFragment dialog = new DatePickerFragment(mDateSetListener);
+                    DatePickerFragment dialog = new DatePickerFragment();
                     FragmentTransaction ft = getFragmentManager().beginTransaction();
                     dialog.show(ft, "DatePicker");
+                    dialog.setCallBack(mDateSetListener);
                 } else if (spinnerType.getSelectedItem().toString().equals("Status")) {
                     spinnerData.setVisibility(View.VISIBLE);
                     ArrayAdapter < String > listDataStatus = new ArrayAdapter<>(MainManageActivity.this, android.R.layout.simple_spinner_item, find_data_status);
@@ -466,7 +467,6 @@ public class MainManageActivity extends AppCompatActivity
             Log.i("pay_number", data.getData().get(i).getPay_number());
             Log.i("pay_name", data.getData().get(i).getPay_name());
             Log.i("status", data.getData().get(i).getStatus());
-            Log.i("result", data.getData().get(i).getResult());
 
             Log.i("Sep ", "-------------------------------------------");
 
@@ -491,7 +491,7 @@ public class MainManageActivity extends AppCompatActivity
         }
 
         String[] from = { "tgl_order", "pay_to", "type_order", "status",  "total",  "usd" };
-        int[] to = { R.id.textTanggal, R.id.textFromTo, R.id.textOrderType, R.id.textStatus, R.id.textIDR, R.id.textUSD };
+        int[] to = { R.id.textPassword, R.id.textRekening, R.id.textOrderType, R.id.textStatus, R.id.textIDR, R.id.textUSD };
         SimpleAdapter adapter = new SimpleAdapter(getBaseContext(), aList, R.layout.list_transaction_history, from, to);
 
         ListView listView = (ListView) findViewById(R.id.listView);
@@ -595,7 +595,6 @@ public class MainManageActivity extends AppCompatActivity
             Log.i("pay_number", data.getData().get(i).getPay_number());
             Log.i("pay_name", data.getData().get(i).getPay_name());
             Log.i("status", data.getData().get(i).getStatus());
-            Log.i("result", data.getData().get(i).getResult());
 
             Log.i("Sep ", "-------------------------------------------");
 
@@ -620,7 +619,7 @@ public class MainManageActivity extends AppCompatActivity
         }
 
         String[] from = { "tgl_order", "pay_to", "type_order", "status",  "total",  "usd" };
-        int[] to = { R.id.textTanggal, R.id.textFromTo, R.id.textOrderType, R.id.textStatus, R.id.textIDR, R.id.textUSD };
+        int[] to = { R.id.textPassword, R.id.textRekening, R.id.textOrderType, R.id.textStatus, R.id.textIDR, R.id.textUSD };
         SimpleAdapter adapter = new SimpleAdapter(getBaseContext(), aList, R.layout.list_transaction_history, from, to);
 
         ListView listView = (ListView) findViewById(R.id.listView);
@@ -708,7 +707,7 @@ public class MainManageActivity extends AppCompatActivity
         TextView textPhone = (TextView)findViewById(R.id.textPhone);
         TextView textEmail = (TextView)findViewById(R.id.textEmail);
         TextView textBank = (TextView)findViewById(R.id.textBank);
-        TextView textRekening = (TextView)findViewById(R.id.textRekening);
+        TextView textRekening = (TextView)findViewById(R.id.textBank);
         TextView textAtasNama = (TextView)findViewById(R.id.textAtasNama);
         TextView textRegistrationDate = (TextView)findViewById(R.id.textRegistrationDate);
         TextView textValidationDate = (TextView)findViewById(R.id.textValidationDate);

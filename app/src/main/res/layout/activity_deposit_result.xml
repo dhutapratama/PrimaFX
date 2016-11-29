@@ -17,26 +17,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView6"
-        android:text="Atas Nama" />
-
-    <TextView
-        android:id="@+id/textView15"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView7"
-        android:text="Bank" />
-
-    <TextView
-        android:id="@+id/textView19"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView15"
-        android:layout_marginTop="16dp"
-        android:text="Sub Total" />
+        android:text="Nomor Rekening"
+        android:visibility="invisible" />
 
     <TextView
         android:id="@+id/textView18"
@@ -45,7 +27,19 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView19"
-        android:text="Nomor Unik" />
+        android:text="Nomor Unik"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/textNama"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textBank"
+        android:text="-"
+        android:visibility="invisible"
+        android:layout_width="150dp"
+        android:lines="1" />
 
     <TextView
         android:id="@+id/textRekening"
@@ -53,36 +47,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/textView6"
-        android:text="-" />
-
-    <TextView
-        android:id="@+id/textNama"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/textRekening"
-        android:text="-" />
-
-    <TextView
-        android:id="@+id/textFromTo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_below="@+id/textNama"
-        android:text="-" />
-
-    <TextView
-        android:id="@+id/textSubTotal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/textFromTo"
-        android:layout_marginTop="16dp"
-        android:text="Rp0" />
+        android:text="-"
+        android:visibility="invisible" />
 
     <TextView
         android:id="@+id/textUnik"
@@ -91,41 +58,8 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/textSubTotal"
-        android:text="0" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView18"
-        android:layout_marginTop="16dp">
-
-        <TextView
-            android:id="@+id/textView26"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:text="Total Transfer" />
-
-        <TextView
-            android:id="@+id/textTotalTransfer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView26"
-            android:layout_centerHorizontal="true"
-            android:text="Rp0"
-            android:textSize="20sp" />
-
-        <Button
-            android:text="Order Sekarang"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/button2"
-            android:layout_below="@+id/textTotalTransfer"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="32dp"/>
-    </RelativeLayout>
+        android:text="0"
+        android:visibility="invisible" />
 
     <TextView
         android:id="@+id/textView27"
@@ -156,16 +90,6 @@
         android:text="USD" />
 
     <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView32"
-        android:layout_marginTop="16dp"
-        android:text="Nomor Rekening" />
-
-    <TextView
         android:id="@+id/textUsd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -173,5 +97,132 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/textAccount"
         android:text="$0" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bank"
+        android:layout_below="@+id/textView32"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Atas Nama"
+        android:layout_below="@+id/textView15"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:visibility="invisible" />
+
+    <TextView
+        android:text="Special Rate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView16"
+        android:layout_below="@+id/textView7"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:text="Normal Rate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView21"
+        android:layout_below="@+id/textView16"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sub Total"
+        android:layout_below="@+id/textView21"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/textBank"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        android:layout_alignTop="@+id/textView15"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:visibility="visible" />
+
+    <TextView
+        android:text="Rp0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textView16"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/textSpecialRate" />
+
+    <TextView
+        android:id="@+id/textSubTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rp0"
+        android:layout_below="@+id/textView21"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="Rp0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textSpecialRate"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/textNormalRate" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="31dp"
+        android:layout_below="@+id/textView18"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:id="@+id/textView26"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Total Transfer"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/textTotalTransfer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView26"
+            android:layout_centerHorizontal="true"
+            android:text="Rp0"
+            android:textSize="20sp"
+            android:visibility="invisible" />
+
+        <Button
+            android:text="Order Sekarang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonOrder"
+            android:layout_below="@+id/textTotalTransfer"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+
+            android:background="@drawable/btn_white_blue"
+            android:padding="10dp"
+            android:shadowColor="@null"
+            android:textColor="@color/colorBlueSoft"/>
+
+    </RelativeLayout>
 
 </RelativeLayout>

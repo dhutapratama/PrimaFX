@@ -30,8 +30,8 @@ public class ParseKlaimRebate {
     @Expose
     private ParseDataKlaimRebate data;
 
-    public ParseKlaimRebate(String mode, String akun, String authKey, String pay_to, String pay_number_, String pay_name, String email, String phone) {
-        this.mode = mode;
+    public ParseKlaimRebate(String akun, String authKey, String pay_to, String pay_number, String pay_name, String email, String phone) {
+        this.mode = "new";
         this.akun = akun;
         this.authKey = authKey;
         this.app = "android";

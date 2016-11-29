@@ -7,23 +7,25 @@ public class ParseEmailRegistration {
     // Post Parameter
     private String email;
     private String password;
+    private String name;
     // Reply Parameter
-    @SerializedName("code")
-    private String code;
+    @SerializedName("error")
+    private Boolean error;
     @SerializedName("message")
     private String message;
 
-    public ParseEmailRegistration(String email, String password) {
+    public ParseEmailRegistration(String email, String password, String name) {
         this.email = email;
         this.password = password;
+        this.name = name;
     }
 
-    public String getCode() {
-        return code;
+    public Boolean getError() {
+        return error;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setError(Boolean error) {
+        this.error = error;
     }
 
     public String getMessage() {

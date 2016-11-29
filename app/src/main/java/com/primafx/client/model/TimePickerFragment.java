@@ -1,5 +1,6 @@
 package com.primafx.client.model;
 
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.TimePickerDialog;
@@ -16,8 +17,11 @@ public class TimePickerFragment extends DialogFragment {
 
     private TimePickerDialog.OnTimeSetListener listener;
 
-    public TimePickerFragment(TimePickerDialog.OnTimeSetListener listener) {
+    public TimePickerFragment() {
         super();
+    }
+
+    public void setCallBack(TimePickerDialog.OnTimeSetListener listener) {
         this.listener = listener;
     }
 

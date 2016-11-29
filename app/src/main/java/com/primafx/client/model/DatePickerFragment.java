@@ -21,8 +21,11 @@ public class DatePickerFragment extends DialogFragment {
 
     private DatePickerDialog.OnDateSetListener listener;
 
-    public DatePickerFragment(DatePickerDialog.OnDateSetListener listener) {
+    public DatePickerFragment() {
         super();
+    }
+
+    public void setCallBack(DatePickerDialog.OnDateSetListener listener) {
         this.listener = listener;
     }
 
@@ -37,5 +40,4 @@ public class DatePickerFragment extends DialogFragment {
         // Create a new instance of TimePickerDialog and return it
         return new DatePickerDialog(getActivity(), listener, year, month, day);
     }
-
 }

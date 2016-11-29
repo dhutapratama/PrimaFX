@@ -1,6 +1,7 @@
 package com.primafx.client.activity;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RegistrationActivity extends AppCompatActivity implements ParalaxScrollView.OnScrollChangedListener{
     EditText email;
+    EditText nama;
     private ParalaxScrollView mScrollView;
     private View imgContainer;
 
@@ -46,6 +48,8 @@ public class RegistrationActivity extends AppCompatActivity implements ParalaxSc
                 validation();
             }
         });
+
+        nama = (EditText) findViewById(R.id.editNama);
 
         email = (EditText) findViewById(R.id.editEmail);
         email.addTextChangedListener(new TextWatcher() {
@@ -101,17 +105,17 @@ public class RegistrationActivity extends AppCompatActivity implements ParalaxSc
         }
 
         if (email.getError() == null && password.getError() == null && password2.getError() == null) {
-            retrofitRegistration(email.getText().toString(), password.getText().toString());
+            retrofitRegistration(email.getText().toString(), password.getText().toString(), nama.getText().toString());
         }
     }
 
-    private void retrofitRegistration(String email, String password) {
+    private void retrofitRegistration(String email, String password, String name) {
         final Dialog loading = new ShowDialog().loading(this);
         loading.show();
 
         String host = GData.API_ADDRESS;
 
-        ParseEmailRegistration jsonSend = new ParseEmailRegistration(email, password);
+        ParseEmailRegistration jsonSend = new ParseEmailRegistration(email, password, name);
         Retrofit retrofit = new Retrofit.Builder().baseUrl(host)
                 .addConverterFactory(GsonConverterFactory.create()).build();
         RequestLibrary requestLibrary = retrofit.create(RequestLibrary.class);
@@ -123,12 +127,14 @@ public class RegistrationActivity extends AppCompatActivity implements ParalaxSc
                 loading.dismiss();
                 if (response.isSuccessful()) {
                     ParseEmailRegistration response_body = response.body();
-                    if (response_body.getCode().equals("200")) {
-                        Log.i("200", response_body.getMessage());
-                        new ShowDialog().success(RegistrationActivity.this, response_body.getMessage());
-                        finish();
+                    if (!response_body.getError()) {
+                        new ShowDialog().success(RegistrationActivity.this, "Registrasi berhasil, cek email untuk mengaktifkan account anda.").setOnDismissListener(new DialogInterface.OnDismissListener() {
+                            @Override
+                            public void onDismiss(DialogInterface dialogInterface) {
+                                finish();
+                            }
+                        });
                     } else {
-                        Log.i(response_body.getCode(), response_body.getMessage());
                         new ShowDialog().error(RegistrationActivity.this, response_body.getMessage());
                     }
                 } else {

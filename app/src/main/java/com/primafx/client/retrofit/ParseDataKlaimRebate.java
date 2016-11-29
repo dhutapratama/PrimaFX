@@ -7,8 +7,6 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class ParseDataKlaimRebate {
-    @SerializedName("type_order")
-    private String type_order;
     @SerializedName("akun")
     private String akun;
     @SerializedName("nama")
@@ -17,40 +15,13 @@ public class ParseDataKlaimRebate {
     private String phone;
     @SerializedName("email")
     private String email;
-    @SerializedName("kode_agen")
-    private String kode_agen;
-    @SerializedName("bestRegard")
-    private String bestRegard;
     @SerializedName("pay_to")
     private String pay_to;
     @SerializedName("pay_number")
     private String pay_number;
     @SerializedName("pay_name")
     private String pay_name;
-    @SerializedName("usd")
-    private String usd;
-    @SerializedName("usd_n")
-    private String usd_n;
-    @SerializedName("usd_s")
-    private String usd_s;
-    @SerializedName("kurs")
-    private String kurs;
-    @SerializedName("idr")
-    private String idr;
-    @SerializedName("unik")
-    private String unik;
-    @SerializedName("total")
-    private String total;
-    @SerializedName("status")
-    private String status;
 
-    public String getType_order() {
-        return type_order;
-    }
-
-    public void setType_order(String type_order) {
-        this.type_order = type_order;
-    }
 
     public String getAkun() {
         return akun;
@@ -84,22 +55,6 @@ public class ParseDataKlaimRebate {
         this.email = email;
     }
 
-    public String getKode_agen() {
-        return kode_agen;
-    }
-
-    public void setKode_agen(String kode_agen) {
-        this.kode_agen = kode_agen;
-    }
-
-    public String getBestRegard() {
-        return bestRegard;
-    }
-
-    public void setBestRegard(String bestRegard) {
-        this.bestRegard = bestRegard;
-    }
-
     public String getPay_to() {
         return pay_to;
     }
@@ -124,67 +79,4 @@ public class ParseDataKlaimRebate {
         this.pay_name = pay_name;
     }
 
-    public String getUsd() {
-        return usd;
-    }
-
-    public void setUsd(String usd) {
-        this.usd = usd;
-    }
-
-    public String getUsd_n() {
-        return usd_n;
-    }
-
-    public void setUsd_n(String usd_n) {
-        this.usd_n = usd_n;
-    }
-
-    public String getUsd_s() {
-        return usd_s;
-    }
-
-    public void setUsd_s(String usd_s) {
-        this.usd_s = usd_s;
-    }
-
-    public String getKurs() {
-        return kurs;
-    }
-
-    public void setKurs(String kurs) {
-        this.kurs = kurs;
-    }
-
-    public String getIdr() {
-        return idr;
-    }
-
-    public void setIdr(String idr) {
-        this.idr = idr;
-    }
-
-    public String getUnik() {
-        return unik;
-    }
-
-    public void setUnik(String unik) {
-        this.unik = unik;
-    }
-
-    public String getTotal() {
-        return total;
-    }
-
-    public void setTotal(String total) {
-        this.total = total;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 }

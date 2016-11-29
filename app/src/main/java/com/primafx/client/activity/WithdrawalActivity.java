@@ -167,7 +167,6 @@ public class WithdrawalActivity extends AppCompatActivity implements AdapterView
     public void setData(final ParseDataWithdrawal data) {
         Log.i("Type Order", data.getType_order());
         Log.i("Akun", data.getAkun());
-        Log.i("Nama", data.getNama());
         Log.i("Pay To", data.getPay_to());
         Log.i("Pay Number", data.getPay_number());
         Log.i("Pay Name", data.getPay_name());

@@ -107,92 +107,6 @@ public class DepositActivity extends AppCompatActivity implements AdapterView.On
 
         }
     }
-/*
-    private void retrofitDepositInquiry(String akun, String authKey, String pay_to, String usd) {
-        final Dialog loading = new ShowDialog().loading(this);
-        loading.show();
-
-        String host = GData.API_ADDRESS;
-
-        ParseDepositInquiry jsonSend = new ParseDepositInquiry(akun, authKey, pay_to, usd);
-        Retrofit retrofit = new Retrofit.Builder().baseUrl(host)
-                .addConverterFactory(GsonConverterFactory.create()).build();
-        RequestLibrary requestLibrary = retrofit.create(RequestLibrary.class);
-        Call<ParseDepositInquiry> callData = requestLibrary.depositInquiry(jsonSend);
-
-        callData.enqueue(new Callback<ParseDepositInquiry>() {
-            @Override
-            public void onResponse(Call<ParseDepositInquiry> call, Response<ParseDepositInquiry> response) {
-                loading.dismiss();
-                if (response.isSuccessful()) {
-                    final ParseDepositInquiry response_body = response.body();
-                    if (response_body.getError()) {
-                        loading.dismiss();
-                        new ShowDialog().error(DepositActivity.this, response_body.getMessage());
-                    } else {
-                        loading.dismiss();
-                        String akun = "#" + response_body.getData().getAkun();
-                        String usd = "$" + response_body.getData().getUsd();
-                        String kurs = "Kurs Rp" + response_body.getData().getKurs() + "/USD";
-                        String idr = "SubTotal : Rp" + response_body.getData().getIdr();
-
-                        Dialog depositInquiry = new ShowDialog().deposit(DepositActivity.this, akun, usd, kurs, idr);
-                        Button btnLanjut = (Button) depositInquiry.findViewById(R.id.buttonLanjutkan);
-                        btnLanjut.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent intent = new Intent(DepositActivity.this, DepositResultActivity.class);
-                                intent.putExtra("akun", GData.CURRENT_ACCOUNT);
-                                intent.putExtra("authKey", GData.LOGIN_CODE);
-                                intent.putExtra("pay_to", response_body.getData().getPay_to());
-                                intent.putExtra("usd", response_body.getData().getUsd());
-                                intent.putExtra("idr", response_body.getData().getIdr());
-                                startActivity(intent);
-                            }
-                        });
-                        setData(response_body.getData());
-                    }
-                } else {
-                    Log.e("Server Problem", "Server Responding but error callback : " + response.body().toString());
-                    new ShowDialog().error(DepositActivity.this, response.body().toString());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ParseDepositInquiry> call, Throwable t) {
-                loading.dismiss();
-                Log.e("Network", "ParseCheckRebateInquiry" + t.getMessage());
-                new ShowDialog().error(DepositActivity.this, "Tidak dapat terhubung, terjadi masalah jaringan.");
-            }
-        });
-    }
-
-    public void setData(final ParseDataDepositInquiry data) {
-        Log.i("Type Order", data.getType_order());
-        Log.i("Akun", data.getAkun());
-        Log.i("Nama", data.getNama());
-        Log.i("Phone", data.getPhone());
-        Log.i("Email", data.getEmail());
-        Log.i("Kode Agen", data.getKode_agen());
-        Log.i("Best Regard", data.getBestRegard());
-        Log.i("Pay To", data.getPay_to());
-        Log.i("Pay Number", data.getPay_number());
-        Log.i("Pay Name", data.getPay_name());
-        Log.i("USD", data.getUsd());
-        Log.i("USD Normal", data.getUsd_n());
-        Log.i("USD Spesial", data.getUsd_s());
-        Log.i("Kurs", data.getKurs());
-        Log.i("Kurs Normal", data.getKurs_n());
-        Log.i("Kurs Spesial", data.getKurs_s());
-        Log.i("IDR", data.getIdr());
-        Log.i("IDR Normal", data.getIdr_n());
-        Log.i("IDR Spesial", data.getIdr_s());
-
-        Log.i("Sep ", "-------------------------------------------");
-
-    }
-
-    */
 
     private void retrofitDeposit(String akun, String authKey, String pay_to, String usd, String idr) {
         final Dialog loading = new ShowDialog().loading(this);
@@ -200,7 +114,7 @@ public class DepositActivity extends AppCompatActivity implements AdapterView.On
 
         String host = GData.API_ADDRESS;
 
-        ParseDeposit jsonSend = new ParseDeposit(akun, authKey, pay_to, usd, idr);
+        ParseDeposit jsonSend = new ParseDeposit(akun, authKey, pay_to, usd, idr, "true");
         Retrofit retrofit = new Retrofit.Builder().baseUrl(host)
                 .addConverterFactory(GsonConverterFactory.create()).build();
         RequestLibrary requestLibrary = retrofit.create(RequestLibrary.class);
@@ -248,25 +162,17 @@ public class DepositActivity extends AppCompatActivity implements AdapterView.On
         Log.i("USD Spesial", data.getUsd_s());
         Log.i("Kurs", data.getKurs());
         Log.i("IDR", data.getIdr());
-
-        if (data.getUnik() != null ) {
-            Log.i("Unik", data.getUnik());
-            Log.i("Total", data.getTotal());
-            Log.i("Status", data.getStatus());
-        }
-
         Log.i("Sep ", "-------------------------------------------");
 
         Intent intent = new Intent(this, DepositResultActivity.class);
         intent.putExtra("akun", data.getAkun());
         intent.putExtra("usd", data.getUsd());
-        intent.putExtra("pay_number", data.getPay_number());
-        intent.putExtra("pay_name", data.getPay_name());
         intent.putExtra("pay_to", data.getPay_to());
         intent.putExtra("kurs", data.getKurs());
         intent.putExtra("idr", data.getIdr());
         intent.putExtra("total", data.getTotal());
-        intent.putExtra("unik", data.getUnik());
+        intent.putExtra("idr_n", data.getIdr_n());
+        intent.putExtra("idr_s", data.getIdr_s());
 
         startActivity(intent);
     }

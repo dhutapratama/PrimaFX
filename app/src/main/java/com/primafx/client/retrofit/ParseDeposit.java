@@ -18,8 +18,6 @@ public class ParseDeposit {
     private String idr;
     private String preview;
     // Reply Parameter
-    @SerializedName("code")
-    private Integer code;
     @SerializedName("error")
     private Boolean error;
     @SerializedName("message")
@@ -27,22 +25,14 @@ public class ParseDeposit {
     @Expose
     private ParseDataDeposit data;
 
-    public ParseDeposit(String akun, String authKey, String pay_to, String usd, String idr) {
+    public ParseDeposit(String akun, String authKey, String pay_to, String usd, String idr, String preview) {
         this.akun = akun;
         this.authKey = authKey;
         this.pay_to = pay_to;
         this.app = "android";
         this.usd = usd;
         this.idr = idr;
-        this.preview = "true";
-    }
-
-    public Integer getCode() {
-        return code;
-    }
-
-    public void setCode(Integer code) {
-        this.code = code;
+        this.preview = preview;
     }
 
     public Boolean getError() {

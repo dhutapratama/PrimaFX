@@ -2,6 +2,7 @@ package com.primafx.client.activity;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 
@@ -34,6 +35,7 @@ import com.primafx.client.database.DatabaseSQL;
 import com.primafx.client.database.GData;
 import com.primafx.client.dialog.ShowDialog;
 import com.primafx.client.retrofit.ParseEmailLogin;
+import com.primafx.client.retrofit.ParseGetAccounts;
 import com.primafx.client.retrofit.ParseGoogleSignin;
 import com.primafx.client.retrofit.RequestLibrary;
 
@@ -353,12 +355,7 @@ public class LoginActivity extends AppCompatActivity implements
                     ParseGoogleSignin response_body = response.body();
                     if (!response_body.getError()) {
                         DatabaseSQL.updateSecurityData(LoginActivity.this, DatabaseSQL.FIELD_LOGIN_CODE, response_body.getData().getLogin_code());
-                        DatabaseSQL.getInitialData(LoginActivity.this);
-                        Intent i = new Intent(LoginActivity.this, MainAppActivity.class);
-                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(i);
-
-                        finish();
+                        retrofitgetAccounts(response_body.getData().getLogin_code());
                     } else {
                         new ShowDialog().error(LoginActivity.this, response_body.getMessage());
                     }
@@ -402,11 +399,7 @@ public class LoginActivity extends AppCompatActivity implements
                     ParseEmailLogin response_body = response.body();
                     if (!response_body.getError()) {
                         DatabaseSQL.updateSecurityData(LoginActivity.this, DatabaseSQL.FIELD_LOGIN_CODE, response_body.getData().getLogin_code());
-                        DatabaseSQL.getInitialData(LoginActivity.this);
-                        Intent i = new Intent(LoginActivity.this, MainAppActivity.class);
-                        startActivity(i);
-
-                        finish();
+                        retrofitgetAccounts(response_body.getData().getLogin_code());
                     } else {
                         new ShowDialog().error(LoginActivity.this, response_body.getMessage());
                     }
@@ -428,6 +421,67 @@ public class LoginActivity extends AppCompatActivity implements
                 new ShowDialog().error(LoginActivity.this, "Tidak dapat terhubung, terjadi masalah jaringan.");
             }
         });
+    }
+
+    private void retrofitgetAccounts(String login_hash) {
+        final Dialog loading = new ShowDialog().loading(this);
+        loading.show();
+
+        String host = GData.API_ADDRESS;
+
+        ParseGetAccounts jsonSend = new ParseGetAccounts(login_hash);
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(host)
+                .addConverterFactory(GsonConverterFactory.create()).build();
+        RequestLibrary requestLibrary = retrofit.create(RequestLibrary.class);
+        Call<ParseGetAccounts> callData = requestLibrary.getAccounts(jsonSend);
+
+        callData.enqueue(new Callback<ParseGetAccounts>() {
+            @Override
+            public void onResponse(Call<ParseGetAccounts> call, Response<ParseGetAccounts> response) {
+                loading.dismiss();
+                if (response.isSuccessful()) {
+                    ParseGetAccounts response_body = response.body();
+                    if (response_body.getError()) {
+                        new ShowDialog().error(LoginActivity.this, response_body.getMessage()).setOnDismissListener(new DialogInterface.OnDismissListener() {
+                            @Override
+                            public void onDismiss(DialogInterface dialog) {
+                                finish();
+                            }
+                        });
+                    } else {
+                        setData(response_body);
+                    }
+                } else {
+                    Log.e("Server Problem", "Server Responding but error callback : " + response.message());
+                    new ShowDialog().error(LoginActivity.this, response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ParseGetAccounts> call, Throwable t) {
+                loading.dismiss();
+                Log.e("Network", "ParseCallMeBack" + t.getMessage());
+                new ShowDialog().error(LoginActivity.this, "Tidak dapat terhubung, terjadi masalah jaringan.");
+            }
+        });
+    }
+
+    public void setData(ParseGetAccounts data) {
+        for (int i = 0; i < data.getData().size(); i++) {
+            Log.i("akun", data.getData().get(i).getAkun());
+            Log.i("nama", data.getData().get(i).getNama());
+
+            Log.i("Sep ", "-------------------------------------------");
+
+            DatabaseSQL.addAccount(LoginActivity.this, data.getData().get(i).getAkun());
+        }
+
+        DatabaseSQL.getInitialData(LoginActivity.this);
+        Intent i = new Intent(LoginActivity.this, MainAppActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(i);
+
+        finish();
     }
 }
 

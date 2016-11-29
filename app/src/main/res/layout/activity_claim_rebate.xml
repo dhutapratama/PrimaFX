@@ -4,10 +4,195 @@
     android:id="@+id/activity_claim_rebate"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.primafx.client.activity.ClaimRebateActivity">
+
+    <LinearLayout
+        android:id="@+id/llKe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+        <TextView
+            android:id="@+id/textLabelKe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:text="Ke" />
+        <Spinner
+            android:id="@+id/spinnerKe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textLabelKe"
+            android:hint="Nomor Account MT4" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/llKe"
+        android:background="@color/colorAccent" />
+
+    <RelativeLayout
+        android:id="@+id/rlNomorTujuan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/llKe"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/textNomorTujuan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:text="Nomor Tujuan" />
+
+        <EditText
+            android:id="@+id/editNomorTujuan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textNomorTujuan"
+            android:inputType="number"
+            android:hint="Rekening / Account" />
+
+    </RelativeLayout>
+    <View
+        android:id="@+id/viewNomorTujuan"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/rlNomorTujuan"
+        android:background="@color/colorAccent" />
+
+    <RelativeLayout
+        android:id="@+id/rlNamaPemegangRekening"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/rlNomorTujuan"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/textNamaPemegangRekening"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:text="Nama Pemegang Rekening" />
+
+        <EditText
+            android:id="@+id/editNamaPemegangRekening"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textNamaPemegangRekening"
+            android:inputType="text|textPersonName" />
+
+    </RelativeLayout>
+    <View
+        android:id="@+id/viewNamaPemegangRekening"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/rlNamaPemegangRekening"
+        android:background="@color/colorAccent" />
+
+    <RelativeLayout
+        android:id="@+id/rlEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/rlNamaPemegangRekening"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/textLabelEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:text="Email" />
+
+        <EditText
+            android:id="@+id/editEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textLabelEmail"
+            android:inputType="textEmailAddress" />
+
+    </RelativeLayout>
+    <View
+        android:id="@+id/viewEmail"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/rlEmail"
+        android:background="@color/colorAccent" />
+    <RelativeLayout
+        android:id="@+id/rlPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/rlEmail"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/textLabelPassword2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:text="Nomor Handphone" />
+
+        <EditText
+            android:id="@+id/editPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textLabelPassword2"
+            android:hint="+6281..."
+            android:inputType="textPhonetic|phone"
+            android:text="+628" />
+
+    </RelativeLayout>
+    <View
+        android:id="@+id/viewPhone"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/rlPhone"
+        android:background="@color/colorAccent" />
+
+
+    <Button
+        android:id="@+id/buttonKlaimSekarang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_red"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:shadowColor="@null"
+        android:text="KELAIM REBATE"
+        android:textColor="@color/colorWhite"
+        android:layout_below="@+id/viewPhone"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp" />
 
 </RelativeLayout>

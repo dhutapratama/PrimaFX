@@ -25,8 +25,16 @@ public class ParseDataDeposit {
     private String usd_s;
     @SerializedName("kurs")
     private String kurs;
+    @SerializedName("kurs_n")
+    private String kurs_n;
+    @SerializedName("kurs_s")
+    private String kurs_s;
     @SerializedName("idr")
     private String idr;
+    @SerializedName("idr_n")
+    private String idr_n;
+    @SerializedName("idr_s")
+    private String idr_s;
     @SerializedName("unik")
     private String unik;
     @SerializedName("total")
@@ -136,5 +144,37 @@ public class ParseDataDeposit {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getIdr_n() {
+        return idr_n;
+    }
+
+    public String getIdr_s() {
+        return idr_s;
+    }
+
+    public String getKurs_n() {
+        return kurs_n;
+    }
+
+    public String getKurs_s() {
+        return kurs_s;
+    }
+
+    public void setIdr_n(String idr_n) {
+        this.idr_n = idr_n;
+    }
+
+    public void setIdr_s(String idr_s) {
+        this.idr_s = idr_s;
+    }
+
+    public void setKurs_n(String kurs_n) {
+        this.kurs_n = kurs_n;
+    }
+
+    public void setKurs_s(String kurs_s) {
+        this.kurs_s = kurs_s;
     }
 }

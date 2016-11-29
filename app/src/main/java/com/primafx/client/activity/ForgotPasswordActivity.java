@@ -142,8 +142,7 @@ public class ForgotPasswordActivity extends AppCompatActivity implements OnClick
                 loading.dismiss();
                 if (response.isSuccessful()) {
                     ParseForgotPassword response_body = response.body();
-                    if (response_body.getCode().equals("200")) {
-                        Log.i("200", response_body.getMessage());
+                    if (!response_body.getError()) {
                         Dialog dialog = new ShowDialog().success(ForgotPasswordActivity.this, response_body.getMessage());
                         dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                             @Override
@@ -153,7 +152,6 @@ public class ForgotPasswordActivity extends AppCompatActivity implements OnClick
                         });
 
                     } else {
-                        Log.i(response_body.getCode(), response_body.getMessage());
                         new ShowDialog().error(ForgotPasswordActivity.this, response_body.getMessage());
                     }
                 } else {

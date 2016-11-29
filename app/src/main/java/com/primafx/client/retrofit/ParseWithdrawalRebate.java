@@ -29,7 +29,7 @@ public class ParseWithdrawalRebate {
         this.authKey = authKey;
         this.app = "android";
         this.usd = usd;
-        this.preview = "true";
+        this.preview = "false";
     }
 
     public Integer getCode() {

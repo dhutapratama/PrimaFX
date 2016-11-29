@@ -80,9 +80,10 @@ public class CallMeActivity extends AppCompatActivity implements AdapterView.OnI
         btnPickDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DatePickerFragment dialog = new DatePickerFragment(mDateSetListener);
+                DatePickerFragment dialog = new DatePickerFragment();
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 dialog.show(ft, "DatePicker");
+                dialog.setCallBack(mDateSetListener);
 
             }
         });
@@ -91,9 +92,10 @@ public class CallMeActivity extends AppCompatActivity implements AdapterView.OnI
         btnPickHour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TimePickerFragment dialog = new TimePickerFragment(mTimeSetListener);
+                TimePickerFragment dialog = new TimePickerFragment();
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 dialog.show(ft, "TimePicker");
+                dialog.setCallBack(mTimeSetListener);
             }
         });
 

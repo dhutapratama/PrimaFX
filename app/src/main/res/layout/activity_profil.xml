@@ -117,7 +117,7 @@
         android:layout_below="@+id/textView34"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/textRekening" />
+        android:id="@+id/textStatusRebate" />
 
     <LinearLayout
         android:orientation="vertical"

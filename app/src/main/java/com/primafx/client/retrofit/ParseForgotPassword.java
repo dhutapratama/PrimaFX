@@ -8,21 +8,23 @@ public class ParseForgotPassword {
     private String email;
 
     // Reply Parameter
-    @SerializedName("code")
-    private String code;
+    @SerializedName("error")
+    private Boolean error;
     @SerializedName("message")
     private String message;
+    @Expose
+    private ResponseData data;
 
     public ParseForgotPassword(String email) {
         this.email = email;
     }
 
-    public String getCode() {
-        return code;
+    public Boolean getError() {
+        return error;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setError(Boolean error) {
+        this.error = error;
     }
 
     public String getMessage() {
@@ -31,6 +33,14 @@ public class ParseForgotPassword {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public void setData(ResponseData data) {
+        this.data = data;
+    }
+
+    public class ResponseData {
+
     }
 
 }

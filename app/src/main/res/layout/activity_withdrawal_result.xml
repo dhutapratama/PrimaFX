@@ -37,7 +37,7 @@
         android:text="Bank" />
 
     <TextView
-        android:id="@+id/textRekening"
+        android:id="@+id/textBank"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -51,11 +51,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/textRekening"
+        android:layout_below="@+id/textBank"
         android:text="-" />
 
     <TextView
-        android:id="@+id/textFromTo"
+        android:id="@+id/textRekening"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -149,7 +149,6 @@
             android:id="@+id/textView26"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/relativeLayout10"
             android:layout_centerHorizontal="true"
             android:text="Total Transfer" />
 
@@ -169,6 +168,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/textFromTo"
+        android:layout_below="@+id/textRekening"
         android:text="-" />
 </RelativeLayout>

@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "993656556887-1cr569mkkb9skp3iami5gfsmagkq3j64.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.primafx.client",
+            "certificate_hash": "EBEEFD2768EB73FD645C2A6D7FF3B18E716AF302"
+          }
+        },
+        {
           "client_id": "993656556887-5qnaiuja06dn827e539apldba75u7039.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

@@ -2,10 +2,14 @@ package com.primafx.client.activity;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -17,13 +21,18 @@ import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import com.primafx.client.R;
 import com.primafx.client.database.DatabaseSQL;
 import com.primafx.client.database.GData;
+import com.primafx.client.model.ShakeDetector;
 
 import java.util.HashMap;
 import java.util.List;
-
 public class MainAppActivity extends AppCompatActivity implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
     private SliderLayout mDemoSlider;
     private String[] accounts;
+
+    // The following are used for the shake detection
+    private SensorManager mSensorManager;
+    private Sensor mAccelerometer;
+    private ShakeDetector mShakeDetector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +42,9 @@ public class MainAppActivity extends AppCompatActivity implements BaseSliderView
         mDemoSlider = (SliderLayout)findViewById(R.id.slider);
 
         HashMap<String, String> url_maps = new HashMap<>();
-        url_maps.put("PrimaPAY", "http://static2.hypable.com/wp-content/uploads/2013/12/hannibal-season-2-release-date.jpg");
-        url_maps.put("Kelola Akun Trading", "http://tvfiles.alphacoders.com/100/hdclearart-10.png");
-        url_maps.put("Obrolan", "http://images.boomsbeat.com/data/images/full/19640/game-of-thrones-season-4-jpg.jpg");
+        url_maps.put("PrimaFX APPS", "https://scontent-sin6-1.xx.fbcdn.net/v/t1.0-9/15241870_10209160350859993_290611551922635755_n.jpg?oh=76a352e177017662d53a49aa7d5a991d&oe=58F846B3");
+        url_maps.put("Shake Me to get surprize", "https://scontent-sin6-1.xx.fbcdn.net/v/t1.0-9/15178091_10209160351019997_151380428978250262_n.jpg?oh=ab47f3d07a8fc37eceb785960d431f59&oe=58C0A8F4");
+        url_maps.put("Please review to us", "https://scontent-sin6-1.xx.fbcdn.net/v/t1.0-9/15267980_10209160350779991_159181351555252594_n.jpg?oh=73f600449433e7e8d6e52ee9cec2e15f&oe=58FB97B6");
 
         for(String name : url_maps.keySet()){
             TextSliderView textSliderView = new TextSliderView(this);
@@ -43,7 +52,7 @@ public class MainAppActivity extends AppCompatActivity implements BaseSliderView
             textSliderView
                     .description(name)
                     .image(url_maps.get(name))
-                    .setScaleType(BaseSliderView.ScaleType.Fit)
+                    .setScaleType(BaseSliderView.ScaleType.CenterCrop)
                     .setOnSliderClickListener(this);
 
             //add your extra information
@@ -97,6 +106,30 @@ public class MainAppActivity extends AppCompatActivity implements BaseSliderView
                 startActivity(intent);
             }
         });
+
+        // ShakeDetector initialization
+        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        mAccelerometer = mSensorManager
+                .getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        mShakeDetector = new ShakeDetector();
+        mShakeDetector.setOnShakeListener(new ShakeDetector.OnShakeListener() {
+
+            @Override
+            public void onShake(int count) {
+				/*
+				 * The following method, "handleShakeEvent(count):" is a stub //
+				 * method you would use to setup whatever you want done once the
+				 * device has been shook.
+				 */
+
+                Log.i("SHAKE", Integer.toString(count));
+
+                if (count > 4) {
+                    Intent intent = new Intent(MainAppActivity.this, TestingApiActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
     }
 
     // Account Switcher
@@ -147,6 +180,18 @@ public class MainAppActivity extends AppCompatActivity implements BaseSliderView
 
     @Override
     public void onPageScrollStateChanged(int state) {}
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Add the following line to register the Session Manager Listener onResume
+        mSensorManager.registerListener(mShakeDetector, mAccelerometer,	SensorManager.SENSOR_DELAY_UI);
+    }
 
+    @Override
+    public void onPause() {
+        // Add the following line to unregister the Sensor Manager onPause
+        mSensorManager.unregisterListener(mShakeDetector);
+        super.onPause();
+    }
 
 }

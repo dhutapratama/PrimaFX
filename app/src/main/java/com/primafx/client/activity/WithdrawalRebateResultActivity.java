@@ -23,9 +23,9 @@ public class WithdrawalRebateResultActivity extends AppCompatActivity {
         TextView textName = (TextView) findViewById(R.id.textName);
         TextView textUsd = (TextView) findViewById(R.id.textUsd);
 
-        TextView textRekening = (TextView) findViewById(R.id.textRekening);
+        TextView textRekening = (TextView) findViewById(R.id.textBank);
         TextView textNama = (TextView) findViewById(R.id.textNama);
-        TextView textBank = (TextView) findViewById(R.id.textFromTo);
+        TextView textBank = (TextView) findViewById(R.id.textRekening);
         TextView textKurs = (TextView) findViewById(R.id.textKurs);
 
         TextView textTotalTransfer = (TextView) findViewById(R.id.textTotalTransfer);

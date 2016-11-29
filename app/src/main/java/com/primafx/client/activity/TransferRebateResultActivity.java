@@ -21,7 +21,7 @@ public class TransferRebateResultActivity extends AppCompatActivity {
 
         TextView textAccount = (TextView) findViewById(R.id.textAccount);
         TextView textUsd = (TextView) findViewById(R.id.textUsd);
-        TextView textAccountTujuan = (TextView) findViewById(R.id.textRekening);
+        TextView textAccountTujuan = (TextView) findViewById(R.id.textBank);
         TextView textNama = (TextView) findViewById(R.id.textNama);
 
         textAccount.setText(intent.getStringExtra("akun"));

@@ -344,12 +344,12 @@
 
                     <TextView
                         android:text="textBank"
+                        android:id="@+id/textBank"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/textView31"
                         android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true"
-                        android:id="@+id/textBank" />
+                        android:layout_alignParentStart="true" />
 
                     <TextView
                         android:text="Nomor Rekening"
@@ -410,7 +410,7 @@
                             android:id="@+id/textView36"
                             android:textAlignment="center"
                             android:textStyle="normal|bold"
-                            android:textColor="@android:color/white"></TextView>
+                            android:textColor="@android:color/white"/>
                     </LinearLayout>
 
                     <TextView
@@ -553,7 +553,7 @@
                             android:id="@+id/textTitleRebate"
                             android:textAlignment="center"
                             android:textStyle="normal|bold"
-                            android:textColor="@android:color/white"></TextView>
+                            android:textColor="@android:color/white" />
                     </LinearLayout>
 
                     <TextView

@@ -7,7 +7,7 @@
 
 
     <TextView
-        android:id="@+id/textTanggal"
+        android:id="@+id/textPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -22,7 +22,7 @@
         android:layout_height="1dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/textTanggal"
+        android:layout_below="@+id/textPassword"
         android:layout_marginBottom="5dp"
         android:background="@color/colorBlueSoft"></View>
 
@@ -36,7 +36,7 @@
         android:text="Deposit" />
 
     <TextView
-        android:id="@+id/textFromTo"
+        android:id="@+id/textRekening"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/view"
