@@ -12,9 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.primafx.client.R;
@@ -23,10 +21,6 @@ import com.primafx.client.dialog.ShowDialog;
 import com.primafx.client.retrofit.ParseDataTransferRebate;
 import com.primafx.client.retrofit.ParseTransferRebate;
 import com.primafx.client.retrofit.RequestLibrary;
-
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
-import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -72,7 +66,7 @@ public class RebateAccountActivity extends AppCompatActivity  implements Adapter
             }
         });
 
-        TextView account = (TextView) findViewById(R.id.textAccount);
+        TextView account = (TextView) findViewById(R.id.textTypeOrder);
         account.setText("#"+GData.CURRENT_ACCOUNT);
     }
 
@@ -125,7 +119,7 @@ public class RebateAccountActivity extends AppCompatActivity  implements Adapter
 
         String host = GData.API_ADDRESS;
 
-        ParseTransferRebate jsonSend = new ParseTransferRebate(akun, authKey, usd, pay_number);
+        ParseTransferRebate jsonSend = new ParseTransferRebate(akun, authKey, usd, pay_number, preview);
         Retrofit retrofit = new Retrofit.Builder().baseUrl(host)
                 .addConverterFactory(GsonConverterFactory.create()).build();
         RequestLibrary requestLibrary = retrofit.create(RequestLibrary.class);

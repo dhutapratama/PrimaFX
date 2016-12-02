@@ -71,7 +71,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/textAccount"
+                android:id="@+id/textTypeOrder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"

@@ -255,7 +255,7 @@
                         android:text="Akun"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textView20"
+                        android:id="@+id/labelTypeOrder"
                         android:textStyle="normal|bold"
                         android:layout_below="@+id/title"
                         android:layout_alignParentLeft="true"
@@ -266,8 +266,8 @@
                         android:text="textAccount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textAccount"
-                        android:layout_below="@+id/textView20"
+                        android:id="@+id/textTypeOrder"
+                        android:layout_below="@+id/labelTypeOrder"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true" />
 
@@ -275,10 +275,10 @@
                         android:text="Nama"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/textAccount"
+                        android:layout_below="@+id/textTypeOrder"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
-                        android:id="@+id/textView22"
+                        android:id="@+id/labelTanggal"
                         android:textStyle="normal|bold"
                         android:layout_marginTop="16dp" />
 
@@ -286,19 +286,19 @@
                         android:text="textName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/textView22"
+                        android:layout_below="@+id/labelTanggal"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
-                        android:id="@+id/textName" />
+                        android:id="@+id/textDate" />
 
                     <TextView
                         android:text="Nomor Handphone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/textName"
+                        android:layout_below="@+id/textDate"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
-                        android:id="@+id/textView24"
+                        android:id="@+id/labelTanggalOrder"
                         android:textStyle="normal|bold"
                         android:layout_marginTop="16dp" />
 
@@ -306,16 +306,16 @@
                         android:text="textPhone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/textView24"
+                        android:layout_below="@+id/labelTanggalOrder"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
-                        android:id="@+id/textPhone" />
+                        android:id="@+id/textTglOrder" />
 
                     <TextView
                         android:text="Email"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/textPhone"
+                        android:layout_below="@+id/textTglOrder"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
                         android:id="@+id/bank"
@@ -329,25 +329,25 @@
                         android:layout_below="@+id/bank"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
-                        android:id="@+id/textEmail" />
+                        android:id="@+id/textTglTransfer" />
 
                     <TextView
                         android:text="Bank"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/textEmail"
+                        android:layout_below="@+id/textTglTransfer"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
-                        android:id="@+id/textView31"
+                        android:id="@+id/labelTanggalProses"
                         android:textStyle="normal|bold"
                         android:layout_marginTop="16dp" />
 
                     <TextView
                         android:text="textBank"
-                        android:id="@+id/textBank"
+                        android:id="@+id/textTglProses"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/textView31"
+                        android:layout_below="@+id/labelTanggalProses"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true" />
 
@@ -355,10 +355,10 @@
                         android:text="Nomor Rekening"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textView34"
+                        android:id="@+id/labelTanggalAudit"
                         android:textStyle="normal|bold"
                         android:layout_marginTop="15dp"
-                        android:layout_below="@+id/textBank"
+                        android:layout_below="@+id/textTglProses"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true" />
 
@@ -366,7 +366,7 @@
                         android:text="textRekening"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/textView34"
+                        android:layout_below="@+id/labelTanggalAudit"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
                         android:id="@+id/textRekening" />
@@ -386,7 +386,7 @@
                         android:text="textAtasNama"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textAtasNama"
+                        android:id="@+id/textPayName"
                         android:layout_below="@+id/textView46"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true" />
@@ -418,7 +418,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/textView2"
-                        android:layout_above="@+id/textAccount"
+                        android:layout_above="@+id/textTypeOrder"
                         android:layout_alignParentRight="true"
                         android:layout_alignParentEnd="true"
                         android:textStyle="normal|bold" />
@@ -437,7 +437,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/textView28"
-                        android:layout_above="@+id/textName"
+                        android:layout_above="@+id/textDate"
                         android:layout_alignParentRight="true"
                         android:layout_alignParentEnd="true"
                         android:textStyle="normal|bold" />
@@ -456,8 +456,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/textView38"
-                        android:layout_alignBaseline="@+id/textView24"
-                        android:layout_alignBottom="@+id/textView24"
+                        android:layout_alignBaseline="@+id/labelTanggalOrder"
+                        android:layout_alignBottom="@+id/labelTanggalOrder"
                         android:layout_alignParentRight="true"
                         android:layout_alignParentEnd="true"
                         android:textStyle="normal|bold" />
@@ -496,8 +496,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/textView42"
-                        android:layout_alignBaseline="@+id/textView31"
-                        android:layout_alignBottom="@+id/textView31"
+                        android:layout_alignBaseline="@+id/labelTanggalProses"
+                        android:layout_alignBottom="@+id/labelTanggalProses"
                         android:layout_alignParentRight="true"
                         android:layout_alignParentEnd="true"
                         android:textStyle="normal|bold" />
@@ -516,8 +516,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/textView44"
-                        android:layout_alignBaseline="@+id/textView34"
-                        android:layout_alignBottom="@+id/textView34"
+                        android:layout_alignBaseline="@+id/labelTanggalAudit"
+                        android:layout_alignBottom="@+id/labelTanggalAudit"
                         android:layout_alignParentRight="true"
                         android:layout_alignParentEnd="true"
                         android:textStyle="normal|bold" />
@@ -541,7 +541,7 @@
                         android:gravity="center"
                         android:background="@color/colorRed"
                         android:padding="5dp"
-                        android:layout_below="@+id/textAtasNama"
+                        android:layout_below="@+id/textPayName"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
                         android:layout_marginTop="16dp">

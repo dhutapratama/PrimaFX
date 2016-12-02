@@ -176,8 +176,12 @@ public class CallMeActivity extends AppCompatActivity implements AdapterView.OnI
                             }
                         });
                     } else {
-                        setData(response_body);
-                        new ShowDialog().success(CallMeActivity.this, "Call Me Back telah berhasil dikirimkan. Support kami akan segera menghubungi anda sesuai dengan jadwal yang anda kirimkan.");
+                        new ShowDialog().success(CallMeActivity.this, "Call Me Back telah berhasil dikirimkan. Support kami akan segera menghubungi anda sesuai dengan jadwal yang anda kirimkan.").setOnDismissListener(new DialogInterface.OnDismissListener() {
+                            @Override
+                            public void onDismiss(DialogInterface dialogInterface) {
+                                finish();
+                            }
+                        });
                     }
                 } else {
                     Log.e("Server Problem", "Server Responding but error callback : " + response.message());
@@ -192,15 +196,6 @@ public class CallMeActivity extends AppCompatActivity implements AdapterView.OnI
                 new ShowDialog().error(CallMeActivity.this, "Tidak dapat terhubung, terjadi masalah jaringan.");
             }
         });
-    }
-
-    public void setData(ParseCallMeBack data) {
-        Log.i("nama", data.getData().getNama());
-        Log.i("phone", data.getData().getPhone());
-        Log.i("email", data.getData().getEmail());
-        Log.i("support", data.getData().getSupport());
-        Log.i("time", data.getData().getTime());
-        Log.i("date", data.getData().getDate());
     }
 
     TimePickerDialog.OnTimeSetListener mTimeSetListener =

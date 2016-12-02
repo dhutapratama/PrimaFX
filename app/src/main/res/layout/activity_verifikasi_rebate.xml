@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_verifikasi_rebate"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.primafx.client.activity.VerifikasiRebate">
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:layout_below="@+id/textView23"
+        android:id="@+id/editText4"
+        android:hint="Kode SMS"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:text="Kode verifikasi transfer rebate anda kami kirimkan melalui sms, aplikasi akan mendeteksi secara otomatis atau anda dapat mengisikan secara manual."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView23"
+        android:layout_centerHorizontal="true"
+        android:gravity="center" />
+
+    <Button
+        android:text="Kirim Ulang (150 detik)"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonRequest"
+        android:clickable="false"
+        android:background="@drawable/btn_white_blue"
+        android:padding="10dp"
+        android:shadowColor="@null"
+        android:textColor="@color/colorRed"
+        android:textSize="12sp"
+        android:layout_below="@+id/buttonConfirm"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp" />
+
+    <Button
+        android:text="Konfirmasi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonConfirm"
+        android:background="@drawable/btn_white_blue"
+        android:padding="10dp"
+        android:shadowColor="@null"
+        android:textColor="@color/colorBlueSoft"
+        android:textSize="12sp"
+        android:layout_marginTop="16dp"
+        android:layout_below="@+id/editText4"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>

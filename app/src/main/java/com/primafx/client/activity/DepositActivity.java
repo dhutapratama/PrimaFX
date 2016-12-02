@@ -5,16 +5,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.Interpolator;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -23,15 +19,8 @@ import com.primafx.client.R;
 import com.primafx.client.database.GData;
 import com.primafx.client.dialog.ShowDialog;
 import com.primafx.client.retrofit.ParseDataDeposit;
-import com.primafx.client.retrofit.ParseDataDepositInquiry;
 import com.primafx.client.retrofit.ParseDeposit;
-import com.primafx.client.retrofit.ParseDepositInquiry;
 import com.primafx.client.retrofit.RequestLibrary;
-
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
-import java.text.NumberFormat;
-import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -62,7 +51,7 @@ public class DepositActivity extends AppCompatActivity implements AdapterView.On
         spinnerBank.setOnItemSelectedListener(this);
         editTotal = (EditText) findViewById(R.id.editTotal);
 
-        TextView account = (TextView) findViewById(R.id.textAccount);
+        TextView account = (TextView) findViewById(R.id.textTypeOrder);
         account.setText("#"+GData.CURRENT_ACCOUNT);
     }
 

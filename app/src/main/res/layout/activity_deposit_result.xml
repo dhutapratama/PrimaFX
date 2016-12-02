@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/textBank"
+        android:layout_below="@+id/textTglProses"
         android:text="-"
         android:visibility="invisible"
         android:layout_width="150dp"
@@ -72,7 +72,7 @@
         android:text="Account" />
 
     <TextView
-        android:id="@+id/textAccount"
+        android:id="@+id/textTypeOrder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -95,7 +95,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/textAccount"
+        android:layout_below="@+id/textTypeOrder"
         android:text="$0" />
 
     <TextView
@@ -147,7 +147,7 @@
         android:layout_alignParentStart="true" />
 
     <TextView
-        android:id="@+id/textBank"
+        android:id="@+id/textTglProses"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="-"

@@ -12,9 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.primafx.client.R;
@@ -23,10 +21,6 @@ import com.primafx.client.dialog.ShowDialog;
 import com.primafx.client.retrofit.ParseDataWithdrawalRebate;
 import com.primafx.client.retrofit.ParseWithdrawalRebate;
 import com.primafx.client.retrofit.RequestLibrary;
-
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
-import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -77,7 +71,7 @@ public class RebateBankActivity extends AppCompatActivity implements AdapterView
             }
         });
 
-        TextView account = (TextView) findViewById(R.id.textAccount);
+        TextView account = (TextView) findViewById(R.id.textTypeOrder);
         account.setText("#"+GData.CURRENT_ACCOUNT);
     }
 

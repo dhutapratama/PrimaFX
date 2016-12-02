@@ -449,7 +449,7 @@ public class MainManageActivity extends AppCompatActivity
         });
     }
 
-    public void setData(ParseHistory data) {
+    public void setData(final ParseHistory data) {
         final List<HashMap<String, String>> aList = new ArrayList<>();
         for (int i = 0; i < data.getData().size(); i++) {
             Log.i("listCode", data.getData().get(i).getListCode());
@@ -488,6 +488,8 @@ public class MainManageActivity extends AppCompatActivity
             hm.put("status", data.getData().get(i).getStatus());
             hm.put("result", data.getData().get(i).getResult());
             aList.add(hm);
+
+
         }
 
         String[] from = { "tgl_order", "pay_to", "type_order", "status",  "total",  "usd" };
@@ -500,7 +502,25 @@ public class MainManageActivity extends AppCompatActivity
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                new ShowDialog().success(MainManageActivity.this, Integer.toString(position));
+
+                Intent intent = new Intent(MainManageActivity.this, HistoryDetailActivity.class);
+
+                intent.putExtra("type_order", data.getData().get(position).getType_order());
+                intent.putExtra("date", data.getData().get(position).getDate());
+                intent.putExtra("tgl_order", data.getData().get(position).getTgl_order());
+                intent.putExtra("tgl_transfer", data.getData().get(position).getTgl_transfer());
+                intent.putExtra("tgl_proses", data.getData().get(position).getTgl_proses());
+                intent.putExtra("tgl_audit", data.getData().get(position).getTgl_audit());
+                intent.putExtra("akun", data.getData().get(position).getAkun());
+                intent.putExtra("usd", data.getData().get(position).getUsd());
+                intent.putExtra("kurs", data.getData().get(position).getKurs());
+                intent.putExtra("total", data.getData().get(position).getTotal());
+                intent.putExtra("pay_to", data.getData().get(position).getPay_to());
+                intent.putExtra("pay_number", data.getData().get(position).getPay_number());
+                intent.putExtra("pay_name", data.getData().get(position).getPay_name());
+                intent.putExtra("status", data.getData().get(position).getStatus());
+                intent.putExtra("keterangan", data.getData().get(position).getResult());
+                startActivity(intent);
             }
         });
     }
@@ -577,7 +597,7 @@ public class MainManageActivity extends AppCompatActivity
         });
     }
 
-    public void setData(ParseHistoryFind data) {
+    public void setData(final ParseHistoryFind data) {
         final List<HashMap<String, String>> aList = new ArrayList<>();
         for (int i = 0; i < data.getData().size(); i++) {
             Log.i("listCode", data.getData().get(i).getListCode());
@@ -628,7 +648,25 @@ public class MainManageActivity extends AppCompatActivity
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                new ShowDialog().success(MainManageActivity.this, Integer.toString(position));
+                Intent intent = new Intent(MainManageActivity.this, HistoryDetailActivity.class);
+
+                intent.putExtra("type_order", data.getData().get(position).getType_order());
+                intent.putExtra("date", data.getData().get(position).getDate());
+                intent.putExtra("tgl_order", data.getData().get(position).getTgl_order());
+                intent.putExtra("tgl_transfer", data.getData().get(position).getTgl_transfer());
+                intent.putExtra("tgl_proses", data.getData().get(position).getTgl_proses());
+                intent.putExtra("tgl_audit", data.getData().get(position).getTgl_audit());
+                intent.putExtra("akun", data.getData().get(position).getAkun());
+                intent.putExtra("usd", data.getData().get(position).getUsd());
+                intent.putExtra("kurs", data.getData().get(position).getKurs());
+                intent.putExtra("total", data.getData().get(position).getTotal());
+                intent.putExtra("pay_to", data.getData().get(position).getPay_to());
+                intent.putExtra("pay_number", data.getData().get(position).getPay_number());
+                intent.putExtra("pay_name", data.getData().get(position).getPay_name());
+                intent.putExtra("status", data.getData().get(position).getStatus());
+                intent.putExtra("keterangan", data.getData().get(position).getResult());
+                startActivity(intent);
+
             }
         });
     }
@@ -702,13 +740,13 @@ public class MainManageActivity extends AppCompatActivity
             Log.i("phone", data.getData().getdAkunRbt().getPhone());
         }
 
-        TextView textAccount = (TextView)findViewById(R.id.textAccount);
-        TextView textName = (TextView)findViewById(R.id.textName);
-        TextView textPhone = (TextView)findViewById(R.id.textPhone);
-        TextView textEmail = (TextView)findViewById(R.id.textEmail);
-        TextView textBank = (TextView)findViewById(R.id.textBank);
-        TextView textRekening = (TextView)findViewById(R.id.textBank);
-        TextView textAtasNama = (TextView)findViewById(R.id.textAtasNama);
+        TextView textAccount = (TextView)findViewById(R.id.textTypeOrder);
+        TextView textName = (TextView)findViewById(R.id.textDate);
+        TextView textPhone = (TextView)findViewById(R.id.textTglOrder);
+        TextView textEmail = (TextView)findViewById(R.id.textTglTransfer);
+        TextView textBank = (TextView)findViewById(R.id.textTglProses);
+        TextView textRekening = (TextView)findViewById(R.id.textTglProses);
+        TextView textAtasNama = (TextView)findViewById(R.id.textPayName);
         TextView textRegistrationDate = (TextView)findViewById(R.id.textRegistrationDate);
         TextView textValidationDate = (TextView)findViewById(R.id.textValidationDate);
         TextView textAgen = (TextView)findViewById(R.id.textAgen);

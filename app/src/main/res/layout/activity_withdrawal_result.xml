@@ -37,7 +37,7 @@
         android:text="Bank" />
 
     <TextView
-        android:id="@+id/textBank"
+        android:id="@+id/textTglProses"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/textBank"
+        android:layout_below="@+id/textTglProses"
         android:text="-" />
 
     <TextView
@@ -83,7 +83,7 @@
         android:text="Nama Account" />
 
     <TextView
-        android:id="@+id/textAccount"
+        android:id="@+id/textTypeOrder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -92,12 +92,12 @@
         android:text="#" />
 
     <TextView
-        android:id="@+id/textName"
+        android:id="@+id/textDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/textAccount"
+        android:layout_below="@+id/textTypeOrder"
         android:text="-" />
 
     <TextView
@@ -125,7 +125,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/textName"
+        android:layout_below="@+id/textDate"
         android:text="$0" />
 
     <TextView

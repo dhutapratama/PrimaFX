@@ -82,7 +82,7 @@
         android:layout_marginTop="16dp">
 
         <TextView
-            android:id="@+id/textView12"
+            android:id="@+id/labelPayTo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -100,7 +100,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/textView12"
+            android:layout_below="@+id/labelPayTo"
             android:layout_marginTop="10dp"
             android:text="@string/full_description"
             android:textAppearance="?android:attr/textAppearanceSmall" />

@@ -29,7 +29,7 @@
         android:text="Nama" />
 
     <TextView
-        android:id="@+id/textBank"
+        android:id="@+id/textTglProses"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/textBank"
+        android:layout_below="@+id/textTglProses"
         android:text="-" />
 
     <TextView
@@ -57,7 +57,7 @@
         android:text="Account" />
 
     <TextView
-        android:id="@+id/textAccount"
+        android:id="@+id/textTypeOrder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -90,7 +90,21 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/textAccount"
+        android:layout_below="@+id/textTypeOrder"
         android:text="$0" />
+
+    <Button
+        android:text="LANJUNTKAN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonLanjutkan"
+        android:layout_below="@+id/textView7"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:textSize="12sp"
+        android:background="@drawable/btn_white_blue"
+        android:padding="5dp"
+        android:shadowColor="@null"
+        android:textColor="@color/colorBlueSoft" />
 
 </RelativeLayout>

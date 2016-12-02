@@ -113,5 +113,10 @@ public interface RequestLibrary {
     @Headers({"User-Agent: PrimaFX 1.0", "Content-Type: application/json"})
     @POST("trader/useracc")
     Call<ParseGetAccounts> getAccounts(@Body ParseGetAccounts value);
+
+    // Update GCM
+    @Headers({"User-Agent: PrimaFX 1.0", "Content-Type: application/json"})
+    @POST("trader/update-gcm")
+    Call<ParseUpdateGCM> updateGCM(@Body ParseUpdateGCM value);
 }
 

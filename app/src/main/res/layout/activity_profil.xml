@@ -10,115 +10,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.primafx.client.activity.ProfilActivity">
 
-    <TextView
-        android:text="Nama"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textAccount"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/textView22"
-        android:textStyle="normal|bold"
-        android:layout_marginTop="16dp" />
-
-    <TextView
-        android:text="#4345345"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textAccount"
-        android:layout_below="@+id/textView20"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:text="Nama Trader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView22"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/textName" />
-
-    <TextView
-        android:text="Nomor Handphone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textName"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/textView24"
-        android:textStyle="normal|bold"
-        android:layout_marginTop="16dp" />
-
-    <TextView
-        android:text="08123545487484"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView24"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/textPhone" />
-
-    <TextView
-        android:text="Bank"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textPhone"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/bank"
-        android:textStyle="normal|bold"
-        android:layout_marginTop="16dp" />
-
-    <TextView
-        android:text="BCA"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/bank"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/textEmail" />
-
-    <TextView
-        android:text="Nomor Rekening"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textEmail"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/textView31"
-        android:textStyle="normal|bold"
-        android:layout_marginTop="16dp" />
-
-    <TextView
-        android:text="548621654984"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView31"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/textBank" />
-
-    <TextView
-        android:text="Status Rebate Otomatis"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textBank"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/textView34"
-        android:textStyle="normal|bold"
-        android:layout_marginTop="16dp" />
-
-    <TextView
-        android:text="Aktif"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView34"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/textStatusRebate" />
-
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -145,10 +36,120 @@
         android:text="Akun"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView20"
+        android:id="@+id/labelTypeOrder"
         android:textStyle="normal|bold"
         android:layout_below="@+id/title"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="16dp" />
+
+    <TextView
+        android:text="#4345345"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textTypeOrder"
+        android:layout_below="@+id/labelTypeOrder"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Nama"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textTypeOrder"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/labelTanggal"
+        android:textStyle="normal|bold"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:text="Nama Trader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/labelTanggal"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/textDate" />
+
+    <TextView
+        android:text="Nomor Handphone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textDate"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/labelTanggalOrder"
+        android:textStyle="normal|bold"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:text="08123545487484"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/labelTanggalOrder"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/textTglOrder" />
+
+    <TextView
+        android:text="Bank"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textTglOrder"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/bank"
+        android:textStyle="normal|bold"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:text="BCA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bank"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/textTglTransfer" />
+
+    <TextView
+        android:text="Nomor Rekening"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textTglTransfer"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/labelTanggalProses"
+        android:textStyle="normal|bold"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:text="548621654984"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/labelTanggalProses"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/textTglProses" />
+
+    <TextView
+        android:text="Status Rebate Otomatis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textTglProses"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/labelTanggalAudit"
+        android:textStyle="normal|bold"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:text="Aktif"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/labelTanggalAudit"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/textStatusRebate" />
+
 </RelativeLayout>

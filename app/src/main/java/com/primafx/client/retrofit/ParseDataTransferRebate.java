@@ -22,6 +22,10 @@ public class ParseDataTransferRebate {
     private String pay_name;
     @SerializedName("usd")
     private String usd;
+    @SerializedName("status")
+    private String status;
+    @SerializedName("result")
+    private String result;
 
     public String getType_order() {
         return type_order;
@@ -77,5 +81,21 @@ public class ParseDataTransferRebate {
 
     public void setUsd(String usd) {
         this.usd = usd;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getResult() {
+        return result;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
     }
 }

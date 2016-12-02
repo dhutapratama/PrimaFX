@@ -32,7 +32,7 @@ public class ParseCallMeBack {
         this.support = support;
         this.date = date;
         this.time = time;
-        this.preview = "true";
+        this.preview = "false";
     }
 
     public Boolean getError() {

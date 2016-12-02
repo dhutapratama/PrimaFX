@@ -40,9 +40,9 @@ public class DepositResultActivity extends AppCompatActivity {
 
         final Intent intent = getIntent();
 
-        TextView textAccount = (TextView) findViewById(R.id.textAccount);
+        TextView textAccount = (TextView) findViewById(R.id.textTypeOrder);
         TextView textUsd = (TextView) findViewById(R.id.textUsd);
-        TextView textBank = (TextView) findViewById(R.id.textBank);
+        TextView textBank = (TextView) findViewById(R.id.textTglProses);
         TextView textSubtotal = (TextView) findViewById(R.id.textSubTotal);
 
 

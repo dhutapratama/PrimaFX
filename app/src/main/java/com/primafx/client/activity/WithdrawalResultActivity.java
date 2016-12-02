@@ -19,11 +19,11 @@ public class WithdrawalResultActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        TextView textAccount = (TextView) findViewById(R.id.textAccount);
-        TextView textName = (TextView) findViewById(R.id.textName);
+        TextView textAccount = (TextView) findViewById(R.id.textTypeOrder);
+        TextView textName = (TextView) findViewById(R.id.textDate);
         TextView textUsd = (TextView) findViewById(R.id.textUsd);
 
-        TextView textRekening = (TextView) findViewById(R.id.textBank);
+        TextView textRekening = (TextView) findViewById(R.id.textTglProses);
         TextView textNama = (TextView) findViewById(R.id.textNama);
         TextView textBank = (TextView) findViewById(R.id.textRekening);
         TextView textKurs = (TextView) findViewById(R.id.textKurs);

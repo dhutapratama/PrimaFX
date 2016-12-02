@@ -23,13 +23,13 @@ public class ParseTransferRebate {
     @Expose
     private ParseDataTransferRebate data;
 
-    public ParseTransferRebate(String akun, String authKey, String usd, String pay_number) {
+    public ParseTransferRebate(String akun, String authKey, String usd, String pay_number, String preview) {
         this.akun = akun;
         this.authKey = authKey;
         this.app = "android";
         this.usd = usd;
         this.pay_number = pay_number;
-        this.preview = "true";
+        this.preview = preview;
     }
 
     public Boolean getError() {
