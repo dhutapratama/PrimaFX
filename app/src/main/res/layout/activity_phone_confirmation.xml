@@ -17,7 +17,7 @@
         android:inputType="number"
         android:ems="10"
         android:layout_below="@+id/textView23"
-        android:id="@+id/editText4"
+        android:id="@+id/editKodeSMS"
         android:hint="Kode SMS"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp" />
@@ -56,6 +56,6 @@
         android:textColor="@color/colorBlueSoft"
         android:textSize="12sp"
         android:layout_marginTop="16dp"
-        android:layout_below="@+id/editText4"
+        android:layout_below="@+id/editKodeSMS"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>

@@ -15,6 +15,7 @@ public class ParseDepositInquiry {
     private String authKey;
     private String pay_to;
     private String usd;
+    private String app;
     // Reply Parameter
     @SerializedName("code")
     private Integer code;
@@ -30,6 +31,7 @@ public class ParseDepositInquiry {
         this.authKey = authKey;
         this.pay_to = pay_to;
         this.usd = usd;
+        this.app = "android";
     }
 
     public Integer getCode() {

@@ -30,7 +30,6 @@
     <string name="default_buy">Beli</string>
     <string name="simple_description">Simpel deskripsi Simpel deskripsi Simpel deskripsi Simpel deskripsi Simpel deskripsi</string>
     <string name="description">Deskripsi</string>
-    <string name="full_description">Full description Full description Full description Full description Full description Full description Full description Full description Full description Full description Full description Full description Full description Full description Full description Full description Full description Full description Full description Full description Full description Full description Full description</string>
 
     <string-array name="listBank">
         <item>BCA</item>
@@ -65,4 +64,5 @@
     <string name="tab_1">Green</string>
     <string name="tab_2">Red</string>
     <string name="tab_3">Blue</string>
+    <string name="full_description">123</string>
 </resources>

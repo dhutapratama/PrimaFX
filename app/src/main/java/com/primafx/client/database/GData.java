@@ -6,6 +6,6 @@ package com.primafx.client.database;
 public class GData {
     public static String LOGIN_CODE = null;
     public static String FIRST_TIME = null;
-    public static String API_ADDRESS = "http://apis.primafx.com/";
+    public static String API_ADDRESS = "http://api.primafx.com/";
     public static String CURRENT_ACCOUNT = null;
 }

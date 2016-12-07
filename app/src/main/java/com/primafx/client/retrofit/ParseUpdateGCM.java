@@ -10,16 +10,16 @@ import com.google.gson.annotations.SerializedName;
 public class ParseUpdateGCM {
     // Post Parameter
     private String login_hash;
-    private String gcm_address;
+    private String MsgAddrs;
     // Reply Parameter
     @SerializedName("error")
     private Boolean error;
     @SerializedName("message")
     private String message;
 
-    public ParseUpdateGCM(String login_hash, String gcm_address) {
+    public ParseUpdateGCM(String login_hash, String MsgAddrs) {
         this.login_hash = login_hash;
-        this.gcm_address = gcm_address;
+        this.MsgAddrs = MsgAddrs;
     }
 
     public Boolean getError() {

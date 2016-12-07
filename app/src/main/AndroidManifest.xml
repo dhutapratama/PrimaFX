@@ -212,7 +212,6 @@
             android:name=".activity.HistoryDetailActivity"
             android:label="Histori" />
         <activity android:name=".activity.VerifikasiRebate"
-            android:label="Verifikasi Transfer Rebate"></activity>
+            android:label="Verifikasi Transfer Rebate" />
     </application>
-
 </manifest>

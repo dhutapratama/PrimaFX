@@ -31,7 +31,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        //Log.d("Firebase", "InstanceID token: " + FirebaseInstanceId.getInstance().getToken());
+
         DatabaseSQL.getInitialData(this);
         if (GData.FIRST_TIME.equals("true")) {
             Intent i = new Intent(this, IntroActivity.class);

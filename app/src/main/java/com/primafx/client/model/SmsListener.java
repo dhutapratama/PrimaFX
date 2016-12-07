@@ -39,6 +39,9 @@ public class SmsListener extends BroadcastReceiver {
                         String[] verify_code = msgBody.split(" ");
                         if (verify_code[0].equals("Kode") && verify_code[1].equals("verifikasi") && verify_code[2].equals("PrimaFX")){
                             Log.i("Code", verify_code[3]);
+                            Intent in = new Intent("SmsMessage.intent.MAIN").
+                                    putExtra("code", verify_code[3]);
+                            context.sendBroadcast(in);
                         }
 
                         String[] rebate_verify_code = msgBody.split(" ");
@@ -46,7 +49,11 @@ public class SmsListener extends BroadcastReceiver {
                                 && verify_code[3].equals("Rebate")){
                             String[] tf_code = verify_code[10].split("\n");
 
-                            Log.i("TRFCODE", tf_code[0]);
+                            Log.i("TrfCode", tf_code[0]);
+
+                            Intent in = new Intent("SmsMessage.intent.MAIN").
+                                    putExtra("code", tf_code[0]);
+                            context.sendBroadcast(in);
                         }
 
                     }

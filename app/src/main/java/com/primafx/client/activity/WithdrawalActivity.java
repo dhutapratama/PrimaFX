@@ -134,7 +134,7 @@ public class WithdrawalActivity extends AppCompatActivity implements AdapterView
                 if (response.isSuccessful()) {
                     ParseWithdrawal response_body = response.body();
                     if (response_body.getError()) {
-                        new ShowDialog().success(WithdrawalActivity.this, response_body.getMessage()).setOnDismissListener(new DialogInterface.OnDismissListener() {
+                        new ShowDialog().error(WithdrawalActivity.this, response_body.getMessage()).setOnDismissListener(new DialogInterface.OnDismissListener() {
                             @Override
                             public void onDismiss(DialogInterface dialog) {
                                 finish();

@@ -50,15 +50,14 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         Log.d(TAG, remoteMessage.getData().toString());
         Log.d(TAG, remoteMessage.getData().get("message"));
         sendNotification(
-                Integer.parseInt(remoteMessage.getData().get("tickerText")),
+                Integer.parseInt(remoteMessage.getData().get("msg_id")),
                 remoteMessage.getData().get("title"),
-                remoteMessage.getData().get("message"),
-                remoteMessage.getData().get("vibrate"));
+                remoteMessage.getData().get("message"));
 
         //{subtitle=Promo, smallIcon=small_icon, sound=1, title=PrimaFX : Free 10 USD, vibrate=1, largeIcon=large_icon, message=Test, tickerText=6}
     }
 
-    private void sendNotification(Integer id, String title, String message, String vibrate) {
+    private void sendNotification(Integer id, String title, String message) {
         Intent intent = new Intent(this, MainManageActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
@@ -66,7 +65,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.mipmap.ic_launcher)
+                .setSmallIcon(R.mipmap.ic_launcher_2)
                 .setContentTitle(title)
                 .setContentText(message)
                 .setAutoCancel(true)

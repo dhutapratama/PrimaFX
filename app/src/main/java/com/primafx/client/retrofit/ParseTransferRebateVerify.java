@@ -3,19 +3,11 @@ package com.primafx.client.retrofit;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
-/**
- * Created by Technical on 10/4/2016.
- */
-
-public class ParseCheckRebateInquiry {
-
+public class ParseTransferRebateVerify {
     // Post Parameter
     private String akun;
     private String authKey;
-    private String app;
-
+    private String verify_code;
 
     // Reply Parameter
     @SerializedName("error")
@@ -23,12 +15,13 @@ public class ParseCheckRebateInquiry {
     @SerializedName("message")
     private String message;
     @Expose
-    private List<ParseDataRebateInquiry> data;
+    private VerifyCode data;
 
-    public ParseCheckRebateInquiry(String akun, String authKey) {
+    public ParseTransferRebateVerify(String akun, String authKey, String verify_code) {
         this.akun = akun;
         this.authKey = authKey;
-        this.app = "android";
+        this.verify_code = verify_code;
+
     }
 
     public Boolean getError() {
@@ -47,7 +40,11 @@ public class ParseCheckRebateInquiry {
         this.message = message;
     }
 
-    public List<ParseDataRebateInquiry> getData() {
+    public VerifyCode getData() {
         return data;
+    }
+
+    public class VerifyCode{
+
     }
 }

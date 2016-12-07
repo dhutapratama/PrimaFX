@@ -126,16 +126,6 @@ public class TransferRebateResultActivity extends AppCompatActivity {
     }
 
     public void setData(final ParseDataTransferRebate data) {
-        Log.i("Type Order", data.getType_order());
-        Log.i("Akun", data.getAkun());
-        Log.i("Nama", data.getNama());
-        Log.i("Pay To", data.getPay_to());
-        Log.i("Pay Number", data.getPay_number());
-        Log.i("Pay Name", data.getPay_name());
-        Log.i("USD", data.getUsd());
-        Log.i("Status", data.getStatus());
-        Log.i("Result", data.getResult());
-
         if (data.getStatus().equals("verify")) {
             Intent intent = new Intent(TransferRebateResultActivity.this, VerifikasiRebate.class);
             startActivity(intent);

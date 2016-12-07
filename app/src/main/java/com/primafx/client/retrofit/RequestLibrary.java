@@ -118,5 +118,10 @@ public interface RequestLibrary {
     @Headers({"User-Agent: PrimaFX 1.0", "Content-Type: application/json"})
     @POST("trader/update-gcm")
     Call<ParseUpdateGCM> updateGCM(@Body ParseUpdateGCM value);
+
+    // Verify Transfer Rebate
+    @Headers({"User-Agent: PrimaFX 1.0", "Content-Type: application/json"})
+    @POST("client/transfer-rebate/verify")
+    Call<ParseTransferRebateVerify> verifyCode(@Body ParseTransferRebateVerify value);
 }
 

@@ -16,10 +16,11 @@
         android:inputType="number"
         android:ems="10"
         android:layout_below="@+id/textView23"
-        android:id="@+id/editText4"
-        android:hint="Kode SMS"
+        android:id="@+id/editKodeSMS"
+        android:hint="Kode Verifikasi"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp"
+        android:textAlignment="center" />
 
     <TextView
         android:text="Kode verifikasi transfer rebate anda kami kirimkan melalui sms, aplikasi akan mendeteksi secara otomatis atau anda dapat mengisikan secara manual."
@@ -42,7 +43,8 @@
         android:textSize="12sp"
         android:layout_below="@+id/buttonConfirm"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp" />
+        android:layout_marginTop="32dp"
+        android:visibility="gone" />
 
     <Button
         android:text="Konfirmasi"
@@ -55,6 +57,6 @@
         android:textColor="@color/colorBlueSoft"
         android:textSize="12sp"
         android:layout_marginTop="16dp"
-        android:layout_below="@+id/editText4"
+        android:layout_below="@+id/editKodeSMS"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>

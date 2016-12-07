@@ -18,13 +18,24 @@ import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.primafx.client.R;
 import com.primafx.client.database.DatabaseSQL;
 import com.primafx.client.database.GData;
+import com.primafx.client.dialog.ShowDialog;
 import com.primafx.client.model.ShakeDetector;
+import com.primafx.client.retrofit.ParseUpdateGCM;
+import com.primafx.client.retrofit.RequestLibrary;
 
 import java.util.HashMap;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class MainAppActivity extends AppCompatActivity implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
     private SliderLayout mDemoSlider;
     private String[] accounts;
@@ -130,6 +141,8 @@ public class MainAppActivity extends AppCompatActivity implements BaseSliderView
                 }
             }
         });
+
+        updateGCM();
     }
 
     // Account Switcher
@@ -194,4 +207,29 @@ public class MainAppActivity extends AppCompatActivity implements BaseSliderView
         super.onPause();
     }
 
+    private void updateGCM() {
+        String host = GData.API_ADDRESS;
+
+        ParseUpdateGCM jsonSend = new ParseUpdateGCM(GData.LOGIN_CODE, FirebaseInstanceId.getInstance().getToken());
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(host)
+                .addConverterFactory(GsonConverterFactory.create()).build();
+        RequestLibrary requestLibrary = retrofit.create(RequestLibrary.class);
+        Call<ParseUpdateGCM> callData = requestLibrary.updateGCM(jsonSend);
+
+        callData.enqueue(new Callback<ParseUpdateGCM>() {
+            @Override
+            public void onResponse(Call<ParseUpdateGCM> call, Response<ParseUpdateGCM> response) {
+                if (response.isSuccessful()) {
+                    Log.d("Firebase", "InstanceID token: " + FirebaseInstanceId.getInstance().getToken());
+                } else {
+                    Log.e("Server Problem", "Server Responding but error callback : " + response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ParseUpdateGCM> call, Throwable t) {
+                Log.e("Network", "ParseCallMeBack" + t.getMessage());
+            }
+        });
+    }
 }
