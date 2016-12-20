@@ -123,5 +123,15 @@ public interface RequestLibrary {
     @Headers({"User-Agent: PrimaFX 1.0", "Content-Type: application/json"})
     @POST("client/transfer-rebate/verify")
     Call<ParseTransferRebateVerify> verifyCode(@Body ParseTransferRebateVerify value);
+
+    // Change Phone
+    @Headers({"User-Agent: PrimaFX 1.0", "Content-Type: application/json"})
+    @POST("trader/change-phone")
+    Call<ParseChangePhone> changePhone(@Body ParseChangePhone value);
+
+    // Verify Change Phone
+    @Headers({"User-Agent: PrimaFX 1.0", "Content-Type: application/json"})
+    @POST("trader/verify-change-phone")
+    Call<ParseVerifyChangePhone> verifyChangePhone(@Body ParseVerifyChangePhone value);
 }
 

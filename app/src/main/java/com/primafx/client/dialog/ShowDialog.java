@@ -123,4 +123,39 @@ public class ShowDialog {
         return dialog;
     }
 
+    public static Dialog detailRebate(Context context,
+                                      String rebate_id,
+                                      String ticket,
+                                      String tanggal,
+                                      String detail,
+                                      String account,
+                                      String jumlah,
+                                      String waktu_insta,
+                                      String info) {
+        Dialog dialog = new Dialog(context, R.style.IMMEDialog);
+        dialog.setContentView(R.layout.dialog_detail_rebate);
+        dialog.setCancelable(true);
+
+        TextView textRebateID = (TextView)dialog.findViewById(R.id.textRebateID);
+        TextView textTicket = (TextView)dialog.findViewById(R.id.textTicket);
+        TextView textTanggal = (TextView)dialog.findViewById(R.id.textTanggal);
+        TextView textDetail = (TextView)dialog.findViewById(R.id.textDetail);
+        TextView textAccount = (TextView)dialog.findViewById(R.id.textAccount);
+        TextView textJumlah = (TextView)dialog.findViewById(R.id.textJumlah);
+        TextView textWaktuInsta = (TextView)dialog.findViewById(R.id.textInstaTime);
+        TextView textInfo = (TextView)dialog.findViewById(R.id.textInfo);
+
+        textRebateID.setText("ID Rebate : "+rebate_id);
+        textTicket.setText("TICKET : "+ticket);
+        textTanggal.setText("Tanggal : "+tanggal);
+        textDetail.setText("Detail : "+detail);
+        textAccount.setText("Account : "+account);
+        textJumlah.setText("USD : "+jumlah);
+        textWaktuInsta.setText("InstaForex Time : "+waktu_insta);
+        textInfo.setText("Info : "+info);
+
+        dialog.show();
+        return dialog;
+    }
+
 }

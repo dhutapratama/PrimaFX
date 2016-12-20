@@ -536,28 +536,28 @@ public class MainManageActivity extends AppCompatActivity
     }
 
     DatePickerDialog.OnDateSetListener mDateSetListener =
-            new DatePickerDialog.OnDateSetListener() {
-                @Override
-                public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-                    String month = "";
-                    if (i1 < 10) {
-                        month = "0" + Integer.toString(i1+1);
-                    } else {
-                        month = Integer.toString(i1+1);
-                    }
-
-                    String date = "";
-                    if (i2 < 10) {
-                        date = "0" + Integer.toString(i2);
-                    } else {
-                        date = Integer.toString(i2);
-                    }
-
-                    Log.i("DATE", i + "-" + month + "-" + date);
-
-                    retrofitOrderHistoryFind(GData.CURRENT_ACCOUNT, GData.LOGIN_CODE, "date", i + "-" + month + "-" + date);
+        new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                String month = "";
+                if (i1 < 10) {
+                    month = "0" + Integer.toString(i1+1);
+                } else {
+                    month = Integer.toString(i1+1);
                 }
-            };
+
+                String date = "";
+                if (i2 < 10) {
+                    date = "0" + Integer.toString(i2);
+                } else {
+                    date = Integer.toString(i2);
+                }
+
+                Log.i("DATE", i + "-" + month + "-" + date);
+
+                retrofitOrderHistoryFind(GData.CURRENT_ACCOUNT, GData.LOGIN_CODE, "date", i + "-" + month + "-" + date);
+            }
+        };
 
     private void retrofitOrderHistoryFind(String akun, String login_hash, String find_type, String find_data) {
         final Dialog loading = new ShowDialog().loading(this);
@@ -745,7 +745,7 @@ public class MainManageActivity extends AppCompatActivity
         TextView textPhone = (TextView)findViewById(R.id.textTglOrder);
         TextView textEmail = (TextView)findViewById(R.id.textTglTransfer);
         TextView textBank = (TextView)findViewById(R.id.textTglProses);
-        TextView textRekening = (TextView)findViewById(R.id.textTglProses);
+        TextView textRekening = (TextView)findViewById(R.id.textRekening);
         TextView textAtasNama = (TextView)findViewById(R.id.textPayName);
         TextView textRegistrationDate = (TextView)findViewById(R.id.textRegistrationDate);
         TextView textValidationDate = (TextView)findViewById(R.id.textValidationDate);

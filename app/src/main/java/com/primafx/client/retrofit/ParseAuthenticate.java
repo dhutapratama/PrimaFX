@@ -52,7 +52,7 @@ public class ParseAuthenticate {
         @SerializedName("phone_verification_code")
         private String phone_verification_code;
         @SerializedName("is_phone_verified")
-        private String is_phone_verified;
+        private boolean is_phone_verified;
         @SerializedName("is_activated")
         private String is_activated;
         @SerializedName("registration_date")
@@ -110,11 +110,11 @@ public class ParseAuthenticate {
             this.email_verification_code = email_verification_code;
         }
 
-        public String getIs_phone_verified() {
+        public Boolean getIs_phone_verified() {
             return is_phone_verified;
         }
 
-        public void setIs_phone_verified(String is_phone_verified) {
+        public void setIs_phone_verified(Boolean is_phone_verified) {
             this.is_phone_verified = is_phone_verified;
         }
 

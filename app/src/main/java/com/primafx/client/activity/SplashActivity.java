@@ -15,6 +15,7 @@ import com.primafx.client.retrofit.ParseAuthenticate;
 import com.primafx.client.retrofit.RequestLibrary;
 
 import java.io.IOException;
+import java.util.List;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -85,10 +86,17 @@ public class SplashActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     ParseAuthenticate response_body = response.body();
                     if (!response_body.getError()) {
-                        Intent i = new Intent(SplashActivity.this, MainAppActivity.class);
-                        startActivity(i);
+                        Boolean is_phone_verified = response_body.getData().get(0).getIs_phone_verified();
+                        if (!is_phone_verified) {
+                            Intent i = new Intent(SplashActivity.this, PhoneRegistrationActivity.class);
+                            startActivity(i);
+                            finish();
+                        } else {
+                            Intent i = new Intent(SplashActivity.this, MainAppActivity.class);
+                            startActivity(i);
+                            finish();
+                        }
 
-                        finish();
                     } else {
                         DatabaseSQL.removeAllAccount(SplashActivity.this);
                         DatabaseSQL.Logout(SplashActivity.this);

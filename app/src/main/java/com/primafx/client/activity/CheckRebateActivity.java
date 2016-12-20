@@ -59,6 +59,7 @@ public class CheckRebateActivity extends AppCompatActivity {
         }
     }
 
+    ParseCheckRebate myRebateData;
     private void retrofitCheckRebate(String akun, String authKey, String periode) {
         final Dialog loading = new ShowDialog().loading(this);
         loading.show();
@@ -86,6 +87,7 @@ public class CheckRebateActivity extends AppCompatActivity {
                         });
                     } else {
                         setData(response_body);
+                        myRebateData = response_body;
                     }
                 } else {
                     Log.e("Server Problem", "Server Responding but error callback : " + response.message());
@@ -102,9 +104,9 @@ public class CheckRebateActivity extends AppCompatActivity {
         });
     }
 
+
     public void setData(final ParseCheckRebate data) {
         final List<HashMap<String, String>> aList = new ArrayList<>();
-
         Log.i("periode", data.getData().getSummary().getPeriode());
         Log.i("credit", data.getData().getSummary().getCredit());
         Log.i("debit", data.getData().getSummary().getDebit());
@@ -139,7 +141,7 @@ public class CheckRebateActivity extends AppCompatActivity {
             aList.add(hm);
         }
 
-        String[] from = { "Date", "ticket", "type", "profit",  "InputDateTime",  "detail", "info" };
+        final String[] from = { "Date", "ticket", "type", "profit",  "InputDateTime",  "detail", "info" };
         int[] to = { R.id.textDate, R.id.textTicket, R.id.textType, R.id.textProfit, R.id.textInputDate, R.id.textDetail, R.id.textInfo };
         SimpleAdapter adapter = new SimpleAdapter(getBaseContext(), aList, R.layout.list_rebate, from, to){
             @Override
@@ -162,7 +164,16 @@ public class CheckRebateActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                new ShowDialog().success(CheckRebateActivity.this, Integer.toString(position));
+                new ShowDialog().detailRebate(CheckRebateActivity.this,
+                        myRebateData.getData().getDetail().get(position).getId(),
+                        myRebateData.getData().getDetail().get(position).getTicket(),
+                        myRebateData.getData().getDetail().get(position).getDate(),
+                        myRebateData.getData().getDetail().get(position).getDetail(),
+                        myRebateData.getData().getDetail().get(position).getAkun(),
+                        myRebateData.getData().getDetail().get(position).getProfit(),
+                        myRebateData.getData().getDetail().get(position).getInstaDateTime(),
+                        myRebateData.getData().getDetail().get(position).getInfo()
+                );
             }
         });
 
@@ -171,6 +182,10 @@ public class CheckRebateActivity extends AppCompatActivity {
                         "\nCredit: "+ data.getData().getSummary().getCredit()+
                         "\nDebit: "+ data.getData().getSummary().getDebit()+
                         "\nSisa: " + data.getData().getSummary().getSisa());
+    }
+
+    private void detail_rebate(int position) {
+
     }
 
     @Override

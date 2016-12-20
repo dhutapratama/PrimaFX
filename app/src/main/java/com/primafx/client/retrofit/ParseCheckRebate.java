@@ -15,12 +15,14 @@ public class ParseCheckRebate {
     private String akun;
     private String authKey;
     private String periode;
+    private String app;
 
     // Reply Parameter
     @SerializedName("error")
     private Boolean error;
     @SerializedName("message")
     private String message;
+
 
     @Expose
     private ResponseData data;
@@ -29,6 +31,7 @@ public class ParseCheckRebate {
         this.akun = akun;
         this.authKey = authKey;
         this.periode = periode;
+        this.app = "android";
     }
 
     public Boolean getError() {

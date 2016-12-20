@@ -33,7 +33,7 @@ public class AddAccountActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         final EditText account = (EditText)findViewById(R.id.editAccount);
-        final EditText phone_password = (EditText)findViewById(R.id.editPhonePassword);
+        final EditText phone_password = (EditText)findViewById(R.id.editPhone);
 
         Button tambahkan = (Button)findViewById(R.id.buttonAddAccount);
         tambahkan.setOnClickListener(new View.OnClickListener() {

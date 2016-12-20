@@ -83,7 +83,7 @@ public class RegistrationActivity extends AppCompatActivity implements ParalaxSc
 
     private void validation() {
         EditText password = (EditText) findViewById(R.id.editPassword);
-        EditText password2 = (EditText) findViewById(R.id.editPhonePassword);
+        EditText password2 = (EditText) findViewById(R.id.editPhone);
 
         password.setError(null);
         password2.setError(null);

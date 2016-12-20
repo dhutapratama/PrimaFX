@@ -20,7 +20,8 @@
         android:id="@+id/editKodeSMS"
         android:hint="Kode SMS"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp"
+        android:textAlignment="center" />
 
     <TextView
         android:text="Kode verifikasi kami kirimkan melalui sms, aplikasi akan mendeteksi secara otomatis atau anda dapat mengisikan secara manual."
@@ -43,7 +44,8 @@
         android:textSize="12sp"
         android:layout_below="@+id/buttonConfirm"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp" />
+        android:layout_marginTop="32dp"
+        android:visibility="gone" />
 
     <Button
         android:text="Konfirmasi"
